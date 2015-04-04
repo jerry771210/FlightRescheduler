@@ -23,6 +23,10 @@
             android:name="edu.cmu.sv.flight.rescheduler.ui.PagerActivity"
             android:label="@string/title_activity_pager" >
         </activity>
+        <activity
+            android:name="edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsActivity">
+        </activity>
+
     </application>
 
 </manifest>
