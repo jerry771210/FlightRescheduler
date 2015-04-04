@@ -20,7 +20,12 @@ public class MainActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
+
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.container, new AlternativeOptionsFragement())
+//                    .commit();
         }
+
     }
 
 
@@ -58,7 +63,6 @@ public class MainActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            //View rootView = inflater.inflate(R.layout.alternatives_options, container, false);
             return rootView;
         }
     }
