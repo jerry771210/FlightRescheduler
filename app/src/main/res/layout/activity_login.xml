@@ -14,10 +14,9 @@
         android:id="@+id/editTicketNumber"
         android:hint="Ticket Number"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignLeft="@+id/editFirstName"
+        android:layout_alignStart="@+id/editFirstName"
+        android:layout_marginTop="50dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -25,12 +24,10 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editFirstName"
-        android:hint="Fist Name"
+        android:hint="First Name"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/editTicketNumber"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -39,11 +36,10 @@
         android:ems="10"
         android:id="@+id/editLastName"
         android:hint="Last Name"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/editFirstName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/editFirstName"
+        android:layout_alignStart="@+id/editFirstName" />
 
     <Button
         android:layout_width="wrap_content"
@@ -54,6 +50,32 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/holo_blue_dark" />
+
+    <Button
+        android:id="@+id/buttonScanQRCode"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+
+        android:text="QR Code"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@drawable/buttonshape" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="or"
+        android:id="@+id/textView2"
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/editLastName"
+        android:layout_centerHorizontal="true"
+        android:textSize="50dp" />
 
 </RelativeLayout>
