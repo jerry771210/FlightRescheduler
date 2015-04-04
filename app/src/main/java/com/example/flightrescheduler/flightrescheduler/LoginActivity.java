@@ -21,7 +21,9 @@ public class LoginActivity extends ActionBarActivity implements OnClickListener 
         setContentView(R.layout.activity_login);
 
         Button scanButton = (Button)findViewById(R.id.buttonScanQRCode);
+        Button loginButton = (Button)findViewById(R.id.buttonLogin);
         scanButton.setOnClickListener(this);
+        loginButton.setOnClickListener(this);
     }
 
 
@@ -69,7 +71,7 @@ public class LoginActivity extends ActionBarActivity implements OnClickListener 
                 break;
 
             case R.id.buttonLogin:
-                // startActivity(new Intent(this, ));
+                startActivity(new Intent(this, PagerActivity.class));
                 break;
         }
     }

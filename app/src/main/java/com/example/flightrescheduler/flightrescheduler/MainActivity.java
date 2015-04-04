@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new AlternativeOptionsFragement())
                     .commit();
         }
-        startActivity(new Intent(this, PagerActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
 
     }
 
