@@ -5,7 +5,7 @@ android {
     buildToolsVersion '21.1.2'
 
     defaultConfig {
-        applicationId "com.example.flightrescheduler.flightrescheduler"
+        applicationId "edu.cmu.sv.flight.rescheduler"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -22,4 +22,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.0.0'
+    compile files('/Users/htliang/AndroidStudioProjects/FlightRescheduler/libs/zxing-android-integration-3.2.0.jar')
 }

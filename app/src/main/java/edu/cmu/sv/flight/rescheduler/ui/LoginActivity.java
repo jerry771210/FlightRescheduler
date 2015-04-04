@@ -1,9 +1,6 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends ActionBarActivity implements OnClickListener {
 
@@ -54,25 +57,29 @@ public class LoginActivity extends ActionBarActivity implements OnClickListener 
         switch(v.getId()){
 
             case R.id.buttonScanQRCode:
-                String fileName = "QRCode.jpg";
-                //create parameters for Intent with filename
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.TITLE, fileName);
-                values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
-                //imageUri is the current activity attribute, define and save it for later usage (also in onSaveInstanceState)
-                Uri imageUri = getContentResolver().insert(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                //create new Intent
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-                intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-                startActivityForResult(intent, 0);
+                IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+                List<String> formats = new ArrayList<>();
+                formats.add("QR Code");
+                scanIntegrator.initiateScan(formats);
                 break;
 
             case R.id.buttonLogin:
                 startActivity(new Intent(this, PagerActivity.class));
                 break;
+        }
+    }
+
+    // Retrieve scan result
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanningResult != null) {
+            String scanContent = scanningResult.getContents();
+            String scanFormat = scanningResult.getFormatName();
+            Toast.makeText(getApplicationContext(), scanContent, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), scanFormat, Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "No QR code received!", Toast.LENGTH_SHORT).show();
         }
     }
 }
