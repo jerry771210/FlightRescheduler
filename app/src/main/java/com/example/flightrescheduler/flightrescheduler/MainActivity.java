@@ -1,5 +1,6 @@
 package com.example.flightrescheduler.flightrescheduler;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
 //                    .add(R.id.container, new AlternativeOptionsFragement())
 //                    .commit();
         }
+        startActivity(new Intent(this, LoginActivity.class));
 
     }
 
