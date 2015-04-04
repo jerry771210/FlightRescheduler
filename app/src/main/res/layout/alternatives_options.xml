@@ -6,37 +6,97 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="743dp"
+        android:layout_height="620dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
         android:id="@+id/listviewAlternativeRoute"
-        android:layout_gravity="left|top" />
+        android:layout_gravity="left" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rebooking Confirm"
+        android:text="Rebook Now !!"
         android:id="@+id/buttonRebookingConfirm"
-        android:layout_marginBottom="54dp"
-        android:layout_marginLeft="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/buttonMaybeLater"
+        android:layout_toLeftOf="@+id/buttonMaybeLater"
+        android:layout_toStartOf="@+id/buttonMaybeLater" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Advanced Search"
         android:id="@+id/buttonAdvancedSearch"
-        android:layout_alignTop="@+id/buttonRebookingConfirm"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/buttonOtherAirlines"
+        android:layout_toLeftOf="@+id/buttonOtherAirlines"
+        android:layout_toStartOf="@+id/buttonOtherAirlines" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MultipleAirlines"
-        android:id="@+id/buttonMultipleAirlines"
-        android:layout_alignTop="@+id/buttonAdvancedSearch"
+        android:text="Other Airlines"
+        android:id="@+id/buttonOtherAirlines"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="BasicFlow"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+         />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Alternative Solution:"
+        android:id="@+id/textAlternativeSolutions"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="100dp" />
+
+    <!-- Align to left&bottom -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="WantsMore?"
+        android:id="@+id/textWantsMore"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maybe Later"
+        android:id="@+id/buttonMaybeLater"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="90dp"
+        android:layout_marginRight="20dp"
+         />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignTop="@+id/buttonRebookingConfirm"
+        android:layout_toRightOf="@+id/textAlternativeSolutions"
+        android:layout_toLeftOf="@+id/buttonRebookingConfirm"
+        android:layout_toStartOf="@+id/buttonRebookingConfirm"
+        android:spinnerMode="dropdown" />
 
 
 </RelativeLayout>
