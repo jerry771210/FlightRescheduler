@@ -1,17 +1,27 @@
 package com.example.flightrescheduler.flightrescheduler;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.view.View.OnClickListener;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Button scanButton = (Button)findViewById(R.id.buttonScanQRCode);
+        scanButton.setOnClickListener(this);
     }
 
 
@@ -35,5 +45,32 @@ public class LoginActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+
+            case R.id.buttonScanQRCode:
+                String fileName = "QRCode.jpg";
+                //create parameters for Intent with filename
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.TITLE, fileName);
+                values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
+                //imageUri is the current activity attribute, define and save it for later usage (also in onSaveInstanceState)
+                Uri imageUri = getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                //create new Intent
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+                intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
+                startActivityForResult(intent, 0);
+                break;
+
+            case R.id.buttonLogin:
+                // startActivity(new Intent(this, ));
+                break;
+        }
     }
 }
