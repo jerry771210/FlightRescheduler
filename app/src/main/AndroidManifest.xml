@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flightrescheduler.flightrescheduler" >
+    package="edu.cmu.sv.flight.rescheduler.ui" >
 
     <application
         android:allowBackup="true"
