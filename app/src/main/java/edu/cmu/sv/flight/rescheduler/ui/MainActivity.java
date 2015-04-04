@@ -23,9 +23,6 @@ public class MainActivity extends ActionBarActivity {
 //                    .commit();
         }
         startActivity(new Intent(this, LoginActivity.class));
-
-
-
     }
 
 
