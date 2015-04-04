@@ -1,4 +1,4 @@
-package com.example.flightrescheduler.flightrescheduler;
+package edu.cmu.sv.flight.rescheduler.ui;
 
 import android.content.ContentValues;
 import android.content.Intent;

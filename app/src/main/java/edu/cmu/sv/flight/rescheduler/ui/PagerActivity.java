@@ -1,4 +1,4 @@
-package com.example.flightrescheduler.flightrescheduler;
+package edu.cmu.sv.flight.rescheduler.ui;
 
 /**
  * Created by chihengw on 4/4/15.
