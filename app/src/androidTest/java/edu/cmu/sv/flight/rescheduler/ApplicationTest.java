@@ -1,4 +1,4 @@
-package com.example.flightrescheduler.flightrescheduler;
+package edu.cmu.sv.flight.rescheduler;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

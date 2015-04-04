@@ -1,4 +1,4 @@
-package com.example.flightrescheduler.flightrescheduler;
+package edu.cmu.sv.flight.rescheduler.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,15 +18,15 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.container, new PlaceholderFragment())
-//                    .commit();
-//            if want to switch to alternativesOptions
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new AlternativeOptionsFragement())
+                    .add(R.id.container, new PlaceholderFragment())
                     .commit();
+//            if want to switch to alternativesOptions
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.container, new AlternativeOptionsFragement())
+//                    .commit();
         }
-        startActivity(new Intent(this, PagerActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
 
     }
 

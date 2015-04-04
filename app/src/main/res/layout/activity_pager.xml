@@ -8,19 +8,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.flightrescheduler.flightrescheduler.PagerActivity">
+    tools:context="edu.cmu.sv.flight.rescheduler.ui.PagerActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top"
+        android:layout_gravity="center_horizontal"
         android:autoLink="web"
-        android:text="BOARDING PASS"
-        android:typeface="normal"
-        android:textSize="80px"
+        android:text="Boarding Pass Info"
         android:textStyle="bold" />
 
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/image1"
+        />
     <android.support.v4.view.ViewPager
         android:id="@+id/myviewpager"
         android:layout_width="match_parent"
