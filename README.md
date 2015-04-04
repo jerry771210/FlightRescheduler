@@ -7,3 +7,7 @@ Screen size: Nexus 7 2012 (7.0", 800x1280: tvdpi)
 
 Compile and build tools version: API 21 (Lollipop)
 
+
+Credit
+============
+zxing QR code SDK: https://github.com/zxing/zxing
