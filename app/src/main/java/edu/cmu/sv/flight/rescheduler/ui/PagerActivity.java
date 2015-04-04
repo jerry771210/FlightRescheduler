@@ -4,6 +4,7 @@ package edu.cmu.sv.flight.rescheduler.ui;
  * Created by chihengw on 4/4/15.
  */
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -39,17 +40,18 @@ public class PagerActivity extends Activity {
         int NumberOfPages = 5;
 
         int[] res = {
-                android.R.drawable.ic_dialog_alert,
-                android.R.drawable.ic_menu_camera,
-                android.R.drawable.ic_menu_compass,
-                android.R.drawable.ic_menu_directions,
-                android.R.drawable.ic_menu_gallery};
-        int[] backgroundcolor = {
-                0xff0000ff,
-                0xff0000ff,
-                0xff0000ff,
-                0xffff0000,
-                0xff0000ff};
+                R.drawable.boarding_pass_depart,
+                R.drawable.boarding_pass_landed,
+                R.drawable.boarding_pass_normal,
+                R.drawable.boarding_pass_normal,
+                R.drawable.boarding_pass_cancel};
+
+//        int[] backgroundcolor = {
+//                material_blue_grey_800,
+//                0xffffffff,
+//                0xffffffff,
+//                0xffffffff,
+//                0xffffffff};
 
         @Override
         public int getCount() {
@@ -67,12 +69,14 @@ public class PagerActivity extends Activity {
 
             TextView textView = new TextView(PagerActivity.this);
             textView.setTextColor(Color.WHITE);
-            textView.setTextSize(30);
+            textView.setTextSize(50);
             textView.setTypeface(Typeface.DEFAULT_BOLD);
             textView.setText(String.valueOf(position));
 
             ImageView imageView = new ImageView(PagerActivity.this);
             imageView.setImageResource(res[position]);
+            //imageView.setImageResource(R.drawable.boarding_pass_dept);
+
             LayoutParams imageParams = new LayoutParams(
                     LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
             imageView.setLayoutParams(imageParams);
@@ -81,9 +85,10 @@ public class PagerActivity extends Activity {
             layout.setOrientation(LinearLayout.VERTICAL);
             LayoutParams layoutParams = new LayoutParams(
                     LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-            layout.setBackgroundColor(backgroundcolor[position]);
+            //layout.setBackgroundColor(backgroundcolor[position]);
+
             layout.setLayoutParams(layoutParams);
-            layout.addView(textView);
+//            layout.addView(textView);
             layout.addView(imageView);
 
             final int page = position;
@@ -94,6 +99,7 @@ public class PagerActivity extends Activity {
                     Toast.makeText(PagerActivity.this,
                             "Page " + page + " clicked",
                             Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(PagerActivity.this, AlternativeOptionsActivity.class));
                 }});
 
             container.addView(layout);
