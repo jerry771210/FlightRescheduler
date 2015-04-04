@@ -20,7 +20,7 @@ public class AlternativeOptionsFragement extends Fragment {
     public AlternativeOptionsFragement() {
     }
 
-    
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
