@@ -1,34 +1,30 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
-/**
- * Created by chihengw on 4/4/15.
- */
-
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-public class PagerActivity extends Activity {
+public class PagerConfirmActivity extends Activity {
 
     ViewPager viewPager;
     MyPagerAdapter myPagerAdapter;
+    Button btn_confirm;
+    Button btn_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pager);
-        viewPager = (ViewPager)findViewById(R.id.myviewpager);
+        setContentView(R.layout.activity_pager_confirm);
+        viewPager = (ViewPager)findViewById(R.id.myviewpager_confirm);
         myPagerAdapter = new MyPagerAdapter();
         viewPager.setAdapter(myPagerAdapter);
 
@@ -43,14 +39,9 @@ public class PagerActivity extends Activity {
                 R.drawable.boarding_pass_landed,
                 R.drawable.boarding_pass_normal,
                 R.drawable.boarding_pass_normal,
-                R.drawable.boarding_pass_cancel};
+                R.drawable.boarding_pass_normal};
 
-//        int[] backgroundcolor = {
-//                material_blue_grey_800,
-//                0xffffffff,
-//                0xffffffff,
-//                0xffffffff,
-//                0xffffffff};
+
 
         @Override
         public int getCount() {
@@ -66,40 +57,41 @@ public class PagerActivity extends Activity {
         public Object instantiateItem(ViewGroup container, int position) {
 
 
-            TextView textView = new TextView(PagerActivity.this);
-            textView.setTextColor(Color.WHITE);
-            textView.setTextSize(50);
-            textView.setTypeface(Typeface.DEFAULT_BOLD);
-            textView.setText(String.valueOf(position));
-
-            ImageView imageView = new ImageView(PagerActivity.this);
+            ImageView imageView = new ImageView(PagerConfirmActivity.this);
             imageView.setImageResource(res[position]);
-            //imageView.setImageResource(R.drawable.boarding_pass_dept);
+
 
             LayoutParams imageParams = new LayoutParams(
                     LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
             imageView.setLayoutParams(imageParams);
 
-            LinearLayout layout = new LinearLayout(PagerActivity.this);
+            btn_confirm =  (Button)findViewById(R.id.btnConfirm);
+            btn_cancel = (Button)findViewById(R.id.btnCancel);
+
+
+            LinearLayout layout = new LinearLayout(PagerConfirmActivity.this);
             layout.setOrientation(LinearLayout.VERTICAL);
             LayoutParams layoutParams = new LayoutParams(
                     LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-            //layout.setBackgroundColor(backgroundcolor[position]);
 
             layout.setLayoutParams(layoutParams);
-//            layout.addView(textView);
             layout.addView(imageView);
 
             final int page = position;
-            layout.setOnClickListener(new OnClickListener(){
 
+            btn_confirm.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v) {
-//                    Toast.makeText(PagerActivity.this,
-//                            "Page " + page + " clicked",
-//                            Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(PagerActivity.this, AlternativeOptionsActivity.class));
-                }});
+                public void onClick(View arg0) {
+                    startActivity(new Intent(PagerConfirmActivity.this, PagerActivity.class));
+                }
+            });
+            btn_cancel.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    finish();
+                }
+            });
+
 
             container.addView(layout);
             return layout;
