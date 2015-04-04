@@ -1,12 +1,14 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -48,7 +50,7 @@ public class AlternativeOptionsFragement extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.alternatives_options, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_alternatives_options, container, false);
 
         /* For the list view part */
         List<String> weekForecast = Arrays.asList(mockOptions);
@@ -60,10 +62,19 @@ public class AlternativeOptionsFragement extends Fragment {
         Spinner spinnerOptions = (Spinner) rootView.findViewById(R.id.spinnerAlternativeRoutes);
         //Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, mockOptions);
-        // Specify the layout to use when the list of choices appears
-//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinnerOptions.setAdapter(spinnerAdapter);
+
+        /* For the button part */
+        Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
+
+        // Take action when click the button
+        buttonCancelBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),PagerActivity.class));
+            }
+        });
 
         return rootView;
     }
