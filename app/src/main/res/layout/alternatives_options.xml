@@ -6,7 +6,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="620dp"
+        android:layout_height="600dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="60dp"
         android:id="@+id/listviewAlternativeRoute"
@@ -58,8 +58,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Alternative Solution:"
-        android:id="@+id/textAlternativeSolutions"
+        android:text="Alternative Routes:"
+        android:id="@+id/textAlternativeRoutes"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="25dp"
@@ -91,9 +91,9 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerAlternativeRoutes"
         android:layout_alignTop="@+id/buttonRebookingConfirm"
-        android:layout_toRightOf="@+id/textAlternativeSolutions"
+        android:layout_toRightOf="@+id/textAlternativeRoutes"
         android:layout_toLeftOf="@+id/buttonRebookingConfirm"
         android:layout_toStartOf="@+id/buttonRebookingConfirm"
         android:spinnerMode="dropdown" />
