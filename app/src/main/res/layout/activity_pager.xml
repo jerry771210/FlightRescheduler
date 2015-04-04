@@ -13,16 +13,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal|top"
         android:autoLink="web"
-        android:text="Boarding Pass Info"
+        android:text="BOARDING PASS"
+        android:typeface="normal"
+        android:textSize="80px"
         android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/image1"
-        android:src=""/>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/myviewpager"
         android:layout_width="match_parent"
