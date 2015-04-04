@@ -46,12 +46,12 @@ public class PagerActivity extends Activity {
                 R.drawable.boarding_pass_normal,
                 R.drawable.boarding_pass_cancel};
 
-        int[] backgroundcolor = {
-                0xffffffff,
-                0xffffffff,
-                0xffffffff,
-                0xffffffff,
-                0xffffffff};
+//        int[] backgroundcolor = {
+//                material_blue_grey_800,
+//                0xffffffff,
+//                0xffffffff,
+//                0xffffffff,
+//                0xffffffff};
 
         @Override
         public int getCount() {
@@ -85,9 +85,10 @@ public class PagerActivity extends Activity {
             layout.setOrientation(LinearLayout.VERTICAL);
             LayoutParams layoutParams = new LayoutParams(
                     LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-            layout.setBackgroundColor(backgroundcolor[position]);
+            //layout.setBackgroundColor(backgroundcolor[position]);
+
             layout.setLayoutParams(layoutParams);
-            layout.addView(textView);
+//            layout.addView(textView);
             layout.addView(imageView);
 
             final int page = position;
@@ -98,7 +99,7 @@ public class PagerActivity extends Activity {
                     Toast.makeText(PagerActivity.this,
                             "Page " + page + " clicked",
                             Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(PagerActivity.this, LoginActivity.class));
+                    startActivity(new Intent(PagerActivity.this, AlternativeOptionsActivity.class));
                 }});
 
             container.addView(layout);
