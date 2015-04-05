@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class AlternativeOptionsFragement extends Fragment implements OnClickListener {
     static final String LOG_TAG = AlternativeOptionsFragement.class.getSimpleName();
+    private AdvancedSearch advancedSearch;
 
     private final String[] mockOptions = {
             " 1 LAX - NYC Arrived at 08:00PM 10/23",
@@ -193,12 +194,9 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
                 onClickButtonOtherAirlines();
                 break;
             case R.id.buttonAdvancedSearch:
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.advanced_search);
-                dialog.setTitle("Advanced search");
-                AdvancedSearch advancedSearch = new AdvancedSearch(dialog);
+                advancedSearch = new AdvancedSearch(getActivity());
                 advancedSearch.init();
-                dialog.show();
+                advancedSearch.showDialog();
                 break;
         }
     }
