@@ -65,6 +65,7 @@ public class AlternativeOptionsFragement extends Fragment {
         // Apply the adapter to the spinner
         spinnerOptions.setAdapter(spinnerAdapter);
 
+
         /* For the button part */
         Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
 
