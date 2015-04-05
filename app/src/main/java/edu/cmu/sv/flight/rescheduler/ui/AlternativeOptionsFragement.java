@@ -14,6 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +25,7 @@ import java.util.List;
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
  */
-public class AlternativeOptionsFragement extends Fragment implements OnClickListener {
+public class AlternativeOptionsFragement extends Fragment implements OnClickListener, OnItemClickListener {
     static final String LOG_TAG = AlternativeOptionsFragement.class.getSimpleName();
     private AdvancedSearch advancedSearch;
 
@@ -93,6 +97,7 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         buttonRebookingConfirm.setOnClickListener(this);
         buttonAdvancedSearch.setOnClickListener(this);
         buttonOtherAirlines.setOnClickListener(this);
+        lv.setOnItemClickListener(this);
 
         return rootView;
     }
@@ -171,4 +176,11 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String item = ((TextView)view).getText().toString();
+        ShowFlightDetails showDetails = new ShowFlightDetails(item, getActivity());
+        showDetails.display();
+
+    }
 }

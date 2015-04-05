@@ -18,7 +18,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     private boolean overNight;
     private boolean noSeat;
     private boolean nearbyAirport;
-    
+
     private Dialog dialog;
     private TextView textViewNumStop;
     private SeekBar seekBar;
