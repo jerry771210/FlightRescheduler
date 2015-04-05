@@ -1,12 +1,13 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
  */
-public class AlternativeOptionsFragement extends Fragment {
+public class AlternativeOptionsFragement extends Fragment implements OnClickListener {
     static final String LOG_TAG = AlternativeOptionsFragement.class.getSimpleName();
 
     private final String[] mockOptions = {
@@ -78,6 +79,7 @@ public class AlternativeOptionsFragement extends Fragment {
         // Apply the adapter to the spinner
         spinnerOptions.setAdapter(spinnerAdapter);
 
+
         /* For the button part */
         Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
         Button buttonRebookingConfirm = (Button) rootView.findViewById(R.id.buttonRebookingConfirm);
@@ -85,19 +87,10 @@ public class AlternativeOptionsFragement extends Fragment {
         Button buttonOtherAirlines = (Button) rootView.findViewById(R.id.buttonOtherAirlines);
 
         // Take action when click the button
-        buttonCancelBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
-
-        buttonRebookingConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(),PagerConfirmActivity.class));
-            }
-        });
+        buttonCancelBooking.setOnClickListener(this);
+        buttonRebookingConfirm.setOnClickListener(this);
+        buttonAdvancedSearch.setOnClickListener(this);
+        buttonOtherAirlines.setOnClickListener(this);
 
         buttonOtherAirlines.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,5 +137,24 @@ public class AlternativeOptionsFragement extends Fragment {
         return;
     }
 
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.buttonRebookingConfirm:
+               break;
+            case R.id.buttonOtherAirlines:
+                break;
+            case R.id.buttonAdvancedSearch:
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.advanced_search);
+                dialog.setTitle("Advanced search");
+                AdvancedSearch advancedSearch = new AdvancedSearch(dialog);
+                advancedSearch.init();
+                dialog.show();
+                break;
+        }
+    }
 
 }

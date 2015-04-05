@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show all flights even if no seat"
+        android:id="@+id/checkBoxNoSeat"
+        android:checked="false"
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/checkBoxOverNight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Destination includes nearby airport"
+        android:id="@+id/checkBoxNearbyAirport"
+        android:checked="false"
+        android:layout_below="@+id/checkBoxNoSeat"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="80dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxOverNight"
+        android:checked="false"
+        android:text="Overnight flight"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <SeekBar
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarNumberOfStops"
+        android:max="2"
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/checkBoxNearbyAirport"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="1 stops"
+        android:id="@+id/textViewNumStops"
+        android:layout_alignTop="@+id/seekBarNumberOfStops"
+        android:layout_toRightOf="@+id/seekBarNumberOfStops"
+        android:layout_toEndOf="@+id/seekBarNumberOfStops"
+        android:layout_alignBottom="@+id/seekBarNumberOfStops" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Advanced search"
+        android:id="@+id/buttonAdvancedSearch"
+        android:layout_marginTop="150dp"
+        android:layout_alignTop="@+id/textViewNumStops"
+        android:layout_toRightOf="@+id/textViewNumStops"
+        android:layout_toEndOf="@+id/textViewNumStops" />
+</RelativeLayout>
