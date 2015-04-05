@@ -2,6 +2,7 @@ package edu.cmu.sv.flight.rescheduler.ui;
 
 
 import android.app.Dialog;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,8 +28,8 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     private boolean noSeat;
     private boolean nearbyAirport;
 
-    public AdvancedSearch(Dialog dialog) {
-        this.dialog = dialog;
+    public AdvancedSearch(FragmentActivity activity) {
+        dialog = new Dialog(activity);
         textViewNumStop = (TextView) dialog.findViewById(R.id.textViewNumStops);
         seekBar = (SeekBar) dialog.findViewById(R.id.seekBarNumberOfStops);
         checkBoxOverNight  = (CheckBox) dialog.findViewById(R.id.checkBoxOverNight);
@@ -59,7 +60,11 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
         checkBoxOverNight.setOnClickListener(this);
         checkBoxNoSeat.setOnClickListener(this);
         checkBoxNearbyAirport.setOnClickListener(this);
-
+        dialog.setContentView(R.layout.advanced_search);
+        dialog.setTitle("Advanced search");
+    }
+    public void showDialog() {
+        dialog.show();
     }
 
     @Override
