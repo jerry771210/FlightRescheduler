@@ -42,15 +42,8 @@ public class AlternativeOptionsFragement extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_alternatives_options, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_alternatives_options_basic_search, container, false);
 
         /* For the list view part */
         List<String> weekForecast = Arrays.asList(mockOptions);
@@ -68,12 +61,22 @@ public class AlternativeOptionsFragement extends Fragment {
 
         /* For the button part */
         Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
+        Button buttonRebookingConfirm = (Button) rootView.findViewById(R.id.buttonRebookingConfirm);
+        Button buttonAdvancedSearch = (Button) rootView.findViewById(R.id.buttonAdvancedSearch);
+        Button buttonOtherAirlines = (Button) rootView.findViewById(R.id.buttonOtherAirlines);
 
         // Take action when click the button
         buttonCancelBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),PagerActivity.class));
+                getActivity().finish();
+            }
+        });
+
+        buttonRebookingConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),PagerConfirmActivity.class));
             }
         });
 
