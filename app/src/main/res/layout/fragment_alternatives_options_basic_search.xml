@@ -28,7 +28,8 @@
         android:id="@+id/buttonAdvancedSearch"
         android:layout_alignTop="@+id/buttonOtherAirlines"
         android:layout_toLeftOf="@+id/buttonOtherAirlines"
-        android:layout_toStartOf="@+id/buttonOtherAirlines" />
+        android:layout_toStartOf="@+id/buttonOtherAirlines"
+    />
 
     <Button
         android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
-        />
+    />
 
     <TextView
         android:layout_width="wrap_content"
