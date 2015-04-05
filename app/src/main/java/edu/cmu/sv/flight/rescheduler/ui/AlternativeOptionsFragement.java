@@ -1,7 +1,6 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -181,6 +181,12 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         spinnerOptions.setAdapter(spinnerAdapter);
     }
 
+    private void updateAlternativeOptionMode(String str) {
+        View v = getView();
+        TextView tv = (TextView) v.findViewById(R.id.textAlternativeOptionsMode);
+        tv.setText(str);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -197,6 +203,8 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
                 advancedSearch = new AdvancedSearch(getActivity());
                 advancedSearch.init();
                 advancedSearch.showDialog();
+                updateSpinnerAlternativeRoute(mockAdvancedSearch);
+                updateListviewAlternativeRoute(mockAdvancedSearch);
                 break;
         }
     }
