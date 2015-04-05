@@ -98,7 +98,8 @@ public class PagerActivity extends Activity {
 //                    Toast.makeText(PagerActivity.this,
 //                            "Page " + page + " clicked",
 //                            Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(PagerActivity.this, AlternativeOptionsActivity.class));
+                    if(res[page]== R.drawable.boarding_pass_cancel)
+                        startActivity(new Intent(PagerActivity.this, AlternativeOptionsActivity.class));
                 }});
 
             container.addView(layout);
