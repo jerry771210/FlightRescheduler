@@ -1,6 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +22,7 @@ import java.util.List;
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
  */
-public class AlternativeOptionsFragement extends Fragment {
+public class AlternativeOptionsFragement extends Fragment implements OnClickListener {
 
     private final String[] mockOptions = {
             "1 LAX - NYC Arrived at 08:00PM 10/23",
@@ -66,20 +70,29 @@ public class AlternativeOptionsFragement extends Fragment {
         Button buttonOtherAirlines = (Button) rootView.findViewById(R.id.buttonOtherAirlines);
 
         // Take action when click the button
-        buttonCancelBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
-
-        buttonRebookingConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(),PagerConfirmActivity.class));
-            }
-        });
+        buttonCancelBooking.setOnClickListener(this);
+        buttonRebookingConfirm.setOnClickListener(this);
+        buttonAdvancedSearch.setOnClickListener(this);
+        buttonOtherAirlines.setOnClickListener(this);
 
         return rootView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.buttonRebookingConfirm:
+               break;
+            case R.id.buttonOtherAirlines:
+                break;
+            case R.id.buttonAdvancedSearch:
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.advanced_search);
+                dialog.setTitle("Advanced search");
+                AdvancedSearch advancedSearch = new AdvancedSearch(dialog);
+                advancedSearch.init();
+                dialog.show();
+                break;
+        }
     }
 }
