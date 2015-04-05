@@ -35,8 +35,8 @@ public class PagerConfirmActivity extends Activity {
         int NumberOfPages = 5;
 
         int[] res = {
-                R.drawable.boarding_pass_depart,
-                R.drawable.boarding_pass_landed,
+                R.drawable.boarding_pass_normal,
+                R.drawable.boarding_pass_normal,
                 R.drawable.boarding_pass_normal,
                 R.drawable.boarding_pass_normal,
                 R.drawable.boarding_pass_normal};
@@ -82,7 +82,9 @@ public class PagerConfirmActivity extends Activity {
             btn_confirm.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    startActivity(new Intent(PagerConfirmActivity.this, PagerActivity.class));
+                    Intent myIntent = new Intent(PagerConfirmActivity.this, PagerActivity.class);
+                    myIntent.putExtra("confirm","isConfirm");
+                    startActivity(myIntent);
                 }
             });
             btn_cancel.setOnClickListener(new OnClickListener() {

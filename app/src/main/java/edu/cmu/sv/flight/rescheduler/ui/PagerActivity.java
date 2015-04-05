@@ -41,16 +41,16 @@ public class PagerActivity extends Activity {
         int[] res = {
                 R.drawable.boarding_pass_depart,
                 R.drawable.boarding_pass_landed,
-                R.drawable.boarding_pass_normal,
+                R.drawable.boarding_pass_cancel,
                 R.drawable.boarding_pass_normal,
                 R.drawable.boarding_pass_cancel};
 
-//        int[] backgroundcolor = {
-//                material_blue_grey_800,
-//                0xffffffff,
-//                0xffffffff,
-//                0xffffffff,
-//                0xffffffff};
+        int[] res2 = {
+                R.drawable.boarding_pass_landed,
+                R.drawable.boarding_pass_landed,
+                R.drawable.boarding_pass_normal,
+                R.drawable.boarding_pass_normal,
+                R.drawable.boarding_pass_normal};
 
         @Override
         public int getCount() {
@@ -65,6 +65,7 @@ public class PagerActivity extends Activity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
+            boolean confirm = false;
 
             TextView textView = new TextView(PagerActivity.this);
             textView.setTextColor(Color.WHITE);
@@ -73,7 +74,15 @@ public class PagerActivity extends Activity {
             textView.setText(String.valueOf(position));
 
             ImageView imageView = new ImageView(PagerActivity.this);
-            imageView.setImageResource(res[position]);
+
+
+            Intent curIntent = getIntent();
+            String isConfirm = curIntent.getStringExtra("confirm");
+            if("isConfirm".equals(isConfirm)) {
+                imageView.setImageResource(res2[position]);
+                confirm = true;
+            } else
+                imageView.setImageResource(res[position]);
             //imageView.setImageResource(R.drawable.boarding_pass_dept);
 
             LayoutParams imageParams = new LayoutParams(
@@ -91,6 +100,8 @@ public class PagerActivity extends Activity {
             layout.addView(imageView);
 
             final int page = position;
+
+            final boolean finalConfirm = confirm;
             layout.setOnClickListener(new OnClickListener(){
 
                 @Override
@@ -98,8 +109,9 @@ public class PagerActivity extends Activity {
 //                    Toast.makeText(PagerActivity.this,
 //                            "Page " + page + " clicked",
 //                            Toast.LENGTH_LONG).show();
-                    if(res[page]== R.drawable.boarding_pass_cancel)
-                        startActivity(new Intent(PagerActivity.this, AlternativeOptionsActivity.class));
+                    if(!finalConfirm)
+                        if(res[page] == R.drawable.boarding_pass_cancel)
+                            startActivity(new Intent(PagerActivity.this, AlternativeOptionsActivity.class));
                 }});
 
             container.addView(layout);
