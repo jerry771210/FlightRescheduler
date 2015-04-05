@@ -34,7 +34,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
         checkBoxOverNight  = (CheckBox) dialog.findViewById(R.id.checkBoxOverNight);
         checkBoxNoSeat = (CheckBox) dialog.findViewById(R.id.checkBoxNoSeat);
         checkBoxNearbyAirport = (CheckBox) dialog.findViewById(R.id.checkBoxNearbyAirport);
-        confirm = (Button) dialog.findViewById(R.id.buttonAdvancedSearch);
+        confirm = (Button) dialog.findViewById(R.id.buttonAdvancedSearchConfirm);
     }
 
     public boolean isNearbyAirport() {
@@ -64,7 +64,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        numStops = progress+1;
+        numStops = progress;
         textViewNumStop.setText(numStops + " stops");
     }
 

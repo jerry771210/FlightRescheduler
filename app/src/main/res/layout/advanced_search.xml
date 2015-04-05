@@ -39,7 +39,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/seekBarNumberOfStops"
-        android:max="2"
+        android:max="3"
         android:layout_marginTop="80dp"
         android:layout_below="@+id/checkBoxNearbyAirport"
         android:layout_alignParentLeft="true" />
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1 stops"
+        android:text="0 stops"
         android:id="@+id/textViewNumStops"
         android:layout_alignTop="@+id/seekBarNumberOfStops"
         android:layout_toRightOf="@+id/seekBarNumberOfStops"
