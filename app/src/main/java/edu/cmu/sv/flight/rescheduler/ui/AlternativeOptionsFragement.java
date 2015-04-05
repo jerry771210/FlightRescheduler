@@ -2,6 +2,7 @@ package edu.cmu.sv.flight.rescheduler.ui;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -42,7 +43,7 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
     };
 
     private final String[] mockOtherAirlines = {
-            " 1 EVA LAX - NYC Arrived at 08:00PM 10/23",
+            " 1 EVA  LAX - NYC Arrived at 08:00PM 10/23",
             " 2 EVA LAX - NYC Arrived at 09:00PM 10/23",
             " 3 ANA LAX - NYC Arrived at 05:00AM 10/24",
             " 4 ANA LAX - NYC Arrived at 10:00AM 10/24",
@@ -81,27 +82,13 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
 
 
         /* For the button part */
-        Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
-        Button buttonRebookingConfirm = (Button) rootView.findViewById(R.id.buttonRebookingConfirm);
-        Button buttonAdvancedSearch = (Button) rootView.findViewById(R.id.buttonAdvancedSearch);
         Button buttonOtherAirlines = (Button) rootView.findViewById(R.id.buttonOtherAirlines);
 
         // Take action when click the button
-        buttonCancelBooking.setOnClickListener(this);
-        buttonRebookingConfirm.setOnClickListener(this);
-        buttonAdvancedSearch.setOnClickListener(this);
-        buttonOtherAirlines.setOnClickListener(this);
-
         buttonOtherAirlines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LOG_TAG, "Click other airlines");
-                /* Update view part */
-                List<String> otherAirlinesList= Arrays.asList(mockOtherAirlines);
-                ArrayAdapter<String> otherLinesAdapter = new ArrayAdapter<String> (getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, otherAirlinesList);
-                ListView lv = (ListView) rootView.findViewById(R.id.listviewAlternativeRoute);
-                lv.setAdapter(otherLinesAdapter);
-                updateSwitchAirLinesButtonVal(v);
+                onClickButtonOtherAirlines();
             }
         });
 
@@ -112,16 +99,32 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         // get the button current value
         Button buttonOtherAirlines = (Button) v.findViewById(R.id.buttonOtherAirlines);
         String buttonVal = buttonOtherAirlines.getText().toString();
+        List<String> availableList;
         if ("Other Airlines".equals(buttonVal)) {
-            // change to other airlines
+            availableList= Arrays.asList(mockOtherAirlines);
         } else {
-            // change to
+            availableList= Arrays.asList(mockOptions);
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String> (getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, availableList);
+        ListView lv = (ListView) v.findViewById(R.id.listviewAlternativeRoute);
+        lv.setAdapter(adapter);
 
         return;
     }
 
     private void updateSwitchAirLinesSpinner(View v) {
+        Button buttonOtherAirlines = (Button) v.findViewById(R.id.buttonOtherAirlines);
+        String buttonVal = buttonOtherAirlines.getText().toString();
+        Spinner spinnerOptions = (Spinner) v.findViewById(R.id.spinnerAlternativeRoutes);
+        //Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> spinnerAdapter;
+        if ("Other Airlines".equals(buttonVal)) {
+            spinnerAdapter= new ArrayAdapter<String>(getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, mockOtherAirlines);
+        } else {
+            spinnerAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, mockOptions);
+        }
+        // Apply the adapter to the spinner
+        spinnerOptions.setAdapter(spinnerAdapter);
         return;
     }
 
@@ -138,13 +141,25 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
     }
 
 
+    private void onClickButtonOtherAirlines() {
+        View rootView = getView();
+        Log.d(LOG_TAG, "Click other airlines");
+        updateSwitchAirLinesSpinner(rootView);
+        updateSwitchAirlinesListView(rootView);
+        updateSwitchAirLinesButtonVal(rootView);
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.buttonMaybeLater:
+                getActivity().finish();
+                break;
             case R.id.buttonRebookingConfirm:
-               break;
+                startActivity(new Intent(getActivity(),PagerConfirmActivity.class));
+                break;
             case R.id.buttonOtherAirlines:
+                //onClickButtonOtherAirlines();
                 break;
             case R.id.buttonAdvancedSearch:
                 final Dialog dialog = new Dialog(getActivity());
