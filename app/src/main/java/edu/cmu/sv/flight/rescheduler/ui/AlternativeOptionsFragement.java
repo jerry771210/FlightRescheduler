@@ -84,14 +84,15 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
 
         /* For the button part */
         Button buttonOtherAirlines = (Button) rootView.findViewById(R.id.buttonOtherAirlines);
+        Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
+        Button buttonRebookingConfirm = (Button) rootView.findViewById(R.id.buttonRebookingConfirm);
+        Button buttonAdvancedSearch = (Button) rootView.findViewById(R.id.buttonAdvancedSearch);
 
-        // Take action when click the button
-        buttonOtherAirlines.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickButtonOtherAirlines();
-            }
-        });
+        // TODO rename button for buttonOtherAirlines
+        buttonCancelBooking.setOnClickListener(this);
+        buttonRebookingConfirm.setOnClickListener(this);
+        buttonAdvancedSearch.setOnClickListener(this);
+        buttonOtherAirlines.setOnClickListener(this);
 
         return rootView;
     }
@@ -160,7 +161,7 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
                 startActivity(new Intent(getActivity(),PagerConfirmActivity.class));
                 break;
             case R.id.buttonOtherAirlines:
-                //onClickButtonOtherAirlines();
+                onClickButtonOtherAirlines();
                 break;
             case R.id.buttonAdvancedSearch:
                 advancedSearch = new AdvancedSearch(getActivity());
