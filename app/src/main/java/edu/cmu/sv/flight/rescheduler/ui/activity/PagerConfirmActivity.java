@@ -1,4 +1,4 @@
-package edu.cmu.sv.flight.rescheduler.ui;
+package edu.cmu.sv.flight.rescheduler.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import edu.cmu.sv.flight.rescheduler.ui.R;
 
 public class PagerConfirmActivity extends Activity {
 

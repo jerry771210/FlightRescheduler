@@ -1,4 +1,4 @@
-package edu.cmu.sv.flight.rescheduler.ui;
+package edu.cmu.sv.flight.rescheduler.ui.activity;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +15,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.cmu.sv.flight.rescheduler.ui.R;
 
 public class LoginActivity extends ActionBarActivity implements OnClickListener {
 

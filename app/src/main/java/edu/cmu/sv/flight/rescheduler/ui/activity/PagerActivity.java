@@ -1,4 +1,4 @@
-package edu.cmu.sv.flight.rescheduler.ui;
+package edu.cmu.sv.flight.rescheduler.ui.activity;
 
 /**
  * Created by chihengw on 4/4/15.
@@ -18,6 +18,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import edu.cmu.sv.flight.rescheduler.ui.R;
 
 public class PagerActivity extends Activity {
 
