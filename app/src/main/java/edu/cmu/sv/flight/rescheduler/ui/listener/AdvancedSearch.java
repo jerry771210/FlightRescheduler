@@ -1,19 +1,54 @@
-package edu.cmu.sv.flight.rescheduler.ui;
+package edu.cmu.sv.flight.rescheduler.ui.listener;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.Arrays;
+import java.util.List;
+
+import edu.cmu.sv.flight.rescheduler.ui.R;
 
 /**
  * Created by hsuantzl on 2015/4/4.
+ *
+ * TODO, think about how to extract OnSeekBarChangeListener part
+ * TODO, refactor to move out onClick Switch to let it simpler
+ * TODO, think about rename the class
  */
 public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener {
+
+    // TODO remove these mock data later
+    private final String[] mockAdvancedSearch = {
+            " 1 LAX - ACY Arrived at 08:00PM 10/23",
+            " 2 LAX - EWR Arrived at 09:00PM 10/23",
+            " 3 LAX - ACY Arrived at 05:00AM 10/24",
+            " 4 LAX - TTN Arrived at 10:00AM 10/24",
+            " 5 LAX - NYC Arrived at 11:00AM 10/24",
+            " 6 LAX - TEB Arrived at 08:00PM 10/23",
+            " 7 LAX - TEB Arrived at 09:00PM 10/23",
+            " 8 LAX - ACY Arrived at 05:00AM 10/24",
+            " 9 LAX - TTN Arrived at 10:00AM 10/24",
+            "10 LAX - EWR Arrived at 11:00AM 10/24",
+            "11 LAX - ACY Arrived at 08:00PM 10/23",
+            "12 LAX - TTN Arrived at 09:00PM 10/23",
+            "13 LAX - ACY Arrived at 05:00AM 10/24",
+            "14 LAX - TTN Arrived at 10:00AM 10/24",
+            "15 LAX - TTN Arrived at 11:00AM 10/24"
+    };
+
+
+    private Activity act;
     private int numStops = 1;
     private boolean overNight;
     private boolean noSeat;
@@ -28,6 +63,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     private Button confirm;
 
     public AdvancedSearch(FragmentActivity activity) {
+        act = activity;
         dialog = new Dialog(activity);
         dialog.setContentView(R.layout.advanced_search);
         textViewNumStop = (TextView) dialog.findViewById(R.id.textViewNumStops);
@@ -106,6 +142,32 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
             case R.id.buttonAdvancedSearchConfirm:
                 dialog.dismiss();
                 break;
+            case R.id.buttonAdvancedSearch:
+                init();
+                showDialog();
+                updateSpinnerAlternativeRoute(mockAdvancedSearch);
+                updateListviewAlternativeRoute(mockAdvancedSearch);
+                break;
         }
+    }
+
+    // TODO refactor this function, let it standalone
+    private void updateListviewAlternativeRoute (String[] strArr) {
+
+        List<String> availableList = Arrays.asList(strArr);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String> (act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, availableList);
+        ListView lv = (ListView) act.findViewById(R.id.listviewAlternativeRoute);
+        lv.setAdapter(adapter);
+    }
+
+    // TODO refactor this function, let it standalone
+    private void updateSpinnerAlternativeRoute(String[] strArr) {
+
+        Spinner spinnerOptions = (Spinner) act.findViewById(R.id.spinnerAlternativeRoutes);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, strArr);
+
+        // Apply the adapter to the spinner
+        spinnerOptions.setAdapter(spinnerAdapter);
     }
 }

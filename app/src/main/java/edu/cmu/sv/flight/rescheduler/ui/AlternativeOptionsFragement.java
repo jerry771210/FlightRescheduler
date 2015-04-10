@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
 import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToPagerConfirmActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
@@ -47,23 +48,6 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
             "15 LAX - NYC Arrived at 11:00AM 10/24"
     };
 
-    private final String[] mockOtherAirlines = {
-            " 1 EVA LAX - NYC Arrived at 08:00PM 10/23",
-            " 2 EVA LAX - NYC Arrived at 09:00PM 10/23",
-            " 3 ANA LAX - NYC Arrived at 05:00AM 10/24",
-            " 4 ANA LAX - NYC Arrived at 10:00AM 10/24",
-            " 5 CI  LAX - NYC Arrived at 11:00AM 10/24",
-            " 6 CI  LAX - NYC Arrived at 08:00PM 10/23",
-            " 7 AA  LAX - NYC Arrived at 09:00PM 10/23",
-            " 8 AA  LAX - NYC Arrived at 05:00AM 10/24",
-            " 9 EVA LAX - NYC Arrived at 10:00AM 10/24",
-            "10 EVA LAX - NYC Arrived at 11:00AM 10/24",
-            "11 CI  LAX - NYC Arrived at 08:00PM 10/23",
-            "12 EVA LAX - NYC Arrived at 09:00PM 10/23",
-            "13 ANA LAX - NYC Arrived at 05:00AM 10/24",
-            "14 EVA LAX - NYC Arrived at 10:00AM 10/24",
-            "15 EVA LAX - NYC Arrived at 11:00AM 10/24"
-    };
 
 
     private final String[] mockAdvancedSearch = {
@@ -114,7 +98,7 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         // TODO rename button for buttonOtherAirlines
         buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
         buttonRebookingConfirm.setOnClickListener(new IntentToPagerConfirmActivityOnClickListener(getActivity()));
-        buttonAdvancedSearch.setOnClickListener(this);
+        buttonAdvancedSearch.setOnClickListener(new AdvancedSearch(getActivity()));
         buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
         lv.setOnItemClickListener(this);
 
