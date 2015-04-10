@@ -1,8 +1,8 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,12 +13,12 @@ import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
  * Created by hsuantzl on 2015/4/4.
  */
 public class ShowFlightDetails implements OnClickListener {
-    private FragmentActivity fragActivity;
+    private Activity fragActivity;
     private Dialog dialog;
     private Button buttonRebook;
     private Button buttonCancel;
 
-    public ShowFlightDetails(String flight, FragmentActivity activity) {
+    public ShowFlightDetails(String flight, Activity activity) {
         this.fragActivity = activity;
         dialog = new Dialog(activity);
         dialog.setContentView(R.layout.flight_details);

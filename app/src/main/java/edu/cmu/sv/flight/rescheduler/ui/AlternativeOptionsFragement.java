@@ -6,13 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,11 +18,12 @@ import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
 import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToPagerConfirmActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.listener.ShowFlightDetailOnItemClickListener;
 
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
  */
-public class AlternativeOptionsFragement extends Fragment implements OnItemClickListener {
+public class AlternativeOptionsFragement extends Fragment {
     static final String LOG_TAG = AlternativeOptionsFragement.class.getSimpleName();
     private AdvancedSearch advancedSearch;
 
@@ -80,15 +78,8 @@ public class AlternativeOptionsFragement extends Fragment implements OnItemClick
         buttonRebookingConfirm.setOnClickListener(new IntentToPagerConfirmActivityOnClickListener(getActivity()));
         buttonAdvancedSearch.setOnClickListener(new AdvancedSearch(getActivity()));
         buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
-        lv.setOnItemClickListener(this);
+        lv.setOnItemClickListener(new ShowFlightDetailOnItemClickListener(getActivity()));
 
         return rootView;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String item = ((TextView)view).getText().toString();
-        ShowFlightDetails showDetails = new ShowFlightDetails(item, getActivity());
-        showDetails.display();
     }
 }
