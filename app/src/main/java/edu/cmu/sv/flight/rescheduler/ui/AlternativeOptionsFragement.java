@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
+import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
 
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
@@ -112,7 +113,7 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         Button buttonAdvancedSearch = (Button) rootView.findViewById(R.id.buttonAdvancedSearch);
 
         // TODO rename button for buttonOtherAirlines
-        buttonCancelBooking.setOnClickListener(this);
+        buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
         buttonRebookingConfirm.setOnClickListener(this);
         buttonAdvancedSearch.setOnClickListener(this);
         buttonOtherAirlines.setOnClickListener(this);
@@ -195,9 +196,9 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonMaybeLater:
-                getActivity().finish();
-                break;
+//            case R.id.buttonMaybeLater:
+//                getActivity().finish();
+//                break;
             case R.id.buttonRebookingConfirm:
                 startActivity(new Intent(getActivity(),PagerConfirmActivity.class));
                 break;
