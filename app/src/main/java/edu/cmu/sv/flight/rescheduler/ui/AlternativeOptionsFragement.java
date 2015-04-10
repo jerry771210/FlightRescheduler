@@ -1,7 +1,6 @@
 package edu.cmu.sv.flight.rescheduler.ui;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,19 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
 
-import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToPagerConfirmActivityOnClickListener;
 
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
@@ -114,7 +113,7 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
 
         // TODO rename button for buttonOtherAirlines
         buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
-        buttonRebookingConfirm.setOnClickListener(this);
+        buttonRebookingConfirm.setOnClickListener(new IntentToPagerConfirmActivityOnClickListener(getActivity()));
         buttonAdvancedSearch.setOnClickListener(this);
         buttonOtherAirlines.setOnClickListener(this);
         lv.setOnItemClickListener(this);
@@ -196,12 +195,6 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R.id.buttonMaybeLater:
-//                getActivity().finish();
-//                break;
-            case R.id.buttonRebookingConfirm:
-                startActivity(new Intent(getActivity(),PagerConfirmActivity.class));
-                break;
             case R.id.buttonOtherAirlines:
                 onClickButtonOtherAirlines();
                 break;

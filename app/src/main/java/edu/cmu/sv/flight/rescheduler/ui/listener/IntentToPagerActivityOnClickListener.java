@@ -9,11 +9,11 @@ import edu.cmu.sv.flight.rescheduler.ui.activity.PagerActivity;
 /**
  * Created by moumoutsay on 4/9/15.
  */
-public class IntentToPageActivityOnClickListener implements View.OnClickListener {
+public class IntentToPagerActivityOnClickListener implements View.OnClickListener {
 
     private Activity act;
 
-    public IntentToPageActivityOnClickListener(Activity act) {
+    public IntentToPagerActivityOnClickListener(Activity act) {
         this.act = act;
     }
 
