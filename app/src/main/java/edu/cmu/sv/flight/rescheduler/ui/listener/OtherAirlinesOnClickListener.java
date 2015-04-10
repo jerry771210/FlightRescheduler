@@ -66,8 +66,6 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
     };
 
 
-
-
     private Activity act;
 
     public OtherAirlinesOnClickListener(Activity act) {
@@ -120,6 +118,7 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
         return;
     }
 
+    // TODO refactor this function, let it standalone
     private void updateListviewAlternativeRoute (String[] strArr) {
 
         List<String> availableList = Arrays.asList(strArr);
@@ -129,6 +128,7 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
         lv.setAdapter(adapter);
     }
 
+    // TODO refactor this function, let it standalone
     private void updateSpinnerAlternativeRoute(String[] strArr) {
 
         Spinner spinnerOptions = (Spinner) act.findViewById(R.id.spinnerAlternativeRoutes);
