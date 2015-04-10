@@ -1,13 +1,13 @@
 package edu.cmu.sv.flight.rescheduler.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.ui.R;
+import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToPageActivityOnClickListener;
+
+// TODO, refactor to move OnClickListener out
 
 public class LoginActivity extends ActionBarActivity implements OnClickListener {
 
@@ -28,7 +31,7 @@ public class LoginActivity extends ActionBarActivity implements OnClickListener 
         Button scanButton = (Button)findViewById(R.id.buttonScanQRCode);
         Button loginButton = (Button)findViewById(R.id.buttonLogin);
         scanButton.setOnClickListener(this);
-        loginButton.setOnClickListener(this);
+        loginButton.setOnClickListener(new IntentToPageActivityOnClickListener(this));
     }
 
 
@@ -65,9 +68,9 @@ public class LoginActivity extends ActionBarActivity implements OnClickListener 
                 scanIntegrator.initiateScan(formats);
                 break;
 
-            case R.id.buttonLogin:
-                startActivity(new Intent(this, PagerActivity.class));
-                break;
+//            case R.id.buttonLogin:
+//                startActivity(new Intent(this, PagerActivity.class));
+//                break;
         }
     }
 

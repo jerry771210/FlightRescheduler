@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
+// TODO refacor this part because we ill need real design instead of picture
+
 public class PagerActivity extends Activity {
 
     ViewPager viewPager;

@@ -16,7 +16,6 @@ public class AlternativeOptionsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-//            if want to switch to alternativesOptions
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new AlternativeOptionsFragement())
                     .commit();

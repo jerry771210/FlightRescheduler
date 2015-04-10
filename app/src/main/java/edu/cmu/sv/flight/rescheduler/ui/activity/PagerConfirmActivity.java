@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
+// TODO refacor this part because we ill need real design instead of picture
+
 public class PagerConfirmActivity extends Activity {
 
     ViewPager viewPager;
