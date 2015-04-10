@@ -28,7 +28,7 @@ public class PagerConfirmActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pager_confirm);
-        viewPager = (ViewPager)findViewById(R.id.myviewpager_confirm);
+        viewPager = (ViewPager)findViewById(R.id.viewPagerConfirm);
         myPagerAdapter = new MyPagerAdapter();
         viewPager.setAdapter(myPagerAdapter);
 
@@ -69,8 +69,8 @@ public class PagerConfirmActivity extends Activity {
                     LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
             imageView.setLayoutParams(imageParams);
 
-            btn_confirm =  (Button)findViewById(R.id.btnConfirm);
-            btn_cancel = (Button)findViewById(R.id.btnCancel);
+            btn_confirm =  (Button)findViewById(R.id.buttonConfirm);
+            btn_cancel = (Button)findViewById(R.id.buttonCancel);
 
 
             LinearLayout layout = new LinearLayout(PagerConfirmActivity.this);
