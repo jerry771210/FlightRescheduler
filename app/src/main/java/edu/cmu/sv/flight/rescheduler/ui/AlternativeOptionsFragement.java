@@ -21,6 +21,7 @@ import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToPagerConfirmActivityOnClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
 
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
@@ -115,7 +116,7 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
         buttonRebookingConfirm.setOnClickListener(new IntentToPagerConfirmActivityOnClickListener(getActivity()));
         buttonAdvancedSearch.setOnClickListener(this);
-        buttonOtherAirlines.setOnClickListener(this);
+        buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
         lv.setOnItemClickListener(this);
 
         return rootView;
