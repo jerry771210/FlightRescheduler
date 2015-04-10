@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@color/material_blue_grey_800"
-    tools:context="edu.cmu.sv.flight.rescheduler.ui.PagerConfirmActivity"
+    tools:context="edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity"
     android:weightSum="1">
 
     <TextView

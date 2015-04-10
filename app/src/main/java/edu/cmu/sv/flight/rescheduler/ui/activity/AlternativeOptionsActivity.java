@@ -1,24 +1,25 @@
-package edu.cmu.sv.flight.rescheduler.ui;
+package edu.cmu.sv.flight.rescheduler.ui.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragement;
+import edu.cmu.sv.flight.rescheduler.ui.R;
 
-public class MainActivity extends Activity {
+
+public class AlternativeOptionsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.container, new PlaceholderFragment())
-//                    .commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new AlternativeOptionsFragement())
+                    .commit();
         }
-        startActivity(new Intent(this, LoginActivity.class));
     }
 
 

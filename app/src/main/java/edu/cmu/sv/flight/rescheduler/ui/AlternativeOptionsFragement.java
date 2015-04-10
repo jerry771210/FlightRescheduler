@@ -20,6 +20,8 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
+
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
  */
