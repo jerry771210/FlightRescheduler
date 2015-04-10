@@ -107,8 +107,8 @@
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:id="@+id/textViewColon"
             android:layout_alignTop="@+id/textViewHourDigit2"
-            android:layout_alignStart="@+id/textViewHourDigit2"
-            android:layout_alignEnd="@id/textViewMinuteDigit1"/>
+            android:layout_alignLeft="@+id/textViewHourDigit2"
+            android:layout_alignRight="@id/textViewMinuteDigit1"/>
 
 
     </RelativeLayout>

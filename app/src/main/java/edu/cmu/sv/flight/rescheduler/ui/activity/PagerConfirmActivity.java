@@ -86,7 +86,7 @@ public class PagerConfirmActivity extends Activity {
             btn_confirm.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Intent myIntent = new Intent(PagerConfirmActivity.this, PagerActivity.class);
+                    Intent myIntent = new Intent(PagerConfirmActivity.this, BoardingPassActivity.class);
                     myIntent.putExtra("confirm","isConfirm");
                     startActivity(myIntent);
                 }
