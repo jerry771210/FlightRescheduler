@@ -6,29 +6,22 @@ package edu.cmu.sv.flight.rescheduler.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import edu.cmu.sv.flight.rescheduler.model.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.model.Rescheduler;
+import edu.cmu.sv.flight.rescheduler.ui.BoardingPassView;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
 
 public class BoardingPassActivity extends Activity {
-
+    Rescheduler rescheduler = new Rescheduler();
     ViewPager viewPager;
     MyPagerAdapter myPagerAdapter;
 
@@ -41,25 +34,11 @@ public class BoardingPassActivity extends Activity {
         viewPager.setAdapter(myPagerAdapter);
     }
 
-    private class MyPagerAdapter extends PagerAdapter implements OnClickListener {
-        private int NumberOfPages = 5;
-        int[] boardingPasses = {
-                R.layout.boarding_pass_landed,
-                R.layout.boarding_pass_landed,
-                R.layout.boarding_pass_ontime,
-                R.layout.boarding_pass_delayed,
-                R.layout.boarding_pass_canceled };
-
-        int[] res2 = {
-                R.drawable.boarding_pass_landed,
-                R.drawable.boarding_pass_landed,
-                R.drawable.boarding_pass_normal,
-                R.drawable.boarding_pass_normal,
-                R.drawable.boarding_pass_normal};
+    private class MyPagerAdapter extends PagerAdapter {
 
         @Override
         public int getCount() {
-            return NumberOfPages;
+            return rescheduler.numOfBoardingPasses();
         }
 
         @Override
@@ -71,8 +50,11 @@ public class BoardingPassActivity extends Activity {
         public Object instantiateItem(ViewGroup container, int position) {
             LayoutInflater inflater = (LayoutInflater) container.getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(boardingPasses[position], null);
-            view.setOnClickListener(this);
+
+            BoardingPass boardingPass = new Rescheduler().getBoardingPass(position);
+            BoardingPassView boardingPassView =
+                    new BoardingPassView(BoardingPassActivity.this, inflater, boardingPass);
+            View view = boardingPassView.getLayoutView();
             container.addView(view, 0);
             return view;
 
@@ -131,16 +113,7 @@ public class BoardingPassActivity extends Activity {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((RelativeLayout)object);
-        }
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.boardingPassCanceled:
-                case R.id.boardingPassDelayed:
-                    startActivity(new Intent(BoardingPassActivity.this, AlternativeOptionsActivity.class));
-            }
+            container.removeView((RelativeLayout) object);
         }
 
     }
