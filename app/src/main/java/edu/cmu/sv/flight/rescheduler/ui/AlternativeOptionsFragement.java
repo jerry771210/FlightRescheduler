@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -26,7 +25,7 @@ import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
  */
-public class AlternativeOptionsFragement extends Fragment implements OnClickListener, OnItemClickListener {
+public class AlternativeOptionsFragement extends Fragment implements OnItemClickListener {
     static final String LOG_TAG = AlternativeOptionsFragement.class.getSimpleName();
     private AdvancedSearch advancedSearch;
 
@@ -48,25 +47,6 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
             "15 LAX - NYC Arrived at 11:00AM 10/24"
     };
 
-
-
-    private final String[] mockAdvancedSearch = {
-            " 1 LAX - ACY Arrived at 08:00PM 10/23",
-            " 2 LAX - EWR Arrived at 09:00PM 10/23",
-            " 3 LAX - ACY Arrived at 05:00AM 10/24",
-            " 4 LAX - TTN Arrived at 10:00AM 10/24",
-            " 5 LAX - NYC Arrived at 11:00AM 10/24",
-            " 6 LAX - TEB Arrived at 08:00PM 10/23",
-            " 7 LAX - TEB Arrived at 09:00PM 10/23",
-            " 8 LAX - ACY Arrived at 05:00AM 10/24",
-            " 9 LAX - TTN Arrived at 10:00AM 10/24",
-            "10 LAX - EWR Arrived at 11:00AM 10/24",
-            "11 LAX - ACY Arrived at 08:00PM 10/23",
-            "12 LAX - TTN Arrived at 09:00PM 10/23",
-            "13 LAX - ACY Arrived at 05:00AM 10/24",
-            "14 LAX - TTN Arrived at 10:00AM 10/24",
-            "15 LAX - TTN Arrived at 11:00AM 10/24"
-    };
 
     public AlternativeOptionsFragement() {
     }
@@ -105,42 +85,10 @@ public class AlternativeOptionsFragement extends Fragment implements OnClickList
         return rootView;
     }
 
-    private void updateListviewAlternativeRoute (String[] strArr) {
-        View v = getView();
-        List<String> availableList = Arrays.asList(strArr);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String> (getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, availableList);
-        ListView lv = (ListView) v.findViewById(R.id.listviewAlternativeRoute);
-        lv.setAdapter(adapter);
-    }
-
-    private void updateSpinnerAlternativeRoute(String[] strArr) {
-        View v = getView();
-        Spinner spinnerOptions = (Spinner) v.findViewById(R.id.spinnerAlternativeRoutes);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, strArr);
-
-        // Apply the adapter to the spinner
-        spinnerOptions.setAdapter(spinnerAdapter);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.buttonAdvancedSearch:
-                advancedSearch = new AdvancedSearch(getActivity());
-                advancedSearch.init();
-                advancedSearch.showDialog();
-                updateSpinnerAlternativeRoute(mockAdvancedSearch);
-                updateListviewAlternativeRoute(mockAdvancedSearch);
-                break;
-        }
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String item = ((TextView)view).getText().toString();
         ShowFlightDetails showDetails = new ShowFlightDetails(item, getActivity());
         showDetails.display();
-
     }
 }
