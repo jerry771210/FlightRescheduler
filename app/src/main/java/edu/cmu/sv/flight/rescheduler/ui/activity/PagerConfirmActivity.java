@@ -9,6 +9,7 @@ import edu.cmu.sv.flight.rescheduler.ui.BoardingPassAdapter;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 
+
 public class PagerConfirmActivity extends Activity {
     private ViewPager viewPager;
     BoardingPassAdapter adapter;
@@ -19,6 +20,7 @@ public class PagerConfirmActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pager_confirm);
+
 
         buttonCancel = (Button) findViewById(R.id.buttonCancelConfirm);
         buttonCancel.setOnClickListener(new IntentToActivityOnClickListener(this, AlternativeOptionsActivity.class));

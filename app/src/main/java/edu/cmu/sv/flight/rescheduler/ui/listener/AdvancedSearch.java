@@ -2,28 +2,24 @@ package edu.cmu.sv.flight.rescheduler.ui.listener;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import edu.cmu.sv.flight.rescheduler.ui.R;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
 
 /**
  * Created by hsuantzl on 2015/4/4.
  *
  * TODO, think about how to extract OnSeekBarChangeListener part
- * TODO, refactor to move out onClick Switch to let it simpler
  * TODO, think about rename the class
  */
 public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener {
@@ -50,9 +46,10 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
 
     private Activity act;
     private int numStops = 1;
-    private boolean overNight;
-    private boolean noSeat;
-    private boolean nearbyAirport;
+
+    private AtomicBoolean overNight;
+    private AtomicBoolean noSeat;
+    private AtomicBoolean nearbyAirport;
 
     private Dialog dialog;
     private TextView textViewNumStop;
@@ -62,7 +59,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     private CheckBox checkBoxNearbyAirport;
     private Button confirm;
 
-    public AdvancedSearch(FragmentActivity activity) {
+    public AdvancedSearch(Activity activity) {
         act = activity;
         dialog = new Dialog(activity);
         dialog.setContentView(R.layout.advanced_search);
@@ -72,18 +69,21 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
         checkBoxNoSeat = (CheckBox) dialog.findViewById(R.id.checkBoxNoSeat);
         checkBoxNearbyAirport = (CheckBox) dialog.findViewById(R.id.checkBoxNearbyAirport);
         confirm = (Button) dialog.findViewById(R.id.buttonAdvancedSearchConfirm);
+        overNight = new AtomicBoolean(false);
+        noSeat = new AtomicBoolean(false);
+        nearbyAirport = new AtomicBoolean(false);
     }
 
     public boolean isNearbyAirport() {
-        return nearbyAirport;
+        return nearbyAirport.get();
     }
 
     public boolean isNoSeat() {
-        return noSeat;
+        return noSeat.get();
     }
 
     public boolean isOverNight() {
-        return overNight;
+        return overNight.get();
     }
 
     public int getNumStops() {
@@ -92,10 +92,10 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
 
     public void init() {
         seekBar.setOnSeekBarChangeListener(this);
-        confirm.setOnClickListener(this);
-        checkBoxOverNight.setOnClickListener(this);
-        checkBoxNoSeat.setOnClickListener(this);
-        checkBoxNearbyAirport.setOnClickListener(this);
+        confirm.setOnClickListener(new DiaglogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
+        checkBoxOverNight.setOnClickListener(new CheckBoxOnClickListener(overNight));
+        checkBoxNoSeat.setOnClickListener(new CheckBoxOnClickListener(noSeat));
+        checkBoxNearbyAirport.setOnClickListener(new CheckBoxOnClickListener(nearbyAirport));
         dialog.setTitle("Advanced search");
     }
     public void showDialog() {
@@ -120,54 +120,15 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.checkBoxOverNight:
-                if(((CheckBox) v).isChecked())
-                    overNight = true;
-                else
-                    overNight = false;
-                break;
-            case R.id.checkBoxNoSeat:
-                if(((CheckBox) v).isChecked())
-                    noSeat = true;
-                else
-                    noSeat = false;
-                break;
-            case R.id.checkBoxNearbyAirport:
-                if(((CheckBox )v).isChecked())
-                    nearbyAirport = true;
-                else
-                    nearbyAirport = false;
-                break;
-            case R.id.buttonAdvancedSearchConfirm:
-                dialog.dismiss();
-                break;
-            case R.id.buttonAdvancedSearch:
-                init();
-                showDialog();
-                updateSpinnerAlternativeRoute(mockAdvancedSearch);
-                updateListviewAlternativeRoute(mockAdvancedSearch);
-                break;
-        }
-    }
-
-    // TODO refactor this function, let it standalone
-    private void updateListviewAlternativeRoute (String[] strArr) {
-
-        List<String> availableList = Arrays.asList(strArr);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String> (act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, availableList);
-        ListView lv = (ListView) act.findViewById(R.id.listviewAlternativeRoute);
-        lv.setAdapter(adapter);
-    }
-
-    // TODO refactor this function, let it standalone
-    private void updateSpinnerAlternativeRoute(String[] strArr) {
-
-        Spinner spinnerOptions = (Spinner) act.findViewById(R.id.spinnerAlternativeRoutes);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, strArr);
-
-        // Apply the adapter to the spinner
-        spinnerOptions.setAdapter(spinnerAdapter);
+        init();
+        showDialog();
+        UpdateSpinner.update(act, R.layout.list_item_available_route,
+                R.id.list_item_available_route_textview,
+                R.id.spinnerAlternativeRoutes,
+                mockAdvancedSearch);
+        UpdateListview.update(act, R.layout.list_item_available_route,
+                R.id.list_item_available_route_textview,
+                R.id.listviewAlternativeRoute,
+                mockAdvancedSearch);
     }
 }

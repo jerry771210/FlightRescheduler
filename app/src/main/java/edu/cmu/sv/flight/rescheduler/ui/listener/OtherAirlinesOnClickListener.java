@@ -5,14 +5,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Spinner;
 
-import java.util.Arrays;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragement;
 import edu.cmu.sv.flight.rescheduler.ui.R;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
 
 /**
  * Created by moumoutsay on 4/9/15.
@@ -86,9 +85,15 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
         String buttonVal = buttonOtherAirlines.getText().toString();
         List<String> availableList;
         if ("Other Airlines".equals(buttonVal)) {
-            updateListviewAlternativeRoute(mockOtherAirlines);
+            UpdateListview.update(act, R.layout.list_item_available_route,
+                    R.id.list_item_available_route_textview,
+                    R.id.listviewAlternativeRoute,
+                    mockOtherAirlines);
         } else {
-            updateListviewAlternativeRoute(mockOptions);
+            UpdateListview.update(act, R.layout.list_item_available_route,
+                    R.id.list_item_available_route_textview,
+                    R.id.listviewAlternativeRoute,
+                    mockOptions);
         }
     }
 
@@ -98,9 +103,15 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
 
         ArrayAdapter<String> spinnerAdapter;
         if ("Other Airlines".equals(buttonVal)) {
-            updateSpinnerAlternativeRoute(mockOtherAirlines);
+            UpdateSpinner.update(act, R.layout.list_item_available_route,
+                    R.id.list_item_available_route_textview,
+                    R.id.spinnerAlternativeRoutes,
+                    mockOtherAirlines);
         } else {
-            updateSpinnerAlternativeRoute(mockOptions);
+            UpdateSpinner.update(act, R.layout.list_item_available_route,
+                    R.id.list_item_available_route_textview,
+                    R.id.spinnerAlternativeRoutes,
+                    mockOptions);
         }
 
         return;
@@ -116,25 +127,5 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
             buttonOtherAirlines.setText("Other Airlines");
         }
         return;
-    }
-
-    // TODO refactor this function, let it standalone
-    private void updateListviewAlternativeRoute (String[] strArr) {
-
-        List<String> availableList = Arrays.asList(strArr);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String> (act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, availableList);
-        ListView lv = (ListView) act.findViewById(R.id.listviewAlternativeRoute);
-        lv.setAdapter(adapter);
-    }
-
-    // TODO refactor this function, let it standalone
-    private void updateSpinnerAlternativeRoute(String[] strArr) {
-
-        Spinner spinnerOptions = (Spinner) act.findViewById(R.id.spinnerAlternativeRoutes);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, strArr);
-
-        // Apply the adapter to the spinner
-        spinnerOptions.setAdapter(spinnerAdapter);
     }
 }
