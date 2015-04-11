@@ -12,7 +12,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import edu.cmu.sv.flight.rescheduler.ui.R;
-import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToPagerActivityOnClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.ScanQRCodeOnClickListener;
 
 public class LoginActivity extends ActionBarActivity {
@@ -25,7 +25,7 @@ public class LoginActivity extends ActionBarActivity {
         Button scanButton = (Button)findViewById(R.id.buttonScanQRCode);
         Button loginButton = (Button)findViewById(R.id.buttonLogin);
         scanButton.setOnClickListener(new ScanQRCodeOnClickListener(this));
-        loginButton.setOnClickListener(new IntentToPagerActivityOnClickListener(this));
+        loginButton.setOnClickListener(new IntentToActivityOnClickListener(this, BoardingPassActivity.class));
     }
 
 
