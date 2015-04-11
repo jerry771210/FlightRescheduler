@@ -15,7 +15,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rebook Now !!"
+        android:text="@string/rebook_now"
         android:id="@+id/buttonRebookingConfirm"
         android:layout_alignTop="@+id/buttonMaybeLater"
         android:layout_toLeftOf="@+id/buttonMaybeLater"
@@ -24,7 +24,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Advanced Search"
+        android:text="@string/advanced_search"
         android:id="@+id/buttonAdvancedSearch"
         android:layout_alignTop="@+id/buttonOtherAirlines"
         android:layout_toLeftOf="@+id/buttonOtherAirlines"
@@ -34,7 +34,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Other Airlines"
+        android:text="@string/other_airlines2"
         android:id="@+id/buttonOtherAirlines"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Alternative Options:"
+        android:text="@string/alternative_options"
         android:id="@+id/textAlternativeOptionsMode"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
@@ -59,12 +59,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Alternative Routes:"
+        android:text="@string/alternative_routes"
         android:id="@+id/textAlternativeRoutes"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginBottom="100dp" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <!-- Align to left&bottom -->
     <TextView
@@ -81,7 +80,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maybe Later"
+        android:text="@string/maybe_later"
         android:id="@+id/buttonMaybeLater"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
