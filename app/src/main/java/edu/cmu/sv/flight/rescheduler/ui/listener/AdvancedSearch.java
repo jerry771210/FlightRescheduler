@@ -5,16 +5,15 @@ import android.app.Dialog;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
 
 /**
  * Created by hsuantzl on 2015/4/4.
@@ -142,23 +141,15 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
             case R.id.buttonAdvancedSearch:
                 init();
                 showDialog();
-                updateSpinnerAlternativeRoute(mockAdvancedSearch);
+                UpdateSpinner.update(act, R.layout.list_item_available_route,
+                        R.id.list_item_available_route_textview,
+                        R.id.spinnerAlternativeRoutes,
+                        mockAdvancedSearch);
                 UpdateListview.update(act, R.layout.list_item_available_route,
                         R.id.list_item_available_route_textview,
                         R.id.listviewAlternativeRoute,
                         mockAdvancedSearch);
                 break;
         }
-    }
-
-
-    // TODO refactor this function, let it standalone
-    private void updateSpinnerAlternativeRoute(String[] strArr) {
-
-        Spinner spinnerOptions = (Spinner) act.findViewById(R.id.spinnerAlternativeRoutes);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, strArr);
-
-        // Apply the adapter to the spinner
-        spinnerOptions.setAdapter(spinnerAdapter);
     }
 }
