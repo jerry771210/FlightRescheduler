@@ -11,11 +11,9 @@ import android.view.View;
  * If Class is null, then dismiss dialog only
  */
 public class DiaglogDismissAndIntentToAnotherActivityOnClickListener implements View.OnClickListener {
-
     private Activity act;
-    Dialog dia;
-    Class actClass;
-
+    private Dialog dia;
+    private Class actClass;
 
     public DiaglogDismissAndIntentToAnotherActivityOnClickListener(Activity act, Dialog dia, Class actClass) {
         this.act = act;
