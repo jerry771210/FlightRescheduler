@@ -7,7 +7,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import edu.cmu.sv.flight.rescheduler.model.BoardingPass;
-import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToAlternativeOptsActivityOnClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.activity.AlternativeOptionsActivity;
+import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 
 /**
  * Created by hsuantzl on 2015/4/10.
@@ -46,12 +47,12 @@ public class BoardingPassView {
             case DELAYED:
                 textViewStatus.setText("Delayed");
                 layoutTop.setBackgroundColor(0xC8EBB027);
-                view.setOnClickListener(new IntentToAlternativeOptsActivityOnClickListener(activity));
+                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class));
                 break;
             case CANCELED:
                 textViewStatus.setText("Canceled");
                 layoutTop.setBackgroundColor(0xC8EB0300);
-                view.setOnClickListener(new IntentToAlternativeOptsActivityOnClickListener(activity));
+                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class));
                 break;
         }
     }
