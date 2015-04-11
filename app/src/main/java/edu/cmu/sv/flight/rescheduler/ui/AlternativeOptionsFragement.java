@@ -14,9 +14,10 @@ import android.widget.Spinner;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
 import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
-import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToPagerConfirmActivityOnClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.ShowFlightDetailOnItemClickListener;
 
@@ -75,7 +76,7 @@ public class AlternativeOptionsFragement extends Fragment {
 
         // TODO rename button for buttonOtherAirlines
         buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
-        buttonRebookingConfirm.setOnClickListener(new IntentToPagerConfirmActivityOnClickListener(getActivity()));
+        buttonRebookingConfirm.setOnClickListener(new IntentToActivityOnClickListener(getActivity(), PagerConfirmActivity.class));
         buttonAdvancedSearch.setOnClickListener(new AdvancedSearch(getActivity()));
         buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
         lv.setOnItemClickListener(new ShowFlightDetailOnItemClickListener(getActivity()));
