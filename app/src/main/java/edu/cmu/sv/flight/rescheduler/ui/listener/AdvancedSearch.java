@@ -8,16 +8,13 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.List;
-
 import edu.cmu.sv.flight.rescheduler.ui.R;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
 
 /**
  * Created by hsuantzl on 2015/4/4.
@@ -146,20 +143,14 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
                 init();
                 showDialog();
                 updateSpinnerAlternativeRoute(mockAdvancedSearch);
-                updateListviewAlternativeRoute(mockAdvancedSearch);
+                UpdateListview.update(act, R.layout.list_item_available_route,
+                        R.id.list_item_available_route_textview,
+                        R.id.listviewAlternativeRoute,
+                        mockAdvancedSearch);
                 break;
         }
     }
 
-    // TODO refactor this function, let it standalone
-    private void updateListviewAlternativeRoute (String[] strArr) {
-
-        List<String> availableList = Arrays.asList(strArr);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String> (act, R.layout.list_item_available_route, R.id.list_item_available_route_textview, availableList);
-        ListView lv = (ListView) act.findViewById(R.id.listviewAlternativeRoute);
-        lv.setAdapter(adapter);
-    }
 
     // TODO refactor this function, let it standalone
     private void updateSpinnerAlternativeRoute(String[] strArr) {
