@@ -7,10 +7,11 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp"
         android:id="@+id/listviewAlternativeRoute"
-        android:layout_gravity="left" />
+        android:layout_gravity="left"
+        android:layout_below="@+id/textAlternativeOptionsMode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -20,7 +21,7 @@
         android:layout_alignTop="@+id/buttonAdvancedSearch"
         android:layout_alignLeft="@+id/textAlternativeOptionsMode"
         android:layout_alignStart="@+id/textAlternativeOptionsMode"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -30,7 +31,7 @@
         android:layout_below="@+id/textWantsMore"
         android:layout_alignRight="@+id/buttonOtherAirlines"
         android:layout_alignEnd="@+id/buttonOtherAirlines"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,13 +42,13 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Alternative Options:"
+        android:text="@string/alternative_options"
         android:id="@+id/textAlternativeOptionsMode"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
@@ -65,7 +66,7 @@
         android:layout_below="@+id/listviewAlternativeRoute"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <!-- Align to left&bottom -->
     <TextView
@@ -77,7 +78,7 @@
         android:layout_below="@+id/listviewAlternativeRoute"
         android:layout_alignLeft="@+id/buttonAdvancedSearch"
         android:layout_alignStart="@+id/buttonAdvancedSearch"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
         android:layout_alignTop="@+id/buttonOtherAirlines"
         android:layout_alignLeft="@+id/buttonRebookingConfirm"
         android:layout_alignStart="@+id/buttonRebookingConfirm"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Spinner
         android:layout_width="wrap_content"
