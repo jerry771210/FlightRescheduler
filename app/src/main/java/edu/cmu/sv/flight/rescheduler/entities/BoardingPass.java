@@ -1,4 +1,4 @@
-package edu.cmu.sv.flight.rescheduler.model;
+package edu.cmu.sv.flight.rescheduler.entities;
 
 import java.util.Date;
 

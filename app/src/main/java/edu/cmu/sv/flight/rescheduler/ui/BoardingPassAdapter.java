@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import edu.cmu.sv.flight.rescheduler.model.BoardingPass;
-import edu.cmu.sv.flight.rescheduler.model.Rescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.entities.Rescheduler;
 
 /**
  * Created by hsuantzl on 2015/4/10.

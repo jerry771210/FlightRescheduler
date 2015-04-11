@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import edu.cmu.sv.flight.rescheduler.model.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.ui.activity.AlternativeOptionsActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 
