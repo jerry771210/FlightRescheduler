@@ -20,7 +20,6 @@ import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
  * Created by hsuantzl on 2015/4/4.
  *
  * TODO, think about how to extract OnSeekBarChangeListener part
- * TODO, refactor to move out onClick Switch to let it simpler
  * TODO, think about rename the class
  */
 public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener {
