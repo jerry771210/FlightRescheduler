@@ -44,4 +44,7 @@
     <string name="ze">0</string>
     <string name="den">DEN</string>
     <string name="five">5</string>
+    <string name="rebook_confirmation">Rebook Confirmation</string>
+    <string name="no_seat">Show all flights even if no seat</string>
+    <string name="alternative_options">Alternative Options:</string>
 </resources>
