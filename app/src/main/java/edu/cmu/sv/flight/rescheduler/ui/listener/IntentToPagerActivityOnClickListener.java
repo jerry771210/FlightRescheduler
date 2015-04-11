@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
-import edu.cmu.sv.flight.rescheduler.ui.activity.PagerActivity;
+import edu.cmu.sv.flight.rescheduler.ui.activity.BoardingPassActivity;
 
 /**
  * Created by moumoutsay on 4/9/15.
@@ -19,6 +19,6 @@ public class IntentToPagerActivityOnClickListener implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        act.startActivity(new Intent(act, PagerActivity.class));
+        act.startActivity(new Intent(act, BoardingPassActivity.class));
     }
 }

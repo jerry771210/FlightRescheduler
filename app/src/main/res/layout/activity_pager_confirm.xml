@@ -1,41 +1,60 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:background="@color/material_blue_grey_800"
-    tools:context="edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity"
-    android:weightSum="1">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top"
-        android:autoLink="web"
-        android:text="NEW BOARDING PASS"
-        android:typeface="normal"
-        android:textSize="70px"
-        android:textStyle="bold"
-        android:textColor="@color/highlighted_text_material_light"/>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/RelativeLayoutTop"
+        android:background="@color/material_blue_grey_900">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Rebook Confirmation"
+            android:textSize="50dp"
+            android:gravity="center"
+            android:id="@+id/textViewRebookConfirmation"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/secondary_text_light_nodisable" />
+    </RelativeLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/myviewpager_confirm"
+        android:id="@+id/viewPagerConfirm"
         android:layout_width="match_parent"
-        android:layout_height="633dp"/>
+        android:layout_height="633dp"
+        android:layout_below="@+id/RelativeLayoutTop"
+        android:layout_above="@+id/buttonConfirm" />
 
     <Button
-        android:id="@+id/btnConfirm"
+        android:id="@+id/buttonConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CONFIRM"/>
+        android:text="CONFIRM"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textSize="30dp"
+        android:textColor="@android:color/secondary_text_light_nodisable"
+        android:background="@color/material_blue_grey_900" />
     <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/buttonCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CANCEL" />
+        android:text="CANCEL"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textSize="30dp"
+        android:textColor="@android:color/secondary_text_light_nodisable"
+        android:background="@color/material_blue_grey_900" />
 
-</LinearLayout>
+</RelativeLayout>
