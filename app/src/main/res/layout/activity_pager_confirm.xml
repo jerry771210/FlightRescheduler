@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:id="@+id/RelativeLayoutTop"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/RelativeLayoutTop"
         android:background="@color/material_blue_grey_900">
 
         <TextView
@@ -29,32 +31,58 @@ android:layout_width="match_parent" android:layout_height="match_parent">
             android:textColor="@android:color/secondary_text_light_nodisable" />
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPagerConfirm"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="633dp"
-        android:layout_below="@+id/RelativeLayoutTop"
-        android:layout_above="@+id/buttonConfirm" />
+        android:layout_height="50dp"
+        android:id="@+id/RelativeLayoutBottom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/material_blue_grey_900">
 
-    <Button
-        android:id="@+id/buttonConfirm"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/buttonCancelConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CANCEL"
+            android:textSize="30dp"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:background="@color/material_blue_grey_950"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="100dp"
+            android:layout_marginEnd="100dp" />
+        <Button
+            android:id="@+id/buttonConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM"
+            android:textSize="30dp"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:background="@color/material_blue_grey_950"
+            android:layout_marginRight="160dp"
+            android:layout_marginEnd="160dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/buttonCancelConfirm"
+            android:layout_toStartOf="@+id/buttonCancelConfirm" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONFIRM"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:textSize="30dp"
-        android:textColor="@android:color/secondary_text_light_nodisable"
-        android:background="@color/material_blue_grey_900" />
-    <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CANCEL"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:textSize="30dp"
-        android:textColor="@android:color/secondary_text_light_nodisable"
-        android:background="@color/material_blue_grey_900" />
+        android:id="@+id/RelativeLayoutMid"
+        android:layout_below="@+id/RelativeLayoutTop"
+        android:layout_above="@id/RelativeLayoutBottom">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPagerConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

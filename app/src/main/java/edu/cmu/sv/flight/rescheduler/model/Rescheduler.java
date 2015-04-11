@@ -7,11 +7,8 @@ import java.util.List;
  * Created by hsuantzl on 2015/4/10.
  */
 public class Rescheduler {
-    private static List<BoardingPass> boardingPassList;
-
-    public Rescheduler() {
-        boardingPassList = new ArrayList<>();
-
+    private static List<BoardingPass> boardingPassList = new ArrayList<>();
+    static {
         // Add mock boarding passes
         BoardingPass mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.LANDED);
@@ -34,9 +31,16 @@ public class Rescheduler {
         boardingPassList.add(mock);
     }
 
+    public Rescheduler() {
+    }
+
     public BoardingPass getBoardingPass(int index) {
         return boardingPassList.get(index);
     }
 
     public int numOfBoardingPasses() { return boardingPassList.size(); }
+
+    public void updateBoardingPass(int index, BoardingPass newBoardingPass) {
+        boardingPassList.set(index, newBoardingPass);
+    }
 }

@@ -15,7 +15,5 @@ public class FinishOnClickListener implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        act.finish();
-    }
+    public void onClick(View v) { act.finish(); }
 }

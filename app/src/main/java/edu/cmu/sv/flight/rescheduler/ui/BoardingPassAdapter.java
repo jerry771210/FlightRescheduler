@@ -15,11 +15,13 @@ import edu.cmu.sv.flight.rescheduler.model.Rescheduler;
  * Created by hsuantzl on 2015/4/10.
  */
 public class BoardingPassAdapter extends PagerAdapter {
-    Rescheduler rescheduler = new Rescheduler();
-    Activity activity;
+    private Rescheduler rescheduler;
+    private Activity activity;
 
     public BoardingPassAdapter(Activity activity) {
         this.activity = activity;
+        rescheduler = new Rescheduler();
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -37,7 +39,8 @@ public class BoardingPassAdapter extends PagerAdapter {
         LayoutInflater inflater = (LayoutInflater) container.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        BoardingPass boardingPass = new Rescheduler().getBoardingPass(position);
+        BoardingPass boardingPass = rescheduler.getBoardingPass(position);
+
         BoardingPassView boardingPassView =
                 new BoardingPassView(activity, inflater, boardingPass);
         View view = boardingPassView.getLayoutView();

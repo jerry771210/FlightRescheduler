@@ -23,5 +23,4 @@ public class BoardingPassActivity extends Activity {
         adapter = new BoardingPassAdapter(this);
         viewPager.setAdapter(adapter);
     }
-
 }

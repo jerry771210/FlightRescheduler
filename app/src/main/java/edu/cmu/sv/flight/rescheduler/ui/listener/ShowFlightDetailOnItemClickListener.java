@@ -30,8 +30,8 @@ public class ShowFlightDetailOnItemClickListener implements AdapterView.OnItemCl
 
         buttonRebook = (Button) dialog.findViewById(R.id.buttonRebook);
         buttonCancel = (Button) dialog.findViewById(R.id.buttonCancelRebook);
-        buttonRebook.setOnClickListener(new DiaglogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, PagerConfirmActivity.class));
-        buttonCancel.setOnClickListener(new DiaglogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
+        buttonRebook.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, PagerConfirmActivity.class));
+        buttonCancel.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
     }
 
     private void display(String fightDetails) {

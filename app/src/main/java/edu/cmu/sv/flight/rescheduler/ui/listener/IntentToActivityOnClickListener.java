@@ -12,11 +12,17 @@ public class IntentToActivityOnClickListener implements View.OnClickListener {
     private static final String LOG_TAG = IntentToActivityOnClickListener.class.getSimpleName();
 
     private Activity act;
-    Class toActivityClass;
+    private Class toActivityClass;
+    private boolean clearTop;
 
     public IntentToActivityOnClickListener(Activity act, Class toActivityClass) {
         this.act = act;
         this.toActivityClass = toActivityClass;
+    }
+
+    public IntentToActivityOnClickListener(Activity act, Class toActivityClass, boolean clearTop) {
+        this(act, toActivityClass);
+        this.clearTop = clearTop;
     }
 
     @Override
@@ -24,7 +30,10 @@ public class IntentToActivityOnClickListener implements View.OnClickListener {
         if (toActivityClass == null) {
             Log.d (LOG_TAG, "The to go activity is null");
         } else {
-            act.startActivity(new Intent(act, toActivityClass));
+            Intent intent = new Intent(act, toActivityClass);
+            if(clearTop)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            act.startActivity(intent);
         }
     }
 }
