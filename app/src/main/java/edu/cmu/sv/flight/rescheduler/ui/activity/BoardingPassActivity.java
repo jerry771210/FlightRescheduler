@@ -7,6 +7,9 @@ package edu.cmu.sv.flight.rescheduler.ui.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+
+import com.viewpagerindicator.CirclePageIndicator;
+
 import edu.cmu.sv.flight.rescheduler.ui.BoardingPassAdapter;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
@@ -22,5 +25,10 @@ public class BoardingPassActivity extends Activity {
         viewPager = (ViewPager) findViewById(R.id.ViewPager);
         adapter = new BoardingPassAdapter(this);
         viewPager.setAdapter(adapter);
+
+        //Bind the CirclePageIndicator to the adapter
+        CirclePageIndicator viewPagerIndicator = (CirclePageIndicator)findViewById(R.id.viewPagerIndicator);
+        viewPagerIndicator.setViewPager(viewPager);
+
     }
 }
