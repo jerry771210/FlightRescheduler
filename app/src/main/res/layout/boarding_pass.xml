@@ -5,7 +5,7 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="250dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -18,17 +18,17 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/boarding_pass"
-            android:textSize="70sp"
+            android:text="Boarding Pass"
+            android:textSize="30sp"
             android:id="@+id/textViewBoardingPass"
             android:textColor="@android:color/primary_text_dark_nodisable" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="30dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/landed"
-            android:textSize="30sp"
+            android:text="Landed"
+            android:textSize="20sp"
             android:id="@+id/textViewStatus"
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:layout_alignParentBottom="true"
@@ -38,32 +38,33 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="250dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/RelativeLayoutMid"
         android:background="#ff191919">
 
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="50dp"
+            android:layout_height="75dp"
             android:background="#e1373737"
             android:id="@+id/textViewHourDigit1"
-            android:text="@string/two"
-            android:textSize="90sp"
+            android:text="2"
+            android:textSize="40sp"
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:gravity="center"
-            android:layout_alignTop="@+id/textViewHourDigit2"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="70dp"/>
 
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="50dp"
+            android:layout_height="75dp"
             android:background="#e1373737"
             android:id="@+id/textViewHourDigit2"
             android:text="1"
-            android:textSize="90dp"
+            android:textSize="40dp"
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:gravity="center"
             android:layout_centerVertical="true"
@@ -71,12 +72,12 @@
             android:layout_marginLeft="20dp"/>
 
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="50dp"
+            android:layout_height="75dp"
             android:background="#e1373737"
             android:id="@+id/textViewMinuteDigit1"
             android:text="0"
-            android:textSize="90dp"
+            android:textSize="40dp"
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:gravity="center"
             android:layout_centerVertical="true"
@@ -84,12 +85,12 @@
             android:layout_marginLeft="20dp"/>
 
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="50dp"
+            android:layout_height="75dp"
             android:background="#e1373737"
             android:id="@+id/textViewMinuteDigit2"
-            android:text="@string/five"
-            android:textSize="90sp"
+            android:text="5"
+            android:textSize="40sp"
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:gravity="center"
             android:layout_centerVertical="true"
@@ -98,10 +99,10 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="75dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/colon"
-            android:textSize="70sp"
+            android:text=":"
+            android:textSize="35sp"
             android:gravity="center"
             android:textColor="@android:color/primary_text_dark_nodisable"
             android:id="@+id/textViewColon"
@@ -122,20 +123,20 @@
         android:background="@android:color/background_light">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/imageViewAirplane"
             android:src="@drawable/airplane"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginBottom="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/sfo"
-            android:textSize="100sp"
+            android:text="SFO"
+            android:textSize="50sp"
             android:id="@+id/textViewDeparture"
             android:gravity="center"
             android:layout_alignTop="@+id/imageViewAirplane"
@@ -150,8 +151,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/den"
-            android:textSize="100sp"
+            android:text="DEN"
+            android:textSize="50sp"
             android:id="@+id/textViewArrival"
             android:gravity="center"
             android:layout_alignTop="@+id/imageViewAirplane"
@@ -165,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/flight_number"
+            android:text="Flight #"
             android:textSize="30sp"
             android:textColor="#e1373737"
             android:id="@+id/textViewFlightNumberText"
@@ -173,7 +174,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_alignRight="@+id/textViewFlightNumber"
             android:layout_alignEnd="@+id/textViewFlightNumber" />
 
@@ -181,8 +182,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/br1234"
-            android:textSize="70sp"
+            android:text="BR1234"
+            android:textSize="35sp"
             android:id="@+id/textViewFlightNumber"
             android:gravity="center"
             android:layout_below="@+id/textViewFlightNumberText"
@@ -191,14 +192,14 @@
             android:layout_above="@+id/textViewDeparture"
             android:layout_alignRight="@+id/imageViewAirplane"
             android:layout_alignEnd="@+id/imageViewAirplane"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="100dp"
             android:textColor="@android:color/widget_edittext_dark" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/terminal"
+            android:text="Terminal"
             android:textSize="30sp"
             android:textColor="#e1373737"
             android:id="@+id/textViewTerminalText"
@@ -210,21 +211,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/gate"
+            android:text="Gate"
             android:textSize="30sp"
             android:textColor="#e1373737"
             android:id="@+id/textViewGateText"
             android:layout_alignTop="@+id/textViewTerminalText"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="50dp"/>
+            android:layout_marginRight="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/t1"
-            android:textSize="70sp"
+            android:text="T1"
+            android:textSize="35sp"
             android:gravity="center"
             android:id="@+id/textViewTerminal"
             android:layout_below="@+id/textViewFlightNumberText"
@@ -239,8 +240,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/gzero"
-            android:textSize="70sp"
+            android:text="G08"
+            android:textSize="35sp"
             android:gravity="center"
             android:id="@+id/textViewGate"
             android:layout_below="@+id/textViewGateText"

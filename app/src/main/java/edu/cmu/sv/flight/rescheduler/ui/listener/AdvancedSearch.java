@@ -122,10 +122,6 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     public void onClick(View v) {
         init();
         showDialog();
-        UpdateSpinner.update(act, R.layout.list_item_available_route,
-                R.id.list_item_available_route_textview,
-                R.id.spinnerAlternativeRoutes,
-                mockAdvancedSearch);
         UpdateListview.update(act, R.layout.list_item_available_route,
                 R.id.list_item_available_route_textview,
                 R.id.listviewAlternativeRoute,

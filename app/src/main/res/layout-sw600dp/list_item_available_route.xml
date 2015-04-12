@@ -4,5 +4,5 @@
     android:id="@+id/list_item_available_route_textview"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
-    android:text="@string/lax_arrived">
+    android:text="LAX - NYC Arrived at 10:00PM 10/23">
 </TextView>

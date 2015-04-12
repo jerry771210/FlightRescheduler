@@ -9,23 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import java.util.Arrays;
 import java.util.List;
 
-import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
 import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
-import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.ShowFlightDetailOnItemClickListener;
 
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
  */
-public class AlternativeOptionsFragement extends Fragment {
-    static final String LOG_TAG = AlternativeOptionsFragement.class.getSimpleName();
+public class AlternativeOptionsFragment extends Fragment {
+    static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();
     private AdvancedSearch advancedSearch;
 
     private final String[] mockOptions = {
@@ -46,10 +43,6 @@ public class AlternativeOptionsFragement extends Fragment {
             "15 LAX - NYC Arrived at 11:00AM 10/24"
     };
 
-
-    public AlternativeOptionsFragement() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_alternatives_options_basic_search, container, false);
@@ -60,23 +53,14 @@ public class AlternativeOptionsFragement extends Fragment {
         ListView lv = (ListView) rootView.findViewById(R.id.listviewAlternativeRoute);
         lv.setAdapter(alternativesAdapter);
 
-        /* For the spinner part */
-        Spinner spinnerOptions = (Spinner) rootView.findViewById(R.id.spinnerAlternativeRoutes);
-        //Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, mockOptions);
-        // Apply the adapter to the spinner
-        spinnerOptions.setAdapter(spinnerAdapter);
-
 
         /* For the button part */
         Button buttonOtherAirlines = (Button) rootView.findViewById(R.id.buttonOtherAirlines);
         Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
-        Button buttonRebookingConfirm = (Button) rootView.findViewById(R.id.buttonRebookingConfirm);
         Button buttonAdvancedSearch = (Button) rootView.findViewById(R.id.buttonAdvancedSearch);
 
         // TODO rename button for buttonOtherAirlines
         buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
-        buttonRebookingConfirm.setOnClickListener(new IntentToActivityOnClickListener(getActivity(), PagerConfirmActivity.class));
         buttonAdvancedSearch.setOnClickListener(new AdvancedSearch(getActivity()));
         buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
         lv.setOnItemClickListener(new ShowFlightDetailOnItemClickListener(getActivity()));

@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragement;
+import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragment;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
@@ -25,7 +25,7 @@ import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
  * TODO: We use mock data for now. Will use real model in the future
  */
 public class OtherAirlinesOnClickListener implements View.OnClickListener {
-    private static final String LOG_TAG = AlternativeOptionsFragement.class.getSimpleName();
+    private static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();
 
     private final String[] mockOptions = {
             " 1 LAX - NYC Arrived at 08:00PM 10/23",
@@ -74,7 +74,6 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Log.d(LOG_TAG, "Click other airlines");
-        updateSwitchAirLinesSpinner();
         updateSwitchAirlinesListView();
         updateSwitchAirLinesButtonVal();
     }
@@ -97,25 +96,6 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
         }
     }
 
-    private void updateSwitchAirLinesSpinner() {
-        Button buttonOtherAirlines = (Button) act.findViewById(R.id.buttonOtherAirlines);
-        String buttonVal = buttonOtherAirlines.getText().toString();
-
-        ArrayAdapter<String> spinnerAdapter;
-        if ("Other Airlines".equals(buttonVal)) {
-            UpdateSpinner.update(act, R.layout.list_item_available_route,
-                    R.id.list_item_available_route_textview,
-                    R.id.spinnerAlternativeRoutes,
-                    mockOtherAirlines);
-        } else {
-            UpdateSpinner.update(act, R.layout.list_item_available_route,
-                    R.id.list_item_available_route_textview,
-                    R.id.spinnerAlternativeRoutes,
-                    mockOptions);
-        }
-
-        return;
-    }
 
     private void updateSwitchAirLinesButtonVal() {
         // get the button current value

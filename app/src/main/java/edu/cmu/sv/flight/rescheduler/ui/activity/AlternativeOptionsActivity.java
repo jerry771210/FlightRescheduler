@@ -5,7 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragement;
+import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragment;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
 
@@ -17,7 +17,7 @@ public class AlternativeOptionsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new AlternativeOptionsFragement())
+                    .add(R.id.container, new AlternativeOptionsFragment())
                     .commit();
         }
     }

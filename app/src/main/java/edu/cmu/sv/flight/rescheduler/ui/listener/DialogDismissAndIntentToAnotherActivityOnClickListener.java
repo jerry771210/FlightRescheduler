@@ -3,6 +3,7 @@ package edu.cmu.sv.flight.rescheduler.ui.listener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
