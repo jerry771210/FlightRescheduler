@@ -11,3 +11,5 @@ Compile and build tools version: API 21 (Lollipop)
 Credit
 ============
 zxing QR code SDK: https://github.com/zxing/zxing
+
+ViewPagerIndicator: https://github.com/JakeWharton/ViewPagerIndicator
