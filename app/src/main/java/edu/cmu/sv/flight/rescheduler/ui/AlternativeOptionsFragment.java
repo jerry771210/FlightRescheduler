@@ -13,8 +13,10 @@ import android.widget.ListView;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.ui.activity.BoardingPassActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
 import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.ShowFlightDetailOnItemClickListener;
 
@@ -61,7 +63,8 @@ public class AlternativeOptionsFragment extends Fragment {
         Button buttonAdvancedSearch = (Button) view.findViewById(R.id.buttonAdvancedSearch);
 
         // TODO rename button for buttonOtherAirlines
-        buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
+        buttonCancelBooking.setOnClickListener(
+                new IntentToActivityOnClickListener(getActivity(), BoardingPassActivity.class, true));
         buttonAdvancedSearch.setOnClickListener(new AdvancedSearch(getActivity()));
         buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
         lv.setOnItemClickListener(new ShowFlightDetailOnItemClickListener(getActivity()));
