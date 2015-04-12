@@ -2,20 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/material_blue_grey_900">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="650dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="60dp"
-        android:id="@+id/listviewAlternativeRoute"
+        android:id="@+id/listViewAlternativeRoute"
         android:layout_gravity="left" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Advanced Search"
+        android:text="@string/advanced_search"
         android:id="@+id/buttonAdvancedSearch"
         android:layout_alignTop="@+id/textWantsMore"
         android:layout_toRightOf="@+id/textAlternativeOptionsMode"
@@ -24,7 +25,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Other Airlines"
+        android:text="@string/other_airlines"
         android:id="@+id/buttonOtherAirlines"
         android:layout_alignTop="@+id/buttonAdvancedSearch"
         android:layout_toRightOf="@+id/buttonAdvancedSearch"
@@ -36,13 +37,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Alternative Options:"
+        android:text="@string/alternative_options"
         android:id="@+id/textAlternativeOptionsMode"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
-         />
+        android:textColor="@android:color/secondary_text_light_nodisable" />
 
 
     <!-- Align to left&bottom -->
@@ -50,17 +51,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Want more?"
+        android:text="@string/want_more"
         android:id="@+id/textWantsMore"
-        android:layout_below="@+id/listviewAlternativeRoute"
+        android:layout_below="@+id/listViewAlternativeRoute"
         android:layout_alignLeft="@+id/textAlternativeOptionsMode"
         android:layout_alignStart="@+id/textAlternativeOptionsMode"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/secondary_text_light_nodisable" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maybe Later"
+        android:text="@string/maybe_later"
         android:id="@+id/buttonMaybeLater"
         android:layout_below="@+id/buttonAdvancedSearch"
         android:layout_alignLeft="@+id/textWantsMore"

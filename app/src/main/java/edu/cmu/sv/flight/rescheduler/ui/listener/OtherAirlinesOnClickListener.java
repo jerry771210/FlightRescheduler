@@ -3,7 +3,6 @@ package edu.cmu.sv.flight.rescheduler.ui.listener;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
 import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragment;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
-import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
 
 /**
  * Created by moumoutsay on 4/9/15.
@@ -85,13 +83,13 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
         List<String> availableList;
         if ("Other Airlines".equals(buttonVal)) {
             UpdateListview.update(act, R.layout.list_item_available_route,
-                    R.id.list_item_available_route_textview,
-                    R.id.listviewAlternativeRoute,
+                    R.id.textViewListItemAvailableRoute,
+                    R.id.listViewAlternativeRoute,
                     mockOtherAirlines);
         } else {
             UpdateListview.update(act, R.layout.list_item_available_route,
-                    R.id.list_item_available_route_textview,
-                    R.id.listviewAlternativeRoute,
+                    R.id.textViewListItemAvailableRoute,
+                    R.id.listViewAlternativeRoute,
                     mockOptions);
         }
     }

@@ -23,7 +23,6 @@ import edu.cmu.sv.flight.rescheduler.ui.listener.ShowFlightDetailOnItemClickList
  */
 public class AlternativeOptionsFragment extends Fragment {
     static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();
-    private AdvancedSearch advancedSearch;
 
     private final String[] mockOptions = {
             " 1 LAX - NYC Arrived at 08:00PM 10/23",
@@ -45,19 +44,21 @@ public class AlternativeOptionsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_alternatives_options_basic_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_alternatives_options_basic_search, container, false);
 
         /* For the list view part */
         List<String> alternativesList = Arrays.asList(mockOptions);
-        ArrayAdapter<String> alternativesAdapter = new ArrayAdapter<String> (getActivity(), R.layout.list_item_available_route, R.id.list_item_available_route_textview, alternativesList);
-        ListView lv = (ListView) rootView.findViewById(R.id.listviewAlternativeRoute);
+        ArrayAdapter<String> alternativesAdapter =
+                new ArrayAdapter<String> (getActivity(), R.layout.list_item_available_route,
+                        R.id.textViewListItemAvailableRoute, alternativesList);
+        ListView lv = (ListView) view.findViewById(R.id.listViewAlternativeRoute);
         lv.setAdapter(alternativesAdapter);
 
 
         /* For the button part */
-        Button buttonOtherAirlines = (Button) rootView.findViewById(R.id.buttonOtherAirlines);
-        Button buttonCancelBooking = (Button) rootView.findViewById(R.id.buttonMaybeLater);
-        Button buttonAdvancedSearch = (Button) rootView.findViewById(R.id.buttonAdvancedSearch);
+        Button buttonOtherAirlines = (Button) view.findViewById(R.id.buttonOtherAirlines);
+        Button buttonCancelBooking = (Button) view.findViewById(R.id.buttonMaybeLater);
+        Button buttonAdvancedSearch = (Button) view.findViewById(R.id.buttonAdvancedSearch);
 
         // TODO rename button for buttonOtherAirlines
         buttonCancelBooking.setOnClickListener(new FinishOnClickListener(getActivity()));
@@ -65,6 +66,6 @@ public class AlternativeOptionsFragment extends Fragment {
         buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
         lv.setOnItemClickListener(new ShowFlightDetailOnItemClickListener(getActivity()));
 
-        return rootView;
+        return view;
     }
 }

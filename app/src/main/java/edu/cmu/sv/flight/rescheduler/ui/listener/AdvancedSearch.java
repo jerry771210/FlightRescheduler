@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
-import edu.cmu.sv.flight.rescheduler.ui.update.UpdateSpinner;
 
 /**
  * Created by hsuantzl on 2015/4/4.
@@ -92,7 +91,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
 
     public void init() {
         seekBar.setOnSeekBarChangeListener(this);
-        confirm.setOnClickListener(new DiaglogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
+        confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
         checkBoxOverNight.setOnClickListener(new CheckBoxOnClickListener(overNight));
         checkBoxNoSeat.setOnClickListener(new CheckBoxOnClickListener(noSeat));
         checkBoxNearbyAirport.setOnClickListener(new CheckBoxOnClickListener(nearbyAirport));
@@ -123,8 +122,8 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
         init();
         showDialog();
         UpdateListview.update(act, R.layout.list_item_available_route,
-                R.id.list_item_available_route_textview,
-                R.id.listviewAlternativeRoute,
+                R.id.textViewListItemAvailableRoute,
+                R.id.listViewAlternativeRoute,
                 mockAdvancedSearch);
     }
 }

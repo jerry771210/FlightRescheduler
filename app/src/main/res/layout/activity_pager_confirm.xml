@@ -18,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Rebook Confirmation"
-            android:textSize="30dp"
+            android:text="@string/rebook_confirmation"
+            android:textSize="30sp"
             android:gravity="center"
             android:id="@+id/textViewRebookConfirmation"
             android:layout_alignParentBottom="true"
@@ -36,14 +36,13 @@
         android:layout_height="50dp"
         android:id="@+id/RelativeLayoutBottom"
         android:layout_alignParentBottom="true"
-        android:background="#c8696969">
+        android:background="@color/material_blue_grey_900">
 
         <Button
             android:id="@+id/buttonCancelConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CANCEL"
-            android:textSize="15dp"
+            android:text="@string/cancel"
             android:textColor="@android:color/secondary_text_light_nodisable"
             android:background="@drawable/buttonshape"
             android:layout_alignParentBottom="true"
@@ -55,8 +54,7 @@
             android:id="@+id/buttonConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CONFIRM"
-            android:textSize="15dp"
+            android:text="@string/confirm"
             android:textColor="@android:color/secondary_text_light_nodisable"
             android:background="@drawable/buttonshape"
             android:layout_marginRight="80dp"

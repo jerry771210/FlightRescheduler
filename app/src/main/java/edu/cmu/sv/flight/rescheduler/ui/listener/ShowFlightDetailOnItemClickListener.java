@@ -15,11 +15,12 @@ import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
  */
 // TODO may need rename to ShowRouteDetailxxxx ...
 public class ShowFlightDetailOnItemClickListener implements AdapterView.OnItemClickListener {
-
+    private final String mockFlightDetail = "Test flight detail.........\nFlight# 12345678";
     private Activity act;
     private Dialog dialog;
     private Button buttonRebook;
     private Button buttonCancel;
+    private TextView textViewFlightDetail;
 
 
     public ShowFlightDetailOnItemClickListener(Activity act) {
@@ -32,6 +33,7 @@ public class ShowFlightDetailOnItemClickListener implements AdapterView.OnItemCl
         buttonCancel = (Button) dialog.findViewById(R.id.buttonCancelRebook);
         buttonRebook.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, PagerConfirmActivity.class));
         buttonCancel.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
+        textViewFlightDetail = (TextView) dialog.findViewById(R.id.textViewFlightDetails);
     }
 
     private void display(String fightDetails) {
@@ -41,6 +43,7 @@ public class ShowFlightDetailOnItemClickListener implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        textViewFlightDetail.setText(mockFlightDetail);
         display( ((TextView)view).getText().toString());
     }
 }
