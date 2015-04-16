@@ -63,6 +63,8 @@ public class AlternativeOptionsFragment extends Fragment {
         Button buttonAdvancedSearch = (Button) view.findViewById(R.id.buttonAdvancedSearch);
 
         // TODO rename button for buttonOtherAirlines
+        // TODO: Should use FinishOnClick here
+        // but ConfirmPage->AlternativeOptions->FinishOnClick is not working now
         buttonCancelBooking.setOnClickListener(
                 new IntentToActivityOnClickListener(getActivity(), BoardingPassActivity.class, true));
         buttonAdvancedSearch.setOnClickListener(new AdvancedSearch(getActivity()));
