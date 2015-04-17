@@ -15,10 +15,9 @@ import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.ui.activity.BoardingPassActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
-import edu.cmu.sv.flight.rescheduler.ui.listener.FinishOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
-import edu.cmu.sv.flight.rescheduler.ui.listener.ShowFlightDetailOnItemClickListener;
+import edu.cmu.sv.flight.rescheduler.ui.listener.ShowRouteDetailOnItemClickListener;
 
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
@@ -69,7 +68,7 @@ public class AlternativeOptionsFragment extends Fragment {
                 new IntentToActivityOnClickListener(getActivity(), BoardingPassActivity.class, true));
         buttonAdvancedSearch.setOnClickListener(new AdvancedSearch(getActivity()));
         buttonOtherAirlines.setOnClickListener(new OtherAirlinesOnClickListener(getActivity()));
-        lv.setOnItemClickListener(new ShowFlightDetailOnItemClickListener(getActivity()));
+        lv.setOnItemClickListener(new ShowRouteDetailOnItemClickListener(getActivity()));
 
         return view;
     }

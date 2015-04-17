@@ -13,8 +13,7 @@ import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
 /**
  * Created by moumoutsay on 4/10/15.
  */
-// TODO may need rename to ShowRouteDetailxxxx ...
-public class ShowFlightDetailOnItemClickListener implements AdapterView.OnItemClickListener {
+public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemClickListener {
     private final String mockFlightDetail = "Test flight detail.........\nFlight# 12345678";
     private Activity act;
     private Dialog dialog;
@@ -23,7 +22,7 @@ public class ShowFlightDetailOnItemClickListener implements AdapterView.OnItemCl
     private TextView textViewFlightDetail;
 
 
-    public ShowFlightDetailOnItemClickListener(Activity act) {
+    public ShowRouteDetailOnItemClickListener(Activity act) {
         this.act = act;
         dialog = new Dialog(act);
         dialog.setContentView(R.layout.flight_details);
