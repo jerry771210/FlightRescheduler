@@ -1,0 +1,26 @@
+package edu.cmu.sv.flight.rescheduler.database.sql;
+
+import android.provider.BaseColumns;
+
+/**
+ * Created by hsuantzl on 2015/4/18.
+ */
+public abstract class Airport implements BaseColumns{
+    public static final String TABLE_NAME = "airport";
+    public static final String NAME = "name";
+    public static final String CITY = "city";
+    public static final String CODE = "code";
+    public static final String LATITUDE = "latitude";
+    public static final String LONGITUDE = "longitude";
+    public static final String TIMEZONE = "timezone";
+
+
+    public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME+"(" +
+            _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            NAME + " TEXT," +
+            CITY + " TEXT," +
+            CODE + " TEXT," +
+            LATITUDE + " TEXT," +
+            LONGITUDE + " TEXT," +
+            TIMEZONE + " TEXT);";
+}

@@ -2,8 +2,8 @@ package edu.cmu.sv.flight.rescheduler.entities.routing;
 
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.database.FlightCRUD;
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
-import edu.cmu.sv.flight.rescheduler.util.db.DBUtilFlightCRUD;
 import edu.cmu.sv.flight.rescheduler.ws.local.DataManager;
 import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
 
@@ -16,7 +16,7 @@ public class RoutesPlanner {
     // consider: time/overnight
     // Note, for each edge in graph, query DB(dbUtilFlightCRUD) to see if data is existed.
     // Otherwise query FlightStat API
-    private DBUtilFlightCRUD dbUtilFlightCRUD;
+    private FlightCRUD flightCRUD;
     private IDataService dataService = new DataManager();  // TODO
 
     public List<List<BoardingPass>> plan ()
