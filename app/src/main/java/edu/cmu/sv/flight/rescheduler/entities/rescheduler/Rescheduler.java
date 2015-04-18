@@ -14,7 +14,7 @@ import edu.cmu.sv.flight.rescheduler.entities.routing.RoutesPlanner;
 public abstract class Rescheduler {
     private static List<BoardingPass> boardingPassList = new ArrayList<>(); // TODO rename
 
-    private static List<List<BoardingPass>> routingResult; // TODO
+    private static List<List<BoardingPass>> routingResult;
 
     static {
         // Add mock boarding passes
