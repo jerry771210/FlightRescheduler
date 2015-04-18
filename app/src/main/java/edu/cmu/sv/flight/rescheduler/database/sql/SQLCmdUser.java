@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 /**
  * Created by hsuantzl on 2015/4/18.
  */
-public abstract class User implements BaseColumns {
+public abstract class SQLCmdUser implements BaseColumns {
     public static final String TABLE_NAME = "user";
     public static final String FIRST_NAME = "first_name";
     public static final String LAST_NAME = "last_name";
