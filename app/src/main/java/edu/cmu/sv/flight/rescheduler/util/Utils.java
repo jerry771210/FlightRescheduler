@@ -32,7 +32,7 @@ public class Utils {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\s*,\\s*");
-                Log.d("Utils", parts[0]);
+                String[] row = new String[parts.length];
             }
         }
         catch (IOException e) {
