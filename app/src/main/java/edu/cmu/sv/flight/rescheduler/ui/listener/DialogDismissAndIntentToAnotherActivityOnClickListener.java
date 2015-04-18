@@ -3,11 +3,11 @@ package edu.cmu.sv.flight.rescheduler.ui.listener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
-import edu.cmu.sv.flight.rescheduler.entities.Rescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
 /**
@@ -38,7 +38,7 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
             // Not sure whether it's good to do it here
             BoardingPass boardingPass = new BoardingPass();
             boardingPass.setStatus(BoardingPass.Status.ON_TIME);
-            Rescheduler rescheduler = new Rescheduler();
+            IRescheduler rescheduler = new ProxyRescheduler();
             rescheduler.updateBoardingPass(2, boardingPass);
             rescheduler.updateBoardingPass(3, boardingPass);
         }

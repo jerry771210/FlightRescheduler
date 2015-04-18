@@ -1,12 +1,14 @@
-package edu.cmu.sv.flight.rescheduler.entities;
+package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
+
 /**
  * Created by hsuantzl on 2015/4/10.
  */
-public class Rescheduler extends ProxyRescheduler implements IRescheduler {
+public abstract class Rescheduler {
     private static List<BoardingPass> boardingPassList = new ArrayList<>();
     static {
         // Add mock boarding passes

@@ -9,18 +9,19 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
-import edu.cmu.sv.flight.rescheduler.entities.Rescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
 
 /**
  * Created by hsuantzl on 2015/4/10.
  */
 public class BoardingPassAdapter extends PagerAdapter {
-    private Rescheduler rescheduler;
+    private IRescheduler rescheduler;
     private Activity activity;
 
     public BoardingPassAdapter(Activity activity) {
         this.activity = activity;
-        rescheduler = new Rescheduler();
+        rescheduler = new ProxyRescheduler();
         this.notifyDataSetChanged();
     }
 
