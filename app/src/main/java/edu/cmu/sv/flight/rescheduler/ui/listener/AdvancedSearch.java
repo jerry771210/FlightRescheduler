@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
 
@@ -22,6 +24,8 @@ import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
  * TODO, think about rename the class
  */
 public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener {
+
+    private IRescheduler rescheduler;
 
     // TODO remove these mock data later
     private final String[] mockAdvancedSearch = {
@@ -91,6 +95,8 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
 
     public void init() {
         seekBar.setOnSeekBarChangeListener(this);
+        rescheduler = new ProxyRescheduler();
+
         confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
         checkBoxOverNight.setOnClickListener(new CheckBoxOnClickListener(overNight));
         checkBoxNoSeat.setOnClickListener(new CheckBoxOnClickListener(noSeat));
@@ -121,6 +127,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     public void onClick(View v) {
         init();
         showDialog();
+        // TODO, get data from ProxyRescheduler
         UpdateListview.update(act, R.layout.list_item_available_route,
                 R.id.textViewListItemAvailableRoute,
                 R.id.listViewAlternativeRoute,

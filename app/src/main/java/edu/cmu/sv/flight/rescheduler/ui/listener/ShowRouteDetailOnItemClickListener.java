@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
 
@@ -20,6 +22,7 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
     private Button buttonRebook;
     private Button buttonCancel;
     private TextView textViewFlightDetail;
+    private IRescheduler rescheduler;
 
 
     public ShowRouteDetailOnItemClickListener(Activity act) {
@@ -36,7 +39,9 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
     }
 
     private void display(String fightDetails) {
-        // TODO, to get the real detail data in the future
+        rescheduler = new ProxyRescheduler();
+        // TODO, get data from ProxyRescheduler
+
         dialog.show();
     }
 
