@@ -28,7 +28,7 @@ public class Utils {
         AssetManager assetManager = context.getAssets();
 
         try {
-            br = new BufferedReader(new InputStreamReader(assetManager.open("assets/"+filename)));
+            br = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\s*,\\s*");
@@ -48,6 +48,7 @@ public class Utils {
                 }
             }
         }
+        Log.d("Utils", "readCSVFile(" + filename + ") complete");
         return result;
     }
 }
