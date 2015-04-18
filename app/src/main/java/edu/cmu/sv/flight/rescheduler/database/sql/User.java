@@ -10,7 +10,7 @@ public abstract class User implements BaseColumns {
     public static final String FIRST_NAME = "first_name";
     public static final String LAST_NAME = "last_name";
 
-    public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME+"(" +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME+"(" +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             FIRST_NAME + " TEXT," +
             LAST_NAME + " TEXT);";

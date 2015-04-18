@@ -10,7 +10,7 @@ public abstract class AirportRoute implements BaseColumns {
     public static final String FROM_AIRPORT_ID = "from_airport_id";
     public static final String TO_AIRPORT_ID = "to_airport_id";
 
-    public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME+"(" +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME+"(" +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             FROM_AIRPORT_ID + " INTEGER," +
             TO_AIRPORT_ID + " INTEGER," +

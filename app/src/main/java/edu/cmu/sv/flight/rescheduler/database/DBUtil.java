@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import edu.cmu.sv.flight.rescheduler.util.Utils;
+
 /**
  * Created by moumoutsay on 4/10/15.
  *
@@ -20,9 +22,23 @@ public class DBUtil extends SQLiteOpenHelper {
     public static final String DB_NAME = "flight.db";
     public static final int DB_VERSION = 1;
 
+    private final String ASSETS_AIRPORT = "us_airports.dat";
+
+    private Context context;
+
     public DBUtil(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        this.context = context;
         Log.d("database", "Database created");
+    }
+
+    public void initialization() {
+        new Thread(new Runnable() {
+            public void run() {
+                Utils utils = new Utils(context);
+                utils.readCSVFile(ASSETS_AIRPORT);
+            }
+        }).start();
     }
 
     @Override

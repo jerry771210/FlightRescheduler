@@ -11,11 +11,13 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import edu.cmu.sv.flight.rescheduler.database.DBUtil;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.ScanQRCodeOnClickListener;
 
 public class LoginActivity extends ActionBarActivity {
+    private DBUtil db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,10 @@ public class LoginActivity extends ActionBarActivity {
         Button loginButton = (Button)findViewById(R.id.buttonLogin);
         scanButton.setOnClickListener(new ScanQRCodeOnClickListener(this));
         loginButton.setOnClickListener(new IntentToActivityOnClickListener(this, BoardingPassActivity.class));
+
+        // Read assets files into database when the application is first created.
+        db = new DBUtil(this);
+        db.initialization();
     }
 
 

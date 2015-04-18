@@ -18,7 +18,7 @@ public class Flight implements BaseColumns {
     public static final String STATUS = "status";
 
 
-    public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME+"(" +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME+"(" +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             CARRIER_CODE + " TEXT," +
             DEP_CITY + " TEXT," +

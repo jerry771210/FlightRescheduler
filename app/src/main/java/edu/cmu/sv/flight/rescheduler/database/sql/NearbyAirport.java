@@ -12,7 +12,7 @@ public abstract class NearbyAirport implements BaseColumns {
 
 
 
-    public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME+"(" +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME+"(" +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             AIRPORT_ID + " INTEGER," +
             NEARBY_ID + " INTEGER," +
