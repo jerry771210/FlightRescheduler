@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 /**
  * Created by hsuantzl on 2015/4/18.
  */
-public class Flight implements BaseColumns {
+public class SQLCmdFlight implements BaseColumns {
     public static final String TABLE_NAME = "flight";
     public static final String CARRIER_CODE = "carrier_code";
     public static final String DEP_CITY = "dep_city";
