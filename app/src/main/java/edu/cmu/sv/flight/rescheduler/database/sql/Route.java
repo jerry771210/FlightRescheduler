@@ -12,7 +12,7 @@ public abstract class Route implements BaseColumns {
 
 
 
-    public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME+"(" +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME+"(" +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             FLIGHT_ID + " INTEGER," +
             USER_ID + " INTEGER," +

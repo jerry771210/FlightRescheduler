@@ -15,7 +15,7 @@ public abstract class Airport implements BaseColumns{
     public static final String TIMEZONE = "timezone";
 
 
-    public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME+"(" +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME+"(" +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             NAME + " TEXT," +
             CITY + " TEXT," +
