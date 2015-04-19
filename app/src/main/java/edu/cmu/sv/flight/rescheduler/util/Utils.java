@@ -32,7 +32,13 @@ public class Utils {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\s*,\\s*");
-                String[] row = new String[parts.length];
+                // Remove " in the String
+                if(parts[4].equals("\"\"")) // Neglect the record if IATA/FAA code is not assigned
+                    continue;
+                for(int i = 0; i < parts.length; i++) {
+                        parts[i] = parts[i].replaceAll("\"","");
+                }
+                result.add(parts);
             }
         }
         catch (IOException e) {
@@ -42,7 +48,6 @@ public class Utils {
             if (br != null) {
                 try {
                     br.close();
-                    assetManager.close();
                 } catch (IOException e) {
                     Log.d("Utils", "Can not close BufferedReader");
                 }

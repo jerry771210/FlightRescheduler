@@ -23,4 +23,5 @@ public abstract class SQLCmdAirport implements BaseColumns{
             LATITUDE + " TEXT," +
             LONGITUDE + " TEXT," +
             TIMEZONE + " TEXT);";
+
 }

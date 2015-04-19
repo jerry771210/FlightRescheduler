@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.List;
+
+import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdAirport;
 import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
@@ -36,14 +39,22 @@ public class DBUtil extends SQLiteOpenHelper {
         new Thread(new Runnable() {
             public void run() {
                 Utils utils = new Utils(context);
-                utils.readCSVFile(ASSETS_AIRPORT);
+
+                List<String[]> airportList = utils.readCSVFile(ASSETS_AIRPORT);
+                AirportCRUD airportCRUD = new AirportCRUD(context);
+                for(String[] s: airportList)
+                    airportCRUD.insertAirport(s[1], s[2], s[4], s[6], s[7], s[9]);
+                Log.d("database", "Insert " + airportList.size() + " records into airport table");
             }
         }).start();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        Log.d("Database", "onCreate executed");
+        db.execSQL("DROP TABLE IF EXISTS " + SQLCmdAirport.TABLE_NAME + ";");
+        db.execSQL(SQLCmdAirport.CREATE_TABLE);
+        Log.d("Database", "Table created");
     }
 
     @Override
