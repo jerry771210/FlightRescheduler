@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
 
@@ -25,7 +24,7 @@ import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
  */
 public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener {
 
-    private IRescheduler rescheduler;
+    private CurrentRoute currentRoute;
 
     // TODO remove these mock data later
     private final String[] mockAdvancedSearch = {
@@ -95,7 +94,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
 
     public void init() {
         seekBar.setOnSeekBarChangeListener(this);
-        rescheduler = new ProxyRescheduler();
+        currentRoute = CurrentRoute.getInstance();
 
         confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
         checkBoxOverNight.setOnClickListener(new CheckBoxOnClickListener(overNight));

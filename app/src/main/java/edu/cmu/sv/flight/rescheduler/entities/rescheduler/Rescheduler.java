@@ -12,45 +12,7 @@ import edu.cmu.sv.flight.rescheduler.entities.routing.RoutesPlanner;
  * Created by hsuantzl on 2015/4/10.
  */
 public abstract class Rescheduler {
-    private static List<BoardingPass> boardingPassList = new ArrayList<>(); // TODO rename
-
-    private static List<List<BoardingPass>> routingResult; // TODO
-
-    static {
-        // Add mock boarding passes
-        BoardingPass mock = new BoardingPass();
-        mock.setStatus(BoardingPass.Status.LANDED);
-        mock.setFlightNumber("First");
-        boardingPassList.add(mock);
-
-        mock = new BoardingPass();
-        mock.setStatus(BoardingPass.Status.ON_TIME);
-        mock.setFlightNumber("Second");
-        boardingPassList.add(mock);
-
-        mock = new BoardingPass();
-        mock.setStatus(BoardingPass.Status.DELAYED);
-        mock.setFlightNumber("Third");
-        boardingPassList.add(mock);
-
-        mock = new BoardingPass();
-        mock.setStatus(BoardingPass.Status.CANCELED);
-        mock.setFlightNumber("Fourth");
-        boardingPassList.add(mock);
-    }
-
-    public Rescheduler() {
-    }
-
-    public BoardingPass getBoardingPass(int index) {
-        return boardingPassList.get(index);
-    }
-
-    public int numOfBoardingPasses() { return boardingPassList.size(); }
-
-    public void updateBoardingPass(int index, BoardingPass newBoardingPass) {
-        boardingPassList.set(index, newBoardingPass);
-    }
+    private static List<List<BoardingPass>> routingResult = new ArrayList<List<BoardingPass>>();
 
     public List<List<BoardingPass>> getRoutingResult() {
         return routingResult;
