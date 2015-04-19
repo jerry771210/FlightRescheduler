@@ -8,10 +8,16 @@ import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 /**
  * Created by hsuantzl on 2015/4/10.
  */
-public class CurrentRoute { // TODO rename, and change it to be Singleton
-    private static List<BoardingPass> boardingPassList = new ArrayList<>();
+public class CurrentRoute {
+    private static final CurrentRoute instance = new CurrentRoute();
+    private List<BoardingPass> boardingPassList;
 
-    static {
+    private CurrentRoute() {
+        boardingPassList = new ArrayList<BoardingPass>();
+        init_mock();
+    }
+
+    private void init_mock() {
         // Add mock boarding passes
         BoardingPass mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.LANDED);
@@ -34,7 +40,8 @@ public class CurrentRoute { // TODO rename, and change it to be Singleton
         boardingPassList.add(mock);
     }
 
-    public CurrentRoute() {
+    public static CurrentRoute getInstance() {
+        return instance;
     }
 
     public BoardingPass getBoardingPass(int index) {
@@ -43,7 +50,7 @@ public class CurrentRoute { // TODO rename, and change it to be Singleton
 
     public int numOfBoardingPasses() { return boardingPassList.size(); }
 
-    public void updateBoardingPass(int index, BoardingPass newBoardingPass) {
+    public synchronized void updateBoardingPass(int index, BoardingPass newBoardingPass) {
         boardingPassList.set(index, newBoardingPass);
     }
 

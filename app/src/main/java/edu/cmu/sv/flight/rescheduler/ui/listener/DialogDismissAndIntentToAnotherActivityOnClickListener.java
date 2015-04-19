@@ -37,7 +37,7 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
             // Not sure whether it's good to do it here
             BoardingPass boardingPass = new BoardingPass();
             boardingPass.setStatus(BoardingPass.Status.ON_TIME);
-            CurrentRoute currentRoute = new CurrentRoute();
+            CurrentRoute currentRoute = CurrentRoute.getInstance();
             currentRoute.updateBoardingPass(2, boardingPass);
             currentRoute.updateBoardingPass(3, boardingPass);
         }

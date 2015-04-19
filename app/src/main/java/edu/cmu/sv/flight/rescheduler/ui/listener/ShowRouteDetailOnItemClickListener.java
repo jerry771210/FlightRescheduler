@@ -38,7 +38,7 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
     }
 
     private void display(String fightDetails) {
-        currentRoute = new CurrentRoute();
+        currentRoute = CurrentRoute.getInstance();
         // TODO, get data from ProxyRescheduler
 
         dialog.show();

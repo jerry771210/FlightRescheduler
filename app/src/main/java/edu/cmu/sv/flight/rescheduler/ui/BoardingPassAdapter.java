@@ -20,7 +20,7 @@ public class BoardingPassAdapter extends PagerAdapter {
 
     public BoardingPassAdapter(Activity activity) {
         this.activity = activity;
-        currentRoute = new CurrentRoute();
+        currentRoute = CurrentRoute.getInstance();
         this.notifyDataSetChanged();
     }
 

@@ -69,7 +69,7 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
 
     public OtherAirlinesOnClickListener(Activity act) {
         this.act = act;
-        currentRoute = new CurrentRoute();
+        currentRoute = CurrentRoute.getInstance();
     }
 
     @Override
