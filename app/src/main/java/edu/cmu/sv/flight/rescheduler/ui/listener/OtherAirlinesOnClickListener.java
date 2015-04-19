@@ -7,8 +7,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragment;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
@@ -26,7 +25,7 @@ import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
  */
 public class OtherAirlinesOnClickListener implements View.OnClickListener {
     private static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();
-    private IRescheduler rescheduler;
+    private CurrentRoute currentRoute; // TODO, replace with real rescheduler
 
     private final String[] mockOptions = {
             " 1 LAX - NYC Arrived at 08:00PM 10/23",
@@ -70,7 +69,7 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
 
     public OtherAirlinesOnClickListener(Activity act) {
         this.act = act;
-        rescheduler = new ProxyRescheduler();
+        currentRoute = new CurrentRoute();
     }
 
     @Override

@@ -9,25 +9,24 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 
 /**
  * Created by hsuantzl on 2015/4/10.
  */
 public class BoardingPassAdapter extends PagerAdapter {
-    private IRescheduler rescheduler;
+    private CurrentRoute currentRoute;
     private Activity activity;
 
     public BoardingPassAdapter(Activity activity) {
         this.activity = activity;
-        rescheduler = new ProxyRescheduler();
+        currentRoute = new CurrentRoute();
         this.notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return rescheduler.numOfBoardingPasses();
+        return currentRoute.numOfBoardingPasses();
     }
 
     @Override
@@ -40,7 +39,7 @@ public class BoardingPassAdapter extends PagerAdapter {
         LayoutInflater inflater = (LayoutInflater) container.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        BoardingPass boardingPass = rescheduler.getBoardingPass(position);
+        BoardingPass boardingPass = currentRoute.getBoardingPass(position);
 
         BoardingPassView boardingPassView =
                 new BoardingPassView(activity, inflater, boardingPass);

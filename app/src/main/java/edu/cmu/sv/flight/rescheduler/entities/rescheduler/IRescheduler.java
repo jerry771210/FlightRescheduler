@@ -1,5 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
+import java.util.List;
+
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 
 /**
@@ -8,9 +10,8 @@ import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
  * The user interface to provide schedule related methods
  */
 public interface IRescheduler {
-    public BoardingPass getBoardingPass(int index);
+    public List<List<BoardingPass>> getRoutingResult();
 
-    public int numOfBoardingPasses();
+    public List<List<BoardingPass>> findAvailableRoutes(/*TODO parameters*/);
 
-    public void updateBoardingPass(int index, BoardingPass newBoardingPass);
 }
