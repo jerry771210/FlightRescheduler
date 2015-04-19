@@ -42,7 +42,6 @@ public class Utils {
             if (br != null) {
                 try {
                     br.close();
-                    assetManager.close();
                 } catch (IOException e) {
                     Log.d("Utils", "Can not close BufferedReader");
                 }
