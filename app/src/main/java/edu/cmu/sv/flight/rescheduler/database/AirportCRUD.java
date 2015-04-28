@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdAirport;
+import edu.cmu.sv.flight.rescheduler.entities.Airport;
 
 /**
  * Created by moumoutsay on 4/10/15.
@@ -21,16 +22,15 @@ public class AirportCRUD {
         db = new DBUtil(context);
     }
 
-    public void insertAirport(String name, String city, String code,
-                              String latitude, String longitude, String timezone) {
+    public void insertAirport(Airport airport) {
         SQLiteDatabase writableDB = db.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(SQLCmdAirport.NAME, name);
-        cv.put(SQLCmdAirport.CITY, city);
-        cv.put(SQLCmdAirport.CODE, code);
-        cv.put(SQLCmdAirport.LATITUDE, latitude);
-        cv.put(SQLCmdAirport.LONGITUDE, longitude);
-        cv.put(SQLCmdAirport.TIMEZONE, timezone);
+        cv.put(SQLCmdAirport.NAME, airport.getName());
+        cv.put(SQLCmdAirport.CITY, airport.getCity());
+        cv.put(SQLCmdAirport.CODE, airport.getCode());
+        cv.put(SQLCmdAirport.LATITUDE, Double.toString(airport.getLatitude()));
+        cv.put(SQLCmdAirport.LONGITUDE, Double.toString(airport.getLongitude()));
+        cv.put(SQLCmdAirport.TIMEZONE, airport.getTimezone());
         writableDB.insert(SQLCmdAirport.TABLE_NAME, null, cv);
     }
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdAirport;
+import edu.cmu.sv.flight.rescheduler.entities.Airport;
 import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
@@ -42,8 +43,12 @@ public class DBUtil extends SQLiteOpenHelper {
 
                 List<String[]> airportList = utils.readCSVFile(ASSETS_AIRPORT);
                 AirportCRUD airportCRUD = new AirportCRUD(context);
-                for(String[] s: airportList)
-                    airportCRUD.insertAirport(s[1], s[2], s[4], s[6], s[7], s[9]);
+                for(String[] s: airportList) {
+                    Airport airport = new Airport(s[1], s[2], s[4],
+                            Double.parseDouble(s[6]),
+                            Double.parseDouble(s[7]), s[9]);
+                    airportCRUD.insertAirport(airport);
+                }
                 Log.d("database", "Insert " + airportList.size() + " records into airport table");
             }
         }).start();
