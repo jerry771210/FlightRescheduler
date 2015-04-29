@@ -31,8 +31,9 @@ public class DBInitializationAsyncTask extends AsyncTask {
 
         AirportCRUD airportCRUD = new AirportCRUD(context);
         // Check whether the database has been initialized
-        if(airportCRUD.findAllAirports().size() > 0) {
+        if(airportCRUD.findAirportByCode("SFO") != null) {
             Log.d("Database", "Already initialized");
+            DBUtil.hasInitialized = true;
             return null;
         }
 
@@ -44,6 +45,7 @@ public class DBInitializationAsyncTask extends AsyncTask {
                     Double.parseDouble(s[7]), s[9]);
             airportCRUD.insertAirport(airport);
         }
+
         Log.d("Database", "Insert " + airportList.size() + " records into airport table");
         return null;
     }
@@ -51,6 +53,7 @@ public class DBInitializationAsyncTask extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
+        DBUtil.hasInitialized = true;
         Log.d("Database", "Initialization asyncTask complete");
         Toast.makeText(context, "DB initialized", Toast.LENGTH_LONG).show();
     }

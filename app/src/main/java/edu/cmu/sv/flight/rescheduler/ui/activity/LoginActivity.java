@@ -33,7 +33,7 @@ public class LoginActivity extends ActionBarActivity {
 
         // Force database to execute initialization process
         // It reads assets files into database
-        db = new DBUtil(getApplicationContext());
+        db = new DBUtil(this);
         db.initialize();
     }
 

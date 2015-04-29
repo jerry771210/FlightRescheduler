@@ -25,6 +25,7 @@ public class DBUtil extends SQLiteOpenHelper {
     // Define the version and database file name
     public static final String DB_NAME = "flight.db";
     public static final int DB_VERSION = 1;
+    public static boolean hasInitialized = false;
 
     private final String ASSETS_AIRPORT = "us_airports.dat";
 

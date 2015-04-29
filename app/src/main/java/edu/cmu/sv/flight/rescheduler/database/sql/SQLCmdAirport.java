@@ -23,5 +23,9 @@ public abstract class SQLCmdAirport implements BaseColumns{
             LATITUDE + " TEXT," +
             LONGITUDE + " TEXT," +
             TIMEZONE + " TEXT);";
+
     public static final String FIND_ALL_AIRPORTS = "SELECT * FROM " + TABLE_NAME;
+
+    public static final String FIND_AIRPORT_BY_CODE = "SELECT * FROM " + TABLE_NAME +
+            " WHERE " + CODE + "=?";
 }
