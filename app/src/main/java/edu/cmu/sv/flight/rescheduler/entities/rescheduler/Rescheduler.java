@@ -18,11 +18,34 @@ public abstract class Rescheduler {
         return routingResult;
     }
 
-    public List<List<BoardingPass>> findAvailableRoutes(/*TODO parameters*/) {
+    /*
+    * @param  departAirport IATA code
+    * @param  arriveAirport IATA code
+    */
+    public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
+                 boolean enableNearBy/* TODO */) {
+        /* error handling here*/
+        if (departAirport == null || arriveAirport == null) {
+            return null;
+        } // TODO exception ?
+
+        // use mock now
+        departAirport = "LAX";   // TODO
+        arriveAirport = "JFK";   // TODO
+
         // 1. get user specified S/D
-        // 2. Expand S/D if "nearby"
-        ExpandNearbyAirports expandNearbyAirports= new ExpandNearbyAirports(); // TODO
-        expandNearbyAirports.expand();
+        /* 2. Expand S/D if "nearby" */
+        List<String> departAirportList = new ArrayList<String>();
+        List<String> arriveAirportList = new ArrayList<String>();
+        ExpandNearbyAirports expandNearbyAirports = new ExpandNearbyAirports();
+        if (enableNearBy) {
+            departAirportList = expandNearbyAirports.expand(departAirport);
+            arriveAirportList = expandNearbyAirports.expand(arriveAirport);
+        } else {
+            departAirportList.add(departAirport);
+            arriveAirportList.add(arriveAirport);
+        }
+
         // 3. Use BFS to find all routes in terms of "Stops"
         AirportsGraph airportsGraph = new AirportsGraph();      // TODO
         airportsGraph.getGraph();

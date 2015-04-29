@@ -12,6 +12,7 @@ import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 public interface IRescheduler {
     public List<List<BoardingPass>> getRoutingResult();
 
-    public List<List<BoardingPass>> findAvailableRoutes(/*TODO parameters*/);
+    public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
+                                                        boolean enableNearBy/* TODO */);
 
 }
