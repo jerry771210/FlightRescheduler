@@ -3,8 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF77C4D3">
-    <!--android:background="@color/material_blue_grey_900">-->
+    android:background="@color/material_blue_grey_900">
 
     <ListView
         android:layout_width="match_parent"
@@ -12,8 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="60dp"
         android:id="@+id/listViewAlternativeRoute"
-        android:layout_gravity="left"
-        android:background="#FFE6E2AF"/>
+        android:layout_gravity="left" />
 
     <Button
         android:layout_width="wrap_content"
@@ -44,7 +42,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/secondary_text_light_nodisable" />
+
+
     <!-- Align to left&bottom -->
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +56,8 @@
         android:layout_below="@+id/listViewAlternativeRoute"
         android:layout_alignLeft="@+id/textAlternativeOptionsMode"
         android:layout_alignStart="@+id/textAlternativeOptionsMode"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/secondary_text_light_nodisable" />
 
     <Button
         android:layout_width="wrap_content"

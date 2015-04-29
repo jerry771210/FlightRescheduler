@@ -8,7 +8,7 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="or">or</string>
-    <string name="qr_code">Scan</string>
+    <string name="qr_code">QR Code</string>
     <string name="login">Login</string>
     <string name="rebook_confirmation">Rebook Confirmation</string>
     <string name="cancel">Cancel</string>
