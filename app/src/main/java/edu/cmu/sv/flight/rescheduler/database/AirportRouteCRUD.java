@@ -11,8 +11,8 @@ import android.content.Context;
  */
 public class AirportRouteCRUD {
     private DBUtil db;
-
+    private Context context;
     public AirportRouteCRUD(Context context) {
-        db = new DBUtil(context);
+        this.context = context;
     }
 }

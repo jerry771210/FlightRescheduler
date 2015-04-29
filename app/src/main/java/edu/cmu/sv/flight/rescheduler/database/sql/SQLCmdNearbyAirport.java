@@ -22,4 +22,11 @@ public abstract class SQLCmdNearbyAirport implements BaseColumns {
             " FOREIGN KEY(" + NEARBY_ID + ")" +
             " REFERENCES " + SQLCmdAirport.TABLE_NAME + "(" + SQLCmdAirport._ID + ")" +
             " ON DELETE CASCADE ON UPDATE CASCADE );";
+
+    public static final String FIND_NEARBY = "SELECT " + SQLCmdAirport.TABLE_NAME + ".*" +
+            " FROM " + TABLE_NAME +
+            " LEFT JOIN " + SQLCmdAirport.TABLE_NAME + " ON " +
+            TABLE_NAME + "." + NEARBY_ID + " = " +
+            SQLCmdAirport.TABLE_NAME + "." + SQLCmdAirport._ID +
+            " WHERE " + TABLE_NAME + "." + AIRPORT_ID + " = ?";
 }

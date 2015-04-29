@@ -11,8 +11,9 @@ import android.content.Context;
  */
 public class FlightCRUD {
     private DBUtil db;
+    private Context context;
 
     public FlightCRUD(Context context) {
-        db = new DBUtil(context);
+        this.context = context;
     }
 }
