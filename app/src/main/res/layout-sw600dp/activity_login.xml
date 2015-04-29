@@ -25,8 +25,8 @@
         android:layout_alignLeft="@+id/editFirstName"
         android:layout_alignStart="@+id/editFirstName"
         android:layout_marginTop="50dp"
-        android:textColorHint="#ffc3c3c3"
-        android:textColor="#ffffff" />
+        android:textColorHint="#333745"
+        android:textColor="#333745" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,8 +38,8 @@
         android:layout_marginTop="30dp"
         android:layout_below="@+id/editTicketNumber"
         android:layout_centerHorizontal="true"
-        android:textColorHint="#ffc3c3c3"
-        android:textColor="#ffffff" />
+        android:textColorHint="#333745"
+        android:textColor="#333745" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -52,8 +52,8 @@
         android:layout_below="@+id/editFirstName"
         android:layout_alignLeft="@+id/editFirstName"
         android:layout_alignStart="@+id/editFirstName"
-        android:textColorHint="#ffc3c3c3"
-        android:textColor="#ffffff" />
+        android:textColorHint="#333745"
+        android:textColor="#333745" />
 
     <Button
         android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="170dp"
         android:text="@string/qr_code"
-        android:textColor="#DAEDE2"
+        android:textColor="#333745"
         android:textSize="28dp"
         android:layout_width="100dp"
         android:layout_height="70dp"
