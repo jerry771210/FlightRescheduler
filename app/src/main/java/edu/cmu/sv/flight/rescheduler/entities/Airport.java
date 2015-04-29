@@ -4,6 +4,7 @@ package edu.cmu.sv.flight.rescheduler.entities;
  * Created by hsuantzl on 2015/4/28.
  */
 public class Airport {
+    private Integer id;  // Primary key
     private String name;
     private String city;
     private String code;
@@ -19,6 +20,12 @@ public class Airport {
         this.latitude = latitude;
         this.longitude = longitude;
         this.timezone = timezone;
+    }
+
+    public Integer getId() { return id; }
+
+    public void setId(Integer _id) {
+        this.id = _id;
     }
 
     public String getName() {
@@ -67,5 +74,18 @@ public class Airport {
 
     public void setTimezone(String timezone) {
         this.timezone = timezone;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Airport{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", city='").append(city).append('\'');
+        sb.append(", code='").append(code).append('\'');
+        sb.append(", latitude=").append(latitude);
+        sb.append(", longitude=").append(longitude);
+        sb.append(", timezone='").append(timezone).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

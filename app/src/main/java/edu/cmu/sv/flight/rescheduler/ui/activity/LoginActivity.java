@@ -3,6 +3,7 @@ package edu.cmu.sv.flight.rescheduler.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import edu.cmu.sv.flight.rescheduler.database.AirportCRUD;
 import edu.cmu.sv.flight.rescheduler.database.DBUtil;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
@@ -31,7 +33,9 @@ public class LoginActivity extends ActionBarActivity {
 
         // Read assets files into database when the application is first created.
         db = new DBUtil(this);
-        db.initialization();
+
+        // Force database to execute initialization process
+        new AirportCRUD(this).findAllAirports();
     }
 
 

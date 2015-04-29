@@ -33,25 +33,10 @@ public class DBUtil extends SQLiteOpenHelper {
     public DBUtil(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
-        Log.d("database", "Database created");
     }
 
     public void initialization() {
-        new Thread(new Runnable() {
-            public void run() {
-                Utils utils = new Utils(context);
-
-                List<String[]> airportList = utils.readCSVFile(ASSETS_AIRPORT);
-                AirportCRUD airportCRUD = new AirportCRUD(context);
-                for(String[] s: airportList) {
-                    Airport airport = new Airport(s[1], s[2], s[4],
-                            Double.parseDouble(s[6]),
-                            Double.parseDouble(s[7]), s[9]);
-                    airportCRUD.insertAirport(airport);
-                }
-                Log.d("database", "Insert " + airportList.size() + " records into airport table");
-            }
-        }).start();
+        new DBInitializationAsyncTask().execute(context, ASSETS_AIRPORT);
     }
 
     @Override
@@ -60,6 +45,9 @@ public class DBUtil extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + SQLCmdAirport.TABLE_NAME + ";");
         db.execSQL(SQLCmdAirport.CREATE_TABLE);
         Log.d("Database", "Table created");
+
+        initialization();
+        Log.d("Database", "Initialization complete");
     }
 
     @Override
