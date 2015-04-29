@@ -35,7 +35,7 @@ public class DBUtil extends SQLiteOpenHelper {
         this.context = context;
     }
 
-    public void initialization() {
+    public void initialize() {
         new DBInitializationAsyncTask().execute(context, ASSETS_AIRPORT);
     }
 
@@ -45,9 +45,6 @@ public class DBUtil extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + SQLCmdAirport.TABLE_NAME + ";");
         db.execSQL(SQLCmdAirport.CREATE_TABLE);
         Log.d("Database", "Table created");
-
-        initialization();
-        Log.d("Database", "Initialization complete");
     }
 
     @Override

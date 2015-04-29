@@ -15,14 +15,29 @@ import edu.cmu.sv.flight.rescheduler.util.Utils;
  */
 public class DBInitializationAsyncTask extends AsyncTask {
     private Context context;
+
     @Override
     protected Object doInBackground(Object[] params) {
         context = (Context)params[0];
         String ASSETS_AIRPORT = (String)params[1];
-        Utils utils = new Utils(context);
 
-        List<String[]> airportList = utils.readCSVFile(ASSETS_AIRPORT);
+        try {
+            while((new DBUtil(context).getReadableDatabase()) == null) {
+                Thread.sleep(500);
+            }
+        } catch (InterruptedException e) {
+            Log.d("Exception", e.getMessage());
+        }
+
         AirportCRUD airportCRUD = new AirportCRUD(context);
+        // Check whether the database has been initialized
+        if(airportCRUD.findAllAirports().size() > 0) {
+            Log.d("Database", "Already initialized");
+            return null;
+        }
+
+        Utils utils = new Utils(context);
+        List<String[]> airportList = utils.readCSVFile(ASSETS_AIRPORT);
         for(String[] s: airportList) {
             Airport airport = new Airport(s[1], s[2], s[4],
                     Double.parseDouble(s[6]),
