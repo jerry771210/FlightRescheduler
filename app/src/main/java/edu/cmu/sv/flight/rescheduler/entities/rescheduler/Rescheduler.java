@@ -10,6 +10,9 @@ import edu.cmu.sv.flight.rescheduler.entities.routing.RoutesPlanner;
 
 /**
  * Created by hsuantzl on 2015/4/10.
+ * Note:
+ * 1. support at most 2 stops
+ * 2. Only enable nearby for arrival airport
  */
 public abstract class Rescheduler {
     private static List<List<BoardingPass>> routingResult = new ArrayList<List<BoardingPass>>();
@@ -38,17 +41,18 @@ public abstract class Rescheduler {
         List<String> departAirportList = new ArrayList<String>();
         List<String> arriveAirportList = new ArrayList<String>();
         ExpandNearbyAirports expandNearbyAirports = new ExpandNearbyAirports();
+        departAirportList.add(departAirport);
         if (enableNearBy) {
-            departAirportList = expandNearbyAirports.expand(departAirport);
             arriveAirportList = expandNearbyAirports.expand(arriveAirport);
         } else {
-            departAirportList.add(departAirport);
             arriveAirportList.add(arriveAirport);
         }
 
-        // 3. Use BFS to find all routes in terms of "Stops"
-        AirportsGraph airportsGraph = new AirportsGraph();      // TODO
-        airportsGraph.getGraph();
+        /* 3. Use BFS to find all routes in terms of "Stops" */
+        List<List<String>> routingGraph;
+        AirportsGraph airportsGraph = new AirportsGraph();
+        routingGraph = airportsGraph.getGraph(departAirportList, arriveAirportList);
+
         // 4. Construct real routes;
         RoutesPlanner routesPlanner = new RoutesPlanner();
         routesPlanner.plan();
