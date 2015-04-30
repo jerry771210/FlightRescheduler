@@ -92,4 +92,10 @@ public class NearByAirportCRUD {
                 " returns " + nearbyList.size() + " records");
         return nearbyList;
     }
+
+    public List<Airport> findNearby(String airportCode) {
+        Airport fromAirport = new AirportCRUD(context).findAirportByCode(airportCode);
+
+        return findNearby(fromAirport);
+    }
 }
