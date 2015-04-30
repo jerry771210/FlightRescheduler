@@ -25,7 +25,6 @@ public class DBUtil extends SQLiteOpenHelper {
     public static final int DB_VERSION = 1;
     public static boolean hasInitialized = false;
 
-    private final String ASSETS_AIRPORT = "us_airports.dat";
     private Context context;
 
     /**
@@ -48,7 +47,7 @@ public class DBUtil extends SQLiteOpenHelper {
     }
 
     public void initialize() {
-        new DBInitializationAsyncTask().execute(context, ASSETS_AIRPORT);
+        new DBInitializationAsyncTask().execute(context);
     }
 
     @Override

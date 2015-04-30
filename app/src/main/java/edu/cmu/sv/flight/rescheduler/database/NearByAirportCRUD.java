@@ -16,8 +16,6 @@ import edu.cmu.sv.flight.rescheduler.entities.AirportRoute;
 /**
  * Created by moumoutsay on 4/10/15.
  *
- * This is an empty class now.
- *
  * Schema Airport Create, Read, Update, Delete Operation
  */
 public class NearByAirportCRUD {
@@ -93,5 +91,11 @@ public class NearByAirportCRUD {
         Log.d("Database", "findNearby("+fromAirport.getCode() + ") " +
                 " returns " + nearbyList.size() + " records");
         return nearbyList;
+    }
+
+    public List<Airport> findNearby(String airportCode) {
+        Airport fromAirport = new AirportCRUD(context).findAirportByCode(airportCode);
+
+        return findNearby(fromAirport);
     }
 }
