@@ -32,11 +32,13 @@ public class Utils {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\s*,\\s*");
-                // Remove " in the String
-                if(parts[4].equals("\"\"")) // Neglect the record if IATA/FAA code is not assigned
+                // Neglect the record if IATA/FAA code is not assigned
+                if(parts.length >= 5 && parts[4].equals("\"\""))
                     continue;
+
                 for(int i = 0; i < parts.length; i++) {
-                        parts[i] = parts[i].replaceAll("\"","");
+                    // Remove " in the String
+                    parts[i] = parts[i].replaceAll("\"","");
                 }
                 result.add(parts);
             }

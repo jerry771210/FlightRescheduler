@@ -15,8 +15,6 @@ import edu.cmu.sv.flight.rescheduler.entities.Airport;
 /**
  * Created by moumoutsay on 4/10/15.
  *
- * This is an empty class now.
- *
  * Schema Airport Create, Read, Update, Delete Operation
  */
 public class AirportCRUD {

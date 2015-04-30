@@ -16,8 +16,6 @@ import edu.cmu.sv.flight.rescheduler.entities.AirportRoute;
 /**
  * Created by moumoutsay on 4/10/15.
  *
- * This is an empty class now.
- *
  * Schema Airport Create, Read, Update, Delete Operation
  */
 public class NearByAirportCRUD {

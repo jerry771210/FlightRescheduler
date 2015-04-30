@@ -20,4 +20,9 @@ public abstract class SQLCmdAirportRoute implements BaseColumns {
             " FOREIGN KEY(" + TO_AIRPORT_ID + ")" +
             " REFERENCES " + SQLCmdAirport.TABLE_NAME + "(" + SQLCmdAirport._ID + ")" +
             " ON DELETE CASCADE ON UPDATE CASCADE );";
+
+    public static final String INSERT_ROUTE = "INSERT INTO " + TABLE_NAME +
+            "( " + FROM_AIRPORT_ID +
+            ", " + TO_AIRPORT_ID +
+            ") values (?, ?);";
 }
