@@ -1,7 +1,6 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,9 +36,7 @@ public abstract class Rescheduler {
             return null;
         } // TODO exception ?
 
-        Toast.makeText(context.getApplicationContext(),
-                "Depart: " + departAirport + "Arrive: " + arriveAirport + "Date: " + curDate,
-                Toast.LENGTH_LONG).show();
+
         enableNearBy = true;  // FAKE to test functionality
 
         // 1. get user specified S/D

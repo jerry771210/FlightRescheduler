@@ -51,7 +51,7 @@ public class CurrentRoute {
         mock.setStatus(BoardingPass.Status.CANCELED);
         mock.setFlightNumber("Fourth");
         mock.setDeparture("BOS");
-        mock.setArrival("JKF");
+        mock.setArrival("JFK");
         mock.setArrivalTime(new Date());
         mock.setDepartureTime(new Date());
         boardingPassList.add(mock);
