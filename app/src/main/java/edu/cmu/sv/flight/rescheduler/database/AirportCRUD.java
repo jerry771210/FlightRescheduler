@@ -1,9 +1,9 @@
 package edu.cmu.sv.flight.rescheduler.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -27,18 +27,24 @@ public class AirportCRUD {
         this.context = context;
     }
 
-    public void insertAirport(Airport airport) {
+    public void insertAirport(List<Airport> airportList) {
         db = DBUtil.getInstance(context);
         SQLiteDatabase writableDB = db.getWritableDatabase();
         try {
-            ContentValues cv = new ContentValues();
-            cv.put(SQLCmdAirport.NAME, airport.getName());
-            cv.put(SQLCmdAirport.CITY, airport.getCity());
-            cv.put(SQLCmdAirport.CODE, airport.getCode());
-            cv.put(SQLCmdAirport.LATITUDE, Double.toString(airport.getLatitude()));
-            cv.put(SQLCmdAirport.LONGITUDE, Double.toString(airport.getLongitude()));
-            cv.put(SQLCmdAirport.TIMEZONE, airport.getTimezone());
-            writableDB.insert(SQLCmdAirport.TABLE_NAME, null, cv);
+            writableDB.beginTransaction();
+            SQLiteStatement stmt = writableDB.compileStatement(SQLCmdAirport.INSERT_AIRPORT);
+            for(Airport airport: airportList) {
+                stmt.bindString(1, airport.getName());
+                stmt.bindString(2, airport.getCity());
+                stmt.bindString(3, airport.getCode());
+                stmt.bindDouble(4, airport.getLatitude());
+                stmt.bindDouble(5, airport.getLongitude());
+                stmt.bindString(6, airport.getTimezone());
+                stmt.executeInsert();
+                stmt.clearBindings();
+            }
+            writableDB.setTransactionSuccessful();
+            writableDB.endTransaction();
         }
         catch(Exception e) {
             Log.d("Exception", e.getMessage());
@@ -46,7 +52,10 @@ public class AirportCRUD {
         finally {
             if(writableDB != null && writableDB.isOpen())
                 writableDB.close();
+            if(DBUtil.getInstance(context) != null)
+                DBUtil.getInstance(context).close();
         }
+        Log.d("Database", "Insert " + airportList.size() + " records into airport table");
     }
 
     public List<Airport> findAllAirports() {
@@ -75,7 +84,10 @@ public class AirportCRUD {
         }
         finally {
             cursor.close();
-            //readableDB.close();
+            if(readableDB != null && readableDB.isOpen())
+                readableDB.close();
+            if(DBUtil.getInstance(context) != null)
+                DBUtil.getInstance(context).close();
         }
 
         Log.d("Database", "findAllAirports() return " + airportList.size() + " records");
@@ -110,7 +122,10 @@ public class AirportCRUD {
         }
         finally {
             cursor.close();
-            //readableDB.close();
+            if(readableDB != null && readableDB.isOpen())
+                readableDB.close();
+            if(DBUtil.getInstance(context) != null)
+                DBUtil.getInstance(context).close();
         }
 
 
@@ -150,7 +165,10 @@ public class AirportCRUD {
         }
         finally {
             cursor.close();
-            //readableDB.close();
+            if(readableDB != null && readableDB.isOpen())
+                readableDB.close();
+            if(DBUtil.getInstance(context) != null)
+                DBUtil.getInstance(context).close();
         }
 
         if(airport == null) {

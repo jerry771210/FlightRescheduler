@@ -1,9 +1,9 @@
 package edu.cmu.sv.flight.rescheduler.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdNearbyAirport;
 import edu.cmu.sv.flight.rescheduler.entities.Airport;
+import edu.cmu.sv.flight.rescheduler.entities.AirportRoute;
 
 /**
  * Created by moumoutsay on 4/10/15.
@@ -27,14 +28,20 @@ public class NearByAirportCRUD {
         this.context = context;
     }
 
-    public void insertNearby(Airport fromAirport, Airport toAirport) {
+    public void insertNearby(List<AirportRoute> airportPairs) {
         db = DBUtil.getInstance(context);
         SQLiteDatabase writableDB = db.getWritableDatabase();
         try {
-            ContentValues cv = new ContentValues();
-            cv.put(SQLCmdNearbyAirport.AIRPORT_ID, fromAirport.getId());
-            cv.put(SQLCmdNearbyAirport.NEARBY_ID, toAirport.getId());
-            writableDB.insert(SQLCmdNearbyAirport.TABLE_NAME, null, cv);
+            writableDB.beginTransaction();
+            SQLiteStatement stmt = writableDB.compileStatement(SQLCmdNearbyAirport.INSERT_NEARBY);
+            for(AirportRoute pair: airportPairs) {
+                stmt.bindString(1, String.valueOf(pair.getFromAirport().getId()));
+                stmt.bindString(2, String.valueOf(pair.getToAirport().getId()));
+                stmt.executeInsert();
+                stmt.clearBindings();
+            }
+            writableDB.setTransactionSuccessful();
+            writableDB.endTransaction();
         }
         catch(Exception e) {
             Log.d("Exception", e.getMessage());
@@ -42,9 +49,11 @@ public class NearByAirportCRUD {
         finally {
             if(writableDB != null && writableDB.isOpen())
                 writableDB.close();
+            if(DBUtil.getInstance(context) != null)
+                DBUtil.getInstance(context).close();
         }
 
-        //Log.d("Database", "Insert 1 record into "+ SQLCmdNearbyAirport.TABLE_NAME +" table");
+        Log.d("Database", "Insert " + airportPairs.size() + " records into nearby_airport table");
     }
 
     public List<Airport> findNearby(Airport fromAirport) {
@@ -75,7 +84,10 @@ public class NearByAirportCRUD {
         }
         finally {
             cursor.close();
-            //readableDB.close();
+            if(readableDB != null && readableDB.isOpen())
+                readableDB.close();
+            if(DBUtil.getInstance(context) != null)
+                DBUtil.getInstance(context).close();
         }
 
         Log.d("Database", "findNearby("+fromAirport.getCode() + ") " +

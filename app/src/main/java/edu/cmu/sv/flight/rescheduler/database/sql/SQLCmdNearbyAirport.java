@@ -28,5 +28,11 @@ public abstract class SQLCmdNearbyAirport implements BaseColumns {
             " LEFT JOIN " + SQLCmdAirport.TABLE_NAME + " ON " +
             TABLE_NAME + "." + NEARBY_ID + " = " +
             SQLCmdAirport.TABLE_NAME + "." + SQLCmdAirport._ID +
-            " WHERE " + TABLE_NAME + "." + AIRPORT_ID + " = ?";
+            " WHERE " + TABLE_NAME + "." + AIRPORT_ID + " = ?;";
+
+    public static final String INSERT_NEARBY = "INSERT INTO " + TABLE_NAME +
+            "( " + SQLCmdNearbyAirport.AIRPORT_ID +
+            ", " + SQLCmdNearbyAirport.NEARBY_ID +
+            ") values (?, ?);";
+
 }

@@ -5,9 +5,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.Airport;
+import edu.cmu.sv.flight.rescheduler.entities.AirportRoute;
 import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
@@ -39,6 +41,7 @@ public class DBInitializationAsyncTask extends AsyncTask {
         if(airportCRUD.findAirportByCode("SFO") == null) {
             initAirportTable(ASSETS_AIRPORT);
             initNearbyAirportTable(50d);  // Specify the distance of nearby in miles
+            initRouteTable();
         }
         else {
             Log.d("Database", "Already initialized");
@@ -59,24 +62,34 @@ public class DBInitializationAsyncTask extends AsyncTask {
         Toast.makeText(context, "DB initialized", Toast.LENGTH_LONG).show();
     }
 
+    /* Read assets file and perform batch insert into the database */
     private void initAirportTable(String ASSETS_AIRPORT) {
-        AirportCRUD airportCRUD = new AirportCRUD(context);
-        List<String[]> airportList = utils.readCSVFile(ASSETS_AIRPORT);
-        for(String[] s: airportList) {
+        List<String[]> stringList = utils.readCSVFile(ASSETS_AIRPORT);
+        List<Airport> airportList = new ArrayList<>();
+
+        // Transform list of strings into list of airports
+        for(String[] s: stringList) {
             Airport airport = new Airport(s[1], s[2], s[4],
                     Double.parseDouble(s[6]),
                     Double.parseDouble(s[7]), s[9]);
-            airportCRUD.insertAirport(airport);
+            airportList.add(airport);
         }
 
-        Log.d("Database", "Insert " + airportList.size() + " records into airport table");
+        AirportCRUD airportCRUD = new AirportCRUD(context);
+        airportCRUD.insertAirport(airportList);
+        Log.d("Database", "Airports has been initialized");
     }
 
     private void initNearbyAirportTable(double distanceThreshold) {
-        AirportCRUD airportCRUD = new AirportCRUD(context);
-        NearByAirportCRUD nearByAirportCRUD = new NearByAirportCRUD(context);
-        List<Airport> airportList = airportCRUD.findAllAirports();
+        // Need to retrieve from database in order to get airports' id
+        List<Airport> airportList = new AirportCRUD(context).findAllAirports();
 
+        if(airportList.size() == 0) {
+            Log.d("Database", "initNearbyAirportTable() failed. No airport found");
+            return;
+        }
+
+        List<AirportRoute> airportPairs = new ArrayList<>();
         for(int i = 0; i < airportList.size(); i++) {
             Airport fromAirport = airportList.get(i);
 
@@ -86,9 +99,15 @@ public class DBInitializationAsyncTask extends AsyncTask {
                         fromAirport.getLatitude(), fromAirport.getLongitude(),
                         toAirport.getLatitude(), toAirport.getLongitude());
                 if(distance <= distanceThreshold)  // Insert nearby airport into the table
-                    nearByAirportCRUD.insertNearby(fromAirport, toAirport);
+                    airportPairs.add(new AirportRoute(fromAirport, toAirport));
             }
         }
+        new NearByAirportCRUD(context).insertNearby(airportPairs);
+
         Log.d("Database", "Nearby airports has been initialized");
+    }
+
+    private void initRouteTable() {
+        Log.d("Database", "Route has been initialized");
     }
 }
