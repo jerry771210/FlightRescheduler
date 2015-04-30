@@ -53,7 +53,7 @@ public class DBInitializationAsyncTask extends AsyncTask {
 
         /* TEST */
         Log.d("Database", "Before test");
-        Log.d("Test", new NearByAirportCRUD(context).findNearby("SFO").toString());
+        Log.d("Test", new AirportRouteCRUD(context).findAirportRoute("SFO").toString());
         Log.d("Database", "After test");
 
         return null;
