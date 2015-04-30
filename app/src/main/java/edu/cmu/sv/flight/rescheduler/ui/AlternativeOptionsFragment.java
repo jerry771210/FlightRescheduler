@@ -13,8 +13,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.Rescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.activity.BoardingPassActivity;
@@ -22,6 +25,7 @@ import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.OtherAirlinesOnClickListener;
 import edu.cmu.sv.flight.rescheduler.ui.listener.ShowRouteDetailOnItemClickListener;
+
 
 /**
  * Created by Wei-Lin Tsai on 4/3/15.
@@ -79,17 +83,26 @@ public class AlternativeOptionsFragment extends Fragment {
     }
 
     private List<String> getAlternativeList() {
+        int index;
         /* Get index from previous activity */
         Bundle extras = getActivity().getIntent().getExtras();
         if (extras != null) {
-            int index = extras.getInt("indexOfBoardingPass");
+            index = extras.getInt("indexOfBoardingPass");
         } else {
             Log.d (LOG_TAG, "Can not receive index of boarding pass");
             return new ArrayList<String>();
         }
 
+        // Get depart and arrive info
+        BoardingPass departBP = CurrentRoute.getInstance().getBoardingPass(index);
+        String departAirport = departBP.getDeparture();
+        String arriveAirport = CurrentRoute.getInstance().getLastBoardingpass().getArrival();
+
+        Date curDate = departBP.getDepartureTime(); // TODO, may use current date to provide better
+                                                    // result
         /* create Rescheduler*/
         rescheduler = new ProxyRescheduler();
+        rescheduler.findAvailableRoutes(departAirport, arriveAirport, false, curDate, getActivity());
 
         return Arrays.asList(mockOptions);
     }

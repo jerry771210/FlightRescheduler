@@ -1,8 +1,10 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
@@ -29,15 +31,16 @@ public abstract class Rescheduler {
         * @param  arriveAirport IATA code
         */
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                 boolean enableNearBy, Context context/* TODO */) {
+                 boolean enableNearBy, Date curDate, Context context/* TODO */) {
         /* error handling here*/
-        if (departAirport == null || arriveAirport == null) {
+        if (departAirport == null || arriveAirport == null || curDate == null || context == null) {
             return null;
         } // TODO exception ?
 
-        // use mock now
-        departAirport = "LAX";   // TODO
-        arriveAirport = "JFK";   // TODO
+        Toast.makeText(context.getApplicationContext(),
+                "Depart: " + departAirport + "Arrive: " + arriveAirport + "Date: " + curDate,
+                Toast.LENGTH_LONG).show();
+
 
         // 1. get user specified S/D
         /* 2. Expand S/D if "nearby" */

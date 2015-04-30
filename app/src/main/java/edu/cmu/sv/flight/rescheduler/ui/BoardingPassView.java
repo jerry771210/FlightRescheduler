@@ -19,6 +19,11 @@ public class BoardingPassView {
     private TextView textViewStatus;
     private RelativeLayout layoutTop;
     private BoardingPass boardingPass;
+    private TextView textViewDepart;
+    private TextView textViewArrive;
+    private TextView textViewFlightNum;
+    private TextView textViewTerminal;
+    private TextView textViewGate;
     private int index;
 
     public BoardingPassView(Activity activity, LayoutInflater inflater, BoardingPass boardingPass, int index) {
@@ -28,7 +33,14 @@ public class BoardingPassView {
         this.boardingPass = boardingPass;
 
         textViewStatus = (TextView) view.findViewById(R.id.textViewStatus);
+        textViewDepart = (TextView) view.findViewById(R.id.textViewDeparture);
+        textViewArrive = (TextView) view.findViewById(R.id.textViewArrival);
+        textViewFlightNum = (TextView) view.findViewById(R.id.textViewFlightNumber);
+        textViewTerminal = (TextView) view.findViewById(R.id.textViewTerminal);
+        textViewGate = (TextView) view.findViewById(R.id.textViewGate);
+
         layoutTop = (RelativeLayout) view.findViewById(R.id.RelativeLayoutTop);
+
         configure();
     }
 
@@ -37,6 +49,8 @@ public class BoardingPassView {
     }
 
     private void configure() {
+        textViewArrive.setText(boardingPass.getArrival());
+        textViewDepart.setText(boardingPass.getDeparture());
         switch (boardingPass.getStatus()) {
             case LANDED:  // Default layout is landed
                 textViewStatus.setText("Landed");

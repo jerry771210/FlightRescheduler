@@ -22,21 +22,29 @@ public class CurrentRoute {
         BoardingPass mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.LANDED);
         mock.setFlightNumber("First");
+        mock.setDeparture("TPE");
+        mock.setArrival("NRT");
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.ON_TIME);
         mock.setFlightNumber("Second");
+        mock.setDeparture("NRT");
+        mock.setArrival("LAX");
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.DELAYED);
         mock.setFlightNumber("Third");
+        mock.setDeparture("LAX");
+        mock.setArrival("BOS");
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.CANCELED);
         mock.setFlightNumber("Fourth");
+        mock.setDeparture("BOS");
+        mock.setArrival("JKF");
         boardingPassList.add(mock);
     }
 
@@ -45,6 +53,11 @@ public class CurrentRoute {
     }
 
     public BoardingPass getBoardingPass(int index) {
+        return boardingPassList.get(index);
+    }
+
+    public BoardingPass getLastBoardingpass() {
+        int index = boardingPassList.size() - 1;
         return boardingPassList.get(index);
     }
 
