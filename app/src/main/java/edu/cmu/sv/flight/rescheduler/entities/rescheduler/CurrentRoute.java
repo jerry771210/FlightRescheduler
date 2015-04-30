@@ -1,6 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
@@ -24,6 +25,8 @@ public class CurrentRoute {
         mock.setFlightNumber("First");
         mock.setDeparture("TPE");
         mock.setArrival("NRT");
+        mock.setArrivalTime(new Date());
+        mock.setDepartureTime(new Date());
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
@@ -31,6 +34,8 @@ public class CurrentRoute {
         mock.setFlightNumber("Second");
         mock.setDeparture("NRT");
         mock.setArrival("LAX");
+        mock.setArrivalTime(new Date());
+        mock.setDepartureTime(new Date());
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
@@ -38,6 +43,8 @@ public class CurrentRoute {
         mock.setFlightNumber("Third");
         mock.setDeparture("LAX");
         mock.setArrival("BOS");
+        mock.setArrivalTime(new Date());
+        mock.setDepartureTime(new Date());
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
@@ -45,6 +52,8 @@ public class CurrentRoute {
         mock.setFlightNumber("Fourth");
         mock.setDeparture("BOS");
         mock.setArrival("JKF");
+        mock.setArrivalTime(new Date());
+        mock.setDepartureTime(new Date());
         boardingPassList.add(mock);
     }
 

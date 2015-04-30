@@ -100,6 +100,7 @@ public class AlternativeOptionsFragment extends Fragment {
 
         Date curDate = departBP.getDepartureTime(); // TODO, may use current date to provide better
                                                     // result
+
         /* create Rescheduler*/
         rescheduler = new ProxyRescheduler();
         rescheduler.findAvailableRoutes(departAirport, arriveAirport, false, curDate, getActivity());

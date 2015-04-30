@@ -40,7 +40,7 @@ public abstract class Rescheduler {
         Toast.makeText(context.getApplicationContext(),
                 "Depart: " + departAirport + "Arrive: " + arriveAirport + "Date: " + curDate,
                 Toast.LENGTH_LONG).show();
-
+        enableNearBy = true;  // FAKE to test functionality
 
         // 1. get user specified S/D
         /* 2. Expand S/D if "nearby" */
@@ -49,7 +49,7 @@ public abstract class Rescheduler {
         ExpandNearbyAirports expandNearbyAirports = new ExpandNearbyAirports();
         departAirportList.add(departAirport);
         if (enableNearBy) {
-            arriveAirportList = expandNearbyAirports.expand(arriveAirport);
+            arriveAirportList = expandNearbyAirports.expand(arriveAirport, context);
         } else {
             arriveAirportList.add(arriveAirport);
         }
