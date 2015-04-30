@@ -31,11 +31,10 @@ public class LoginActivity extends ActionBarActivity {
         scanButton.setOnClickListener(new ScanQRCodeOnClickListener(this));
         loginButton.setOnClickListener(new IntentToActivityOnClickListener(this, BoardingPassActivity.class));
 
-        // Read assets files into database when the application is first created.
-        db = new DBUtil(this);
-
         // Force database to execute initialization process
-        new AirportCRUD(this).findAllAirports();
+        // It reads assets files into database
+        db = DBUtil.getInstance(this.getApplicationContext());
+        db.initialize();
     }
 
 

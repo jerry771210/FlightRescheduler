@@ -79,7 +79,8 @@ public class Airport {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Airport{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
         sb.append(", city='").append(city).append('\'');
         sb.append(", code='").append(code).append('\'');
         sb.append(", latitude=").append(latitude);

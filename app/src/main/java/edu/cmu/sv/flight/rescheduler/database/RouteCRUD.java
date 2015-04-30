@@ -11,8 +11,9 @@ import android.content.Context;
  */
 public class RouteCRUD {
     private DBUtil db;
+    private Context context;
 
     public RouteCRUD(Context context) {
-        db = new DBUtil(context);
+        this.context = context;
     }
 }
