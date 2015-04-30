@@ -19,8 +19,10 @@ public class BoardingPassView {
     private TextView textViewStatus;
     private RelativeLayout layoutTop;
     private BoardingPass boardingPass;
+    private int index;
 
-    public BoardingPassView(Activity activity, LayoutInflater inflater, BoardingPass boardingPass) {
+    public BoardingPassView(Activity activity, LayoutInflater inflater, BoardingPass boardingPass, int index) {
+        this.index = index;
         this.activity = activity;
         this.view = inflater.inflate(R.layout.boarding_pass, null);
         this.boardingPass = boardingPass;
@@ -47,12 +49,12 @@ public class BoardingPassView {
             case DELAYED:
                 textViewStatus.setText("Delayed");
                 layoutTop.setBackgroundColor(0xC8EBB027);
-                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class));
+                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class, index));
                 break;
             case CANCELED:
                 textViewStatus.setText("Canceled");
                 layoutTop.setBackgroundColor(0xC8EB0300);
-                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class));
+                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class, index));
                 break;
         }
     }

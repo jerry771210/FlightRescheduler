@@ -14,11 +14,19 @@ public class IntentToActivityOnClickListener implements View.OnClickListener {
     private Activity act;
     private Class toActivityClass;
     private boolean clearTop;
+    private Integer index;
 
     public IntentToActivityOnClickListener(Activity act, Class toActivityClass) {
         this.act = act;
         this.toActivityClass = toActivityClass;
     }
+
+    public IntentToActivityOnClickListener(Activity act, Class toActivityClass, int index) {
+        this.act = act;
+        this.toActivityClass = toActivityClass;
+        this.index = new Integer(index);
+    }
+
 
     public IntentToActivityOnClickListener(Activity act, Class toActivityClass, boolean clearTop) {
         this(act, toActivityClass);
@@ -31,8 +39,12 @@ public class IntentToActivityOnClickListener implements View.OnClickListener {
             Log.d (LOG_TAG, "The to go activity is null");
         } else {
             Intent intent = new Intent(act, toActivityClass);
-            if(clearTop)
+            if(clearTop) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+            if (index != null) {
+                intent.putExtra("indexOfBoardingPass", index.intValue());
+            }
             act.startActivity(intent);
         }
     }

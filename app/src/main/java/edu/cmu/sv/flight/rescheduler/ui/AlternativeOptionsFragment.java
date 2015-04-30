@@ -3,6 +3,7 @@ package edu.cmu.sv.flight.rescheduler.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.Rescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.activity.BoardingPassActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.AdvancedSearch;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
@@ -24,6 +28,7 @@ import edu.cmu.sv.flight.rescheduler.ui.listener.ShowRouteDetailOnItemClickListe
  */
 public class AlternativeOptionsFragment extends Fragment {
     static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();
+    private Rescheduler rescheduler;
 
     private final String[] mockOptions = {
             " 1 LAX - NYC Arrived at 08:00PM 10/23",
@@ -48,7 +53,7 @@ public class AlternativeOptionsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_alternatives_options_basic_search, container, false);
 
         /* For the list view part */
-        List<String> alternativesList = Arrays.asList(mockOptions);
+        List<String> alternativesList = getAlternativeList();
         ArrayAdapter<String> alternativesAdapter =
                 new ArrayAdapter<String> (getActivity(), R.layout.list_item_available_route,
                         R.id.textViewListItemAvailableRoute, alternativesList);
@@ -71,5 +76,21 @@ public class AlternativeOptionsFragment extends Fragment {
         lv.setOnItemClickListener(new ShowRouteDetailOnItemClickListener(getActivity()));
 
         return view;
+    }
+
+    private List<String> getAlternativeList() {
+        /* Get index from previous activity */
+        Bundle extras = getActivity().getIntent().getExtras();
+        if (extras != null) {
+            int index = extras.getInt("indexOfBoardingPass");
+        } else {
+            Log.d (LOG_TAG, "Can not receive index of boarding pass");
+            return new ArrayList<String>();
+        }
+
+        /* create Rescheduler*/
+        rescheduler = new ProxyRescheduler();
+
+        return Arrays.asList(mockOptions);
     }
 }

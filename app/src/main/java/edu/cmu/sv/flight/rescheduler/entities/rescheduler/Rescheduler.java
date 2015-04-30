@@ -1,5 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +18,18 @@ import edu.cmu.sv.flight.rescheduler.entities.routing.RoutesPlanner;
  */
 public abstract class Rescheduler {
     private static List<List<BoardingPass>> routingResult = new ArrayList<List<BoardingPass>>();
+    protected Context context; // For database usage
 
     public List<List<BoardingPass>> getRoutingResult() {
         return routingResult;
     }
 
     /*
-    * @param  departAirport IATA code
-    * @param  arriveAirport IATA code
-    */
+        * @param  departAirport IATA code
+        * @param  arriveAirport IATA code
+        */
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                 boolean enableNearBy/* TODO */) {
+                 boolean enableNearBy, Context context/* TODO */) {
         /* error handling here*/
         if (departAirport == null || arriveAirport == null) {
             return null;

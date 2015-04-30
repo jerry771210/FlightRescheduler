@@ -1,5 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
+import android.content.Context;
+
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
@@ -13,6 +15,6 @@ public interface IRescheduler {
     public List<List<BoardingPass>> getRoutingResult();
 
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                                                        boolean enableNearBy/* TODO */);
+                                    boolean enableNearBy, Context context/* TODO */);
 
 }

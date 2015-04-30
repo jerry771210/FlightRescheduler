@@ -42,7 +42,7 @@ public class BoardingPassAdapter extends PagerAdapter {
         BoardingPass boardingPass = currentRoute.getBoardingPass(position);
 
         BoardingPassView boardingPassView =
-                new BoardingPassView(activity, inflater, boardingPass);
+                new BoardingPassView(activity, inflater, boardingPass, position);
         View view = boardingPassView.getLayoutView();
         container.addView(view, 0);
         return view;
