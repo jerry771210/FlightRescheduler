@@ -8,6 +8,7 @@ import android.content.Context;
  * This is an empty class now.
  *
  * Schema Flight Create, Read, Update, Delete Operation
+ *
  */
 public class FlightCRUD {
     private DBUtil db;

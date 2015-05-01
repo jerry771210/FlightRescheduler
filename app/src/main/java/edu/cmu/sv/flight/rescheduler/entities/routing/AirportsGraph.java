@@ -37,7 +37,7 @@ public class AirportsGraph {
 
         num_stop = (num_stop > MAX_NUM_STOP) ? MAX_NUM_STOP : num_stop;
 
-        for (int i = 0; i <= MAX_NUM_STOP; ++i) {
+        for (int i = 0; i <= num_stop; ++i) {
             for (List<String> curPath : curPathList) {
                 String lastStop = curPath.get(curPath.size() - 1);
                 List<String> nextAirportList = getNextAirportList(lastStop, context);
