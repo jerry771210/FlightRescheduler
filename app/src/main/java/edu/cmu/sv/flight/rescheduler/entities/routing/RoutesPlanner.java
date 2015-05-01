@@ -1,16 +1,13 @@
 package edu.cmu.sv.flight.rescheduler.entities.routing;
 
 import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import edu.cmu.sv.flight.rescheduler.database.FlightCRUD;
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.ws.local.DataManager;
 import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
-
 /**
  * Created by moumoutsay on 4/17/15.
  *  According to input graph, construct routing result
