@@ -23,7 +23,7 @@ public class FlightStatQueryURL {
                 + "/to/" + r_a
                 + "/departing/"
                 + d_y + "/" + d_m + "/" + d_d
-                + "/?";   // KEY and ID should not upload
+                + "/?appId=6e113b3b&appKey=d1db766096296daa122ba46091b2ff1f";
         return strURL;
     }
 
