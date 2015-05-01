@@ -30,14 +30,13 @@ public abstract class Rescheduler {
         * @param  arriveAirport IATA code
         */
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                 boolean enableNearBy, Date curDate, Context context/* TODO */) {
+                 boolean enableNearBy, int num_stop, Date curDate, Context context/* TODO */) {
         /* error handling here*/
         if (departAirport == null || arriveAirport == null || curDate == null || context == null) {
             return null;
         } // TODO exception ?
 
-
-        enableNearBy = true;  // FAKE to test functionality
+        //enableNearBy = true;  // FAKE to test functionality
 
         // 1. get user specified S/D
         /* 2. Expand S/D if "nearby" */
@@ -54,7 +53,7 @@ public abstract class Rescheduler {
         /* 3. Use BFS to find all routes in terms of "Stops" */
         List<List<String>> routingGraph;
         AirportsGraph airportsGraph = new AirportsGraph();
-        routingGraph = airportsGraph.getGraph(departAirportList, arriveAirportList);
+        routingGraph = airportsGraph.getGraph(departAirportList, arriveAirportList, num_stop, context);
 
         // 4. Construct real routes;
         RoutesPlanner routesPlanner = new RoutesPlanner();
