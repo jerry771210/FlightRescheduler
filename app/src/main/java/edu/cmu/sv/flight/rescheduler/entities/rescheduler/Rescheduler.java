@@ -55,12 +55,8 @@ public abstract class Rescheduler {
         AirportsGraph airportsGraph = new AirportsGraph();
         routingGraph = airportsGraph.getGraph(departAirportList, arriveAirportList, num_stop, context);
 
-        // 4. Construct real routes;
+        // 4. Construct real routes and return
         RoutesPlanner routesPlanner = new RoutesPlanner();
-        routesPlanner.plan(routingGraph, curDate, context);
-
-        // TODO
-        // 5. return results
-        return routingResult;
+        return routesPlanner.plan(routingGraph, curDate, context);
     }
 }
