@@ -18,13 +18,28 @@ public class FlightStatQueryURL {
         r_a = toAirport;
         parse_date(date);
 
-        String strURL = "https://api.flightstats.com/flex/schedules/rest/v1/json/"
-                + "from/" + d_a
-                + "/to/" + r_a
-                + "/departing/"
-                + d_y + "/" + d_m + "/" + d_d
-                + "/?appId=6e113b3b&appKey=d1db766096296daa122ba46091b2ff1f";
-        return strURL;
+        StringBuilder sb = new StringBuilder();
+        sb.append("https://api.flightstats.com/flex/schedules/rest/v1/json/from/");
+        sb.append(d_a);
+        sb.append("/to/");
+        sb.append(r_a);
+        sb.append("/departing/");
+        sb.append(d_y);
+        sb.append("/");
+        sb.append(d_m);
+        sb.append("/");
+        sb.append(d_d);
+        sb.append("/?appId=6e113b3b&appKey=d1db766096296daa122ba46091b2ff1f");
+
+
+//        String strURL = "https://api.flightstats.com/flex/schedules/rest/v1/json/"
+//                + "from/" + d_a
+//                + "/to/" + r_a
+//                + "/departing/"
+//                + d_y + "/" + d_m + "/" + d_d
+//                + "/?appId=6e113b3b&appKey=d1db766096296daa122ba46091b2ff1f";
+
+        return sb.toString();
     }
 
     private void parse_date(Date date) {

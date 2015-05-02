@@ -12,10 +12,10 @@ import java.net.URLConnection;
 * Created by moumoutsay on 5/2/15.
 */
 public class FlightStatMakeQuery extends AsyncTask<String/*String of URL*/, Void, String> {
-    private String res;
+
     @Override
     protected String doInBackground(String... params) {
-        res = new String();
+        StringBuilder sb = new StringBuilder();
         // get raw data
         try {
             String tmpString;
@@ -23,15 +23,15 @@ public class FlightStatMakeQuery extends AsyncTask<String/*String of URL*/, Void
             URLConnection uc = targetURL.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
             while ((tmpString = in.readLine()) != null) {
-                res = res + tmpString;
+                sb.append(tmpString);
             }
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
             Log.d(FlightStatAPIWrapper.LOG_TAG, "Can not query data" + e);
-            res = null;
+            return null;
         }
-//        Log.i("FlightStatMakeQuery", "Get json" + res);
-        return res;
+//        Log.i("FlightStatMakeQuery", "Get json" + sb.toString);
+        return sb.toString();
     }
 }

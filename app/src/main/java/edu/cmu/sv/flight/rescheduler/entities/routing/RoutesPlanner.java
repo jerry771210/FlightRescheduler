@@ -10,8 +10,6 @@ import edu.cmu.sv.flight.rescheduler.database.FlightCRUD;
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.ws.local.DataManager;
 import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
-import edu.cmu.sv.flight.rescheduler.ws.remote.FlightStatAPIWrapper;
-import edu.cmu.sv.flight.rescheduler.ws.remote.IPublicFlightAPI;
 
 /**
  * Created by moumoutsay on 4/17/15.
@@ -28,7 +26,7 @@ public class RoutesPlanner {
     // TODO may need to be async
     // TODO no multiple airline for now
     private FlightCRUD flightCRUD;
-    private IDataService dataService = new DataManager();
+    private IDataService dataService;// = new DataManager();
 
     public List<List<BoardingPass>> plan (List<List<String>> routingGraph, Date date, Context context){
         if (routingGraph == null || date == null || context == null) {
@@ -41,9 +39,9 @@ public class RoutesPlanner {
 //                res.addAll(aDetailRoute);
 //            }
 //        }
+        dataService = new DataManager();
+        String tmpResult = dataService.getFlight("LAX", "SFO", date);
 
-        IPublicFlightAPI iPublicFlightAPI = new FlightStatAPIWrapper();
-        String tmpResult = iPublicFlightAPI.getFlight("LAX", "SFO", date);
         //Log.i (LOG_TAG, tmpResult);
 
         return res;
