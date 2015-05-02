@@ -1,6 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.entities.routing;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,24 +34,22 @@ public class RoutesPlanner {
             return null;
         }
         List<List<BoardingPass>> res = new ArrayList<List<BoardingPass>>();
-//        for (List<String> aRoute : routingGraph) {
-//            List<List<BoardingPass>> aDetailRoute = getDetailRoute(aRoute, date);
-//            if (aDetailRoute != null) {
-//                res.addAll(aDetailRoute);
-//            }
-//        }
-        dataService = new DataManager();
-        String tmpResult = dataService.getFlight("LAX", "SFO", date);
-
-        //Log.i (LOG_TAG, tmpResult);
-
+        for (List<String> aRoute : routingGraph) {
+            List<List<BoardingPass>> aDetailRoute = getDetailRoute(aRoute, date);
+            if (aDetailRoute != null) {
+                res.addAll(aDetailRoute);
+            }
+        }
         return res;
     }
 
     private List<List<BoardingPass>> getDetailRoute(List<String> inRoute, Date date) {
         if (inRoute == null || inRoute.size() < 2) { return null; }
         int size = inRoute.size();
+        dataService = new DataManager();
+        String tmpResult = dataService.getFlight("LAX", "SFO", date);
 
+        Log.i(LOG_TAG, inRoute.toString());
 
         return null;
     }
