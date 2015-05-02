@@ -1,20 +1,35 @@
 package edu.cmu.sv.flight.rescheduler.ws.remote;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
+
 /**
  * Created by moumoutsay on 4/17/15.
  */
-public class FlightStatAPIWrapper implements IPublicFlightAPI {
+public class FlightStatAPIWrapper extends AsyncTask implements IPublicFlightAPI  {
+    static final String LOG_TAG = FlightStatAPIWrapper.class.getSimpleName();
+    private String returnRawJSON;
+
+    @Override
+    protected Object doInBackground(Object[] params) {
+        String fromAirport = (String)params[0];
+        String toAirport = (String)params[1];
+        Date date = (Date)params[2];
+        returnRawJSON =getFlight(fromAirport, toAirport, date);
+        return null;
+    }
+
     public String getFlight(String fromAirport, String toAirport, Date date) {
-        String rawJSON = "";
+        String rawJSON = new String();
         // Do the real REST query here
         FlightStatQueryURL flightStatQueryURL = new FlightStatQueryURL();
         String strURL = flightStatQueryURL.makeQueryURL(fromAirport, toAirport, date);
-        boolean query_fail = false;
 
         // get raw data
         try {
@@ -27,25 +42,17 @@ public class FlightStatAPIWrapper implements IPublicFlightAPI {
             }
             in.close();
         } catch (Exception e) {
-            query_fail = true;
             e.printStackTrace();
+            Log.d(LOG_TAG, "Can not query data" + e);
+            rawJSON = null;
         }
 
-//        // get flights
-//        try {
-//            JSONObject j_obj_all = new JSONObject(rawJSON);
-//            json_arr_all_dep_flights = j_obj_all.getJSONArray("scheduledFlights");
-//            //System.out.println("The numbers of flights" + json_arr_all_dep_flights.length());
-//        } catch (Exception e){
-//            query_fail = true;
-//            e.printStackTrace();
-//        }
-//
-//        return query_fail;
-
-
-        return null;
+        return rawJSON;
     }
 
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+    }
 
 }
