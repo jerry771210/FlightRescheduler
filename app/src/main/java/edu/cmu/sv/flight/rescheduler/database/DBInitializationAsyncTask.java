@@ -8,12 +8,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.Airport;
 import edu.cmu.sv.flight.rescheduler.entities.AirportRoute;
-import edu.cmu.sv.flight.rescheduler.entities.Flight;
+import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
@@ -55,12 +54,14 @@ public class DBInitializationAsyncTask extends AsyncTask {
 
         /* TEST */
         Log.d("Database", "Before test");
-        Flight flight = new Flight(null, "EVA", "TPE", "SFO", "2015/5/2", "2015/5/3",
-                Calendar.MONDAY, "BR26", "ON TIME");
-        List<Flight> flightList = new ArrayList<>();
+        BoardingPass flight = new BoardingPass(null, "EVA", "BR26", "TPE", "SFO", "gate", "seat",
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+                Calendar.SATURDAY, BoardingPass.Status.ON_TIME);
+        List<BoardingPass> flightList = new ArrayList<>();
         flightList.add(flight);
         new FlightCRUD(context).insertFlight(flightList);
-        Log.d("Test", new FlightCRUD(context).findFlightByDayOfWeek("TPE", "SFO", Calendar.MONDAY).toString());
+        String result = new FlightCRUD(context).findFlightByDayOfWeek("TPE", "SFO", Calendar.SATURDAY).toString();
+        Log.d("Test", result);
         Log.d("Database", "After test");
 
         return null;

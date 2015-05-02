@@ -26,7 +26,7 @@ public class SQLCmdFlight implements BaseColumns {
             ARR_TIME + " TEXT," +
             DEP_DAY + " INTEGER," +
             FLIGHT_NUMBER + " TEXT," +
-            STATUS + " TEXT);";
+            STATUS + " INTEGER);";
 
     public static final String INSERT_FLIGHT = "INSERT INTO " + TABLE_NAME +
             "( " + CARRIER_CODE +

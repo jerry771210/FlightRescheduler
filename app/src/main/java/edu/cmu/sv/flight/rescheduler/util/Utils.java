@@ -7,7 +7,11 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +20,8 @@ import java.util.List;
  */
 public class Utils {
     private Context context;
+
+    public Utils() { /* For the methods that do not need context only */ }
 
     public Utils(Context context) {
         this.context = context;
@@ -79,5 +85,21 @@ public class Utils {
         double dist = earthRadius * c;
 
         return dist;
+    }
+
+    public String parseDateToString(Date date) {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        return df.format(date);
+    }
+
+    public Date parseStringToDate(String s) {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date date = null;
+        try {
+            date = df.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }

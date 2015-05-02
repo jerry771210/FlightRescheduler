@@ -9,9 +9,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdAirport;
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdFlight;
-import edu.cmu.sv.flight.rescheduler.entities.Flight;
+import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
  * Created by moumoutsay on 4/10/15.
@@ -27,21 +27,22 @@ public class FlightCRUD {
         this.context = context;
     }
 
-    public void insertFlight(List<Flight> flightList) {
+    public void insertFlight(List<BoardingPass> flightList) {
+        Utils utils = new Utils(context);
         db = DBUtil.getInstance(context);
         SQLiteDatabase writableDB = db.getWritableDatabase();
         try {
             writableDB.beginTransaction();
             SQLiteStatement stmt = writableDB.compileStatement(SQLCmdFlight.INSERT_FLIGHT);
-            for(Flight flight: flightList) {
+            for(BoardingPass flight: flightList) {
                 stmt.bindString(1, flight.getCarrierCode());
-                stmt.bindString(2, flight.getDepartAirport());
-                stmt.bindString(3, flight.getArriveAirport());
-                stmt.bindString(4, flight.getDepartTime());
-                stmt.bindString(5, flight.getArriveTime());
-                stmt.bindString(6, Integer.toString(flight.getDepartDay()));
-                stmt.bindString(7, flight.getFlightNum());
-                stmt.bindString(8, flight.getStatus());
+                stmt.bindString(2, flight.getDeparture());
+                stmt.bindString(3, flight.getArrival());
+                stmt.bindString(4, utils.parseDateToString(flight.getDepartureTime()));
+                stmt.bindString(5, utils.parseDateToString(flight.getArrivalTime()));
+                stmt.bindString(6, Integer.toString(flight.getDepartureDay()));
+                stmt.bindString(7, flight.getFlightNumber());
+                stmt.bindString(8, Integer.toString(flight.getStatus().ordinal()));
                 stmt.executeInsert();
                 stmt.clearBindings();
             }
@@ -60,9 +61,10 @@ public class FlightCRUD {
         Log.d("Database", "Insert " + flightList.size() + " records into flight table");
     }
 
-    public List<Flight> findFlightByDayOfWeek(String fromAirport, String toAirport, int dayOfWeek) {
-        List<Flight> flightList = new ArrayList<>();
+    public List<BoardingPass> findFlightByDayOfWeek(String fromAirport, String toAirport, int dayOfWeek) {
+        List<BoardingPass> flightList = new ArrayList<>();
 
+        Utils utils = new Utils(context);
         db = DBUtil.getInstance(context);
         SQLiteDatabase readableDB = db.getReadableDatabase();
         String[] selectionArgs = new String[]{fromAirport, toAirport, Integer.toString(dayOfWeek)};
@@ -80,10 +82,12 @@ public class FlightCRUD {
                     String arriveTime = cursor.getString(5);  // YY/MM/DD/hh/mm
                     Integer departDay = cursor.getInt(6);
                     String flightNum = cursor.getString(7);
-                    String status = cursor.getString(8);
+                    Integer status = cursor.getInt(8);
                     // Adding contact to list
-                    Flight flight = new Flight(id, carrierCode, departAirport, arriveAirport,
-                            departTime, arriveTime, departDay, flightNum, status);
+                    BoardingPass flight = new BoardingPass(id, carrierCode, flightNum,
+                            departAirport, arriveAirport, "gate", "seat",
+                            utils.parseStringToDate(departTime), utils.parseStringToDate(arriveTime),
+                            departDay, BoardingPass.Status.values()[status]);
                     flightList.add(flight);
                 } while(cursor.moveToNext());
             }
