@@ -10,6 +10,8 @@ import edu.cmu.sv.flight.rescheduler.database.FlightCRUD;
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.ws.local.DataManager;
 import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
+import edu.cmu.sv.flight.rescheduler.ws.remote.FlightStatAPIWrapper;
+import edu.cmu.sv.flight.rescheduler.ws.remote.IPublicFlightAPI;
 
 /**
  * Created by moumoutsay on 4/17/15.
@@ -40,8 +42,8 @@ public class RoutesPlanner {
 //            }
 //        }
 
-        //IPublicFlightAPI iPublicFlightAPI = new FlightStatAPIWrapper();
-        //String tmpResult = iPublicFlightAPI.getFlight("LAX", "SFO", date);
+        IPublicFlightAPI iPublicFlightAPI = new FlightStatAPIWrapper();
+        String tmpResult = iPublicFlightAPI.getFlight("LAX", "SFO", date);
         //Log.i (LOG_TAG, tmpResult);
 
         return res;
