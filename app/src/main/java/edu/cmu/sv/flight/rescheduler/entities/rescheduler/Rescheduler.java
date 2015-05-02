@@ -57,6 +57,7 @@ public abstract class Rescheduler {
 
         // 4. Construct real routes and return
         RoutesPlanner routesPlanner = new RoutesPlanner();
-        return routesPlanner.plan(routingGraph, curDate, context);
+        routingResult = routesPlanner.plan(routingGraph, curDate, context);
+        return routingResult;
     }
 }
