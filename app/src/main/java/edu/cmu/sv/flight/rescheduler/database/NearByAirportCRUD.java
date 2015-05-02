@@ -80,6 +80,9 @@ public class NearByAirportCRUD {
                 } while (cursor.moveToNext());
             }
         }
+        catch (Exception e) {
+            Log.d("Exception", e.getMessage());
+        }
         finally {
             cursor.close();
             if(readableDB != null && readableDB.isOpen())

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdAirportRoute;
-import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdNearbyAirport;
 import edu.cmu.sv.flight.rescheduler.entities.Airport;
 import edu.cmu.sv.flight.rescheduler.entities.AirportRoute;
 
@@ -79,6 +78,9 @@ public class AirportRouteCRUD {
                     airportList.add(airport);
                 } while (cursor.moveToNext());
             }
+        }
+        catch (Exception e) {
+            Log.d("Exception", e.getMessage());
         }
         finally {
             cursor.close();

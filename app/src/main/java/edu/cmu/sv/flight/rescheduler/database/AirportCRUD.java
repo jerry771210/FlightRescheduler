@@ -80,6 +80,9 @@ public class AirportCRUD {
                 } while (cursor.moveToNext());
             }
         }
+        catch (Exception e) {
+            Log.d("Exception", e.getMessage());
+        }
         finally {
             cursor.close();
             if(readableDB != null && readableDB.isOpen())
@@ -117,6 +120,9 @@ public class AirportCRUD {
                 cursor.close();
                 return null;
             }
+        }
+        catch (Exception e) {
+            Log.d("Exception", e.getMessage());
         }
         finally {
             cursor.close();
@@ -160,6 +166,9 @@ public class AirportCRUD {
                 cursor.close();
                 return null;
             }
+        }
+        catch (Exception e) {
+            Log.d("Exception", e.getMessage());
         }
         finally {
             cursor.close();
