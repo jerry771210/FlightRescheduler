@@ -80,14 +80,15 @@ public class FlightCRUD {
                     String arriveAirport = cursor.getString(3);
                     String departTime = cursor.getString(4);  // YY/MM/DD/hh/mm
                     String arriveTime = cursor.getString(5);  // YY/MM/DD/hh/mm
-                    Integer departDay = cursor.getInt(6);
+                    //Integer departDay = cursor.getInt(6);
                     String flightNum = cursor.getString(7);
                     Integer status = cursor.getInt(8);
                     // Adding contact to list
                     BoardingPass flight = new BoardingPass(id, carrierCode, flightNum,
-                            departAirport, arriveAirport, "gate", "seat",
-                            utils.parseStringToDate(departTime), utils.parseStringToDate(arriveTime),
-                            departDay, BoardingPass.Status.values()[status]);
+                            departAirport, arriveAirport, "gate",
+                            utils.parseStringToDate(departTime),
+                            utils.parseStringToDate(arriveTime),
+                            BoardingPass.Status.values()[status]);
                     flightList.add(flight);
                 } while(cursor.moveToNext());
             }

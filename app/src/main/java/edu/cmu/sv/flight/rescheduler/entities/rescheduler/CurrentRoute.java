@@ -15,7 +15,7 @@ public class CurrentRoute {
     private List<BoardingPass> boardingPassList;
 
     private CurrentRoute() {
-        boardingPassList = new ArrayList<BoardingPass>();
+        boardingPassList = new ArrayList<>();
         init_mock();
     }
 
@@ -25,6 +25,7 @@ public class CurrentRoute {
         // Add mock boarding passes
         BoardingPass mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.LANDED);
+        mock.setCarrierCode("EVA");
         mock.setFlightNumber("BR26");
         mock.setDeparture("TPE");
         mock.setArrivalTime(utils.parseStringToDate("2015/05/08 07:00"));
@@ -35,6 +36,7 @@ public class CurrentRoute {
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.ON_TIME);
+        mock.setCarrierCode("AA");
         mock.setFlightNumber("1232");
         mock.setDeparture("SFO");
         mock.setDepartureTime(utils.parseStringToDate("2015/05/08 08:00"));
@@ -45,6 +47,7 @@ public class CurrentRoute {
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.DELAYED);
+        mock.setCarrierCode("AA");
         mock.setFlightNumber("33");
         mock.setDeparture("LAX");
         mock.setDepartureTime(utils.parseStringToDate("2015/05/08 10:30"));
@@ -55,6 +58,7 @@ public class CurrentRoute {
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.CANCELED);
+        mock.setCarrierCode("AA");
         mock.setFlightNumber("44");
         mock.setDeparture("BOS");
         mock.setDepartureTime(utils.parseStringToDate("2015/05/08 18:30"));

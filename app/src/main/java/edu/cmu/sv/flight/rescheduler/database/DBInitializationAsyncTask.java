@@ -54,9 +54,9 @@ public class DBInitializationAsyncTask extends AsyncTask {
 
         /* TEST */
         Log.d("Database", "Before test");
-        BoardingPass flight = new BoardingPass(null, "EVA", "BR26", "TPE", "SFO", "gate", "seat",
+        BoardingPass flight = new BoardingPass(null, "EVA", "BR26", "TPE", "SFO", "gate",
                 Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-                Calendar.SATURDAY, BoardingPass.Status.ON_TIME);
+                BoardingPass.Status.ON_TIME);
         List<BoardingPass> flightList = new ArrayList<>();
         flightList.add(flight);
         new FlightCRUD(context).insertFlight(flightList);

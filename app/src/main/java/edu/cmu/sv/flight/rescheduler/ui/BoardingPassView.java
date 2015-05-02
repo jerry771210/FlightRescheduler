@@ -68,6 +68,7 @@ public class BoardingPassView {
         textViewArrive.setText(boardingPass.getArrival());
         textViewFlightNum.setText(boardingPass.getFlightNumber());
         textViewGate.setText(boardingPass.getGate());
+
         Date date = boardingPass.getDepartureTime();
         Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
         calendar.setTime(date);  // assigns calendar to given date

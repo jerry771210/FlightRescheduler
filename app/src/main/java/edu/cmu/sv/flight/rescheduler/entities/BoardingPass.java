@@ -1,6 +1,8 @@
 package edu.cmu.sv.flight.rescheduler.entities;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import edu.cmu.sv.flight.rescheduler.util.Utils;
 
@@ -24,8 +26,8 @@ public class BoardingPass {
     public BoardingPass() { /* Not safe temporarily constructor */ }
 
     public BoardingPass(Integer id, String carrierCode, String flightNumber,
-                        String departure, String arrival, String gate, String seat,
-                        Date departureTime, Date arrivalTime, Integer departureDay,
+                        String departure, String arrival, String gate,
+                        Date departureTime, Date arrivalTime,
                         Status status) {
         this.id = id;
         this.carrierCode = carrierCode;
@@ -35,7 +37,6 @@ public class BoardingPass {
         this.gate = gate;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        this.departureDay = departureDay;
         this.status = status;
     }
 
@@ -104,7 +105,9 @@ public class BoardingPass {
     }
 
     public Integer getDepartureDay() {
-        return departureDay;
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(departureTime);
+        return calendar.get(Calendar.DAY_OF_WEEK);
     }
 
     public void setDepartureDay(Integer departureDay) {
