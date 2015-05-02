@@ -7,6 +7,7 @@ import android.util.Log;
 
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdAirport;
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdAirportRoute;
+import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdFlight;
 import edu.cmu.sv.flight.rescheduler.database.sql.SQLCmdNearbyAirport;
 
 /**
@@ -59,6 +60,8 @@ public class DBUtil extends SQLiteOpenHelper {
         db.execSQL(SQLCmdNearbyAirport.CREATE_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + SQLCmdAirportRoute.TABLE_NAME + ";");
         db.execSQL(SQLCmdAirportRoute.CREATE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + SQLCmdFlight.TABLE_NAME + ";");
+        db.execSQL(SQLCmdFlight.CREATE_TABLE);
         Log.d("Database", "Table created");
     }
 

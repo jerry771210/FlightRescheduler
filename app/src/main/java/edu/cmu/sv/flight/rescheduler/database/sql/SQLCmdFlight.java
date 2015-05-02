@@ -8,12 +8,11 @@ import android.provider.BaseColumns;
 public class SQLCmdFlight implements BaseColumns {
     public static final String TABLE_NAME = "flight";
     public static final String CARRIER_CODE = "carrier_code";
-    public static final String DEP_CITY = "dep_city";
-    public static final String ARR_CITY = "arr_city";
-    public static final String DEP_TIME_ORG = "dep_time_org";
-    public static final String ARR_TIME_ORG = "arr_time_org";
-    public static final String DEP_TIME_NEW = "dep_time_new";
-    public static final String ARR_TIME_NEW = "arr_time_new";
+    public static final String DEP_AIRPORT = "dep_airport";
+    public static final String ARR_AIRPORT = "arr_airport";
+    public static final String DEP_TIME = "dep_time";
+    public static final String ARR_TIME = "arr_time";
+    public static final String DEP_DAY = "dep_day";
     public static final String FLIGHT_NUMBER = "flight_number";
     public static final String STATUS = "status";
 
@@ -21,12 +20,26 @@ public class SQLCmdFlight implements BaseColumns {
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME+"(" +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             CARRIER_CODE + " TEXT," +
-            DEP_CITY + " TEXT," +
-            ARR_CITY + " TEXT," +
-            DEP_TIME_ORG + " TEXT," +
-            ARR_TIME_ORG + " TEXT," +
-            DEP_TIME_NEW + " TEXT," +
-            ARR_TIME_NEW + " TEXT," +
-            FLIGHT_NUMBER + " INTEGER UNIQUE," +
+            DEP_AIRPORT + " TEXT," +
+            ARR_AIRPORT + " TEXT," +
+            DEP_TIME + " TEXT," +
+            ARR_TIME + " TEXT," +
+            DEP_DAY + " INTEGER," +
+            FLIGHT_NUMBER + " TEXT," +
             STATUS + " TEXT);";
+
+    public static final String INSERT_FLIGHT = "INSERT INTO " + TABLE_NAME +
+            "( " + CARRIER_CODE +
+            ", " + DEP_AIRPORT +
+            ", " + ARR_AIRPORT +
+            ", " + DEP_TIME +
+            ", " + ARR_TIME +
+            ", " + DEP_DAY +
+            ", " + FLIGHT_NUMBER +
+            ", " + STATUS +
+            ") values (?, ?, ?, ?, ?, ?, ?, ?);";
+
+    public static final String FIND_FLIGHT_BY_DayOfWeek = "SELECT * FROM " + TABLE_NAME +
+            " WHERE " + DEP_AIRPORT + "=? AND " + ARR_AIRPORT + "=? AND " +
+            DEP_DAY + "=?;";
 }

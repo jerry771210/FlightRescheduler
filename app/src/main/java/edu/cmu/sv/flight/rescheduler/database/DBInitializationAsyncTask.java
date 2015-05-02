@@ -6,12 +6,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.Airport;
 import edu.cmu.sv.flight.rescheduler.entities.AirportRoute;
+import edu.cmu.sv.flight.rescheduler.entities.Flight;
 import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
@@ -53,7 +55,12 @@ public class DBInitializationAsyncTask extends AsyncTask {
 
         /* TEST */
         Log.d("Database", "Before test");
-        Log.d("Test", new AirportRouteCRUD(context).findAirportRoute("SFO").toString());
+        Flight flight = new Flight(null, "EVA", "TPE", "SFO", "2015/5/2", "2015/5/3",
+                Calendar.MONDAY, "BR26", "ON TIME");
+        List<Flight> flightList = new ArrayList<>();
+        flightList.add(flight);
+        new FlightCRUD(context).insertFlight(flightList);
+        Log.d("Test", new FlightCRUD(context).findFlightByDayOfWeek("TPE", "SFO", Calendar.MONDAY).toString());
         Log.d("Database", "After test");
 
         return null;
