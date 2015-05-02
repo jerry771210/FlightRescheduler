@@ -6,21 +6,21 @@ package edu.cmu.sv.flight.rescheduler.entities;
 public class Flight {
     private Integer id;  // Primary key
     private String carrierCode; // airlines code, ex ANA
-    private String departCity;    // departure city code. ex LAX
-    private String arriveCity;
+    private String departAirport;    // departure airport code. ex LAX
+    private String arriveAirport;
     private String departTime;  // YY/MM/DD/hh/mm
     private String arriveTime;  // YY/MM/DD/hh/mm
-    private String departDay;   // Sun Mon Tue Wed Thu Fri Sat
+    private Integer departDay;   // Sun Mon Tue Wed Thu Fri Sat
     private String flightNum;   // ex BR26
     private String status;      // Normal/Delay/Cancel
 
-    public Flight(Integer id, String carrierCode, String departCity, String arriveCity,
-                  String departTime, String arriveTime, String departDay, String flightNum,
+    public Flight(Integer id, String carrierCode, String departAirport, String arriveAirport,
+                  String departTime, String arriveTime, Integer departDay, String flightNum,
                   String status) {
         this.id = id;
         this.carrierCode = carrierCode;
-        this.departCity = departCity;
-        this.arriveCity = arriveCity;
+        this.departAirport = departAirport;
+        this.arriveAirport = arriveAirport;
         this.departTime = departTime;
         this.arriveTime = arriveTime;
         this.departDay = departDay;
@@ -44,20 +44,20 @@ public class Flight {
         this.carrierCode = carrierCode;
     }
 
-    public String getDepartCity() {
-        return departCity;
+    public String getDepartAirport() {
+        return departAirport;
     }
 
-    public void setDepartCity(String departCity) {
-        this.departCity = departCity;
+    public void setDepartAirport(String departAirport) {
+        this.departAirport = departAirport;
     }
 
-    public String getArriveCity() {
-        return arriveCity;
+    public String getArriveAirport() {
+        return arriveAirport;
     }
 
-    public void setArriveCity(String arriveCity) {
-        this.arriveCity = arriveCity;
+    public void setArriveAirport(String arriveAirport) {
+        this.arriveAirport = arriveAirport;
     }
 
     public String getDepartTime() {
@@ -76,11 +76,11 @@ public class Flight {
         this.arriveTime = arriveTime;
     }
 
-    public String getDepartDay() {
+    public Integer getDepartDay() {
         return departDay;
     }
 
-    public void setDepartDay(String departDay) {
+    public void setDepartDay(Integer departDay) {
         this.departDay = departDay;
     }
 
@@ -105,8 +105,8 @@ public class Flight {
         final StringBuilder sb = new StringBuilder("Flight{");
         sb.append("id=").append(id);
         sb.append(", carrierCode='").append(carrierCode).append('\'');
-        sb.append(", departCity='").append(departCity).append('\'');
-        sb.append(", arriveCity='").append(arriveCity).append('\'');
+        sb.append(", departAirport='").append(departAirport).append('\'');
+        sb.append(", arriveAirport='").append(arriveAirport).append('\'');
         sb.append(", departTime='").append(departTime).append('\'');
         sb.append(", arriveTime='").append(arriveTime).append('\'');
         sb.append(", departDay='").append(departDay).append('\'');
@@ -115,5 +115,4 @@ public class Flight {
         sb.append('}');
         return sb.toString();
     }
-
 }
