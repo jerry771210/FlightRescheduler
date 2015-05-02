@@ -16,7 +16,6 @@ public class BoardingPass {
     private String departure;
     private String arrival;
     private String gate;
-    private String seat;
     private Date departureTime;  // yyyy/MM/dd/ HH:mm
     private Date arrivalTime;  // yyyy/MM/dd/ HH:mm
     private Integer departureDay;
@@ -34,7 +33,6 @@ public class BoardingPass {
         this.departure = departure;
         this.arrival = arrival;
         this.gate = gate;
-        this.seat = seat;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.departureDay = departureDay;
@@ -89,14 +87,6 @@ public class BoardingPass {
         this.gate = gate;
     }
 
-    public String getSeat() {
-        return seat;
-    }
-
-    public void setSeat(String seat) {
-        this.seat = seat;
-    }
-
     public Date getDepartureTime() {
         return departureTime;
     }
@@ -139,7 +129,6 @@ public class BoardingPass {
         sb.append(", departure='").append(departure).append('\'');
         sb.append(", arrival='").append(arrival).append('\'');
         sb.append(", gate='").append(gate).append('\'');
-        sb.append(", seat='").append(seat).append('\'');
         sb.append(", departureTime=").append(utils.parseDateToString(departureTime));
         sb.append(", arrivalTime=").append(utils.parseDateToString(arrivalTime));
         sb.append(", departureDay=").append(departureDay);

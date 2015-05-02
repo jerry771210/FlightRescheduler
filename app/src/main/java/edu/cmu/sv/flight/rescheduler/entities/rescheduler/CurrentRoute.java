@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
  * Created by hsuantzl on 2015/4/10.
@@ -19,41 +20,47 @@ public class CurrentRoute {
     }
 
     private void init_mock() {
+        Utils utils = new Utils();
+
         // Add mock boarding passes
         BoardingPass mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.LANDED);
-        mock.setFlightNumber("First");
+        mock.setFlightNumber("BR26");
         mock.setDeparture("TPE");
-        mock.setArrival("NRT");
-        mock.setArrivalTime(new Date());
-        mock.setDepartureTime(new Date());
+        mock.setArrivalTime(utils.parseStringToDate("2015/05/08 07:00"));
+        mock.setArrival("SFO");
+        mock.setDepartureTime(utils.parseStringToDate("2015/05/07 23:00"));
+        mock.setGate("G08");
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.ON_TIME);
-        mock.setFlightNumber("Second");
-        mock.setDeparture("NRT");
+        mock.setFlightNumber("1232");
+        mock.setDeparture("SFO");
+        mock.setDepartureTime(utils.parseStringToDate("2015/05/08 08:00"));
         mock.setArrival("LAX");
-        mock.setArrivalTime(new Date());
-        mock.setDepartureTime(new Date());
+        mock.setArrivalTime(utils.parseStringToDate("2015/05/08 09:30"));
+        mock.setGate("G01");
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.DELAYED);
-        mock.setFlightNumber("Third");
+        mock.setFlightNumber("33");
         mock.setDeparture("LAX");
+        mock.setDepartureTime(utils.parseStringToDate("2015/05/08 10:30"));
         mock.setArrival("BOS");
-        mock.setArrivalTime(new Date());
-        mock.setDepartureTime(new Date());
+        mock.setArrivalTime(utils.parseStringToDate("2015/05/08 15:30"));
+        mock.setGate("G11");
         boardingPassList.add(mock);
 
         mock = new BoardingPass();
         mock.setStatus(BoardingPass.Status.CANCELED);
-        mock.setFlightNumber("Fourth");
+        mock.setFlightNumber("44");
         mock.setDeparture("BOS");
+        mock.setDepartureTime(utils.parseStringToDate("2015/05/08 18:30"));
         mock.setArrival("JFK");
-        mock.setArrivalTime(new Date());
-        mock.setDepartureTime(new Date());
+        mock.setArrivalTime(utils.parseStringToDate("2015/05/08 20:00"));
+        mock.setGate("G28");
         boardingPassList.add(mock);
     }
 
@@ -65,7 +72,7 @@ public class CurrentRoute {
         return boardingPassList.get(index);
     }
 
-    public BoardingPass getLastBoardingpass() {
+    public BoardingPass getLastBoardingPass() {
         int index = boardingPassList.size() - 1;
         return boardingPassList.get(index);
     }
