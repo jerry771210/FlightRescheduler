@@ -115,7 +115,8 @@ public class FlightCRUD {
         Utils utils = new Utils(context);
         db = DBUtil.getInstance(context);
         SQLiteDatabase readableDB = db.getReadableDatabase();
-        String[] selectionArgs = new String[]{fromAirport, toAirport, utils.parseDateToString(date)};
+        String partialDate = utils.parseDateToString(date).split(" ")[0];
+        String[] selectionArgs = new String[]{fromAirport, toAirport, partialDate+"%"};
         Cursor cursor = readableDB.rawQuery(SQLCmdFlight.FIND_FLIGHT_BY_DATE, selectionArgs);
 
         try {

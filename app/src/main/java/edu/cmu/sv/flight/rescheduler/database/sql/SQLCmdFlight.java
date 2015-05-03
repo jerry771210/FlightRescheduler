@@ -45,5 +45,5 @@ public class SQLCmdFlight implements BaseColumns {
 
     public static final String FIND_FLIGHT_BY_DATE = "SELECT * FROM " + TABLE_NAME +
             " WHERE " + DEP_AIRPORT + "=? AND " + ARR_AIRPORT + "=? AND " +
-            DEP_TIME + "=?;";
+            DEP_TIME + " LIKE ?;";
 }

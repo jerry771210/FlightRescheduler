@@ -60,7 +60,7 @@ public class DBInitializationAsyncTask extends AsyncTask {
         List<BoardingPass> flightList = new ArrayList<>();
         flightList.add(flight);
         new FlightCRUD(context).insertFlight(flightList);
-        String result = new FlightCRUD(context).findFlightByDayOfWeek("TPE", "SFO", Calendar.SATURDAY).toString();
+        String result = new FlightCRUD(context).findFlightByDate("TPE", "SFO", Calendar.getInstance().getTime()).toString();
         Log.d("Test", result);
         Log.d("Database", "After test");
 
