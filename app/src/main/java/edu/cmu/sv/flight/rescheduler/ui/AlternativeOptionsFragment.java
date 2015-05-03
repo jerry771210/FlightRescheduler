@@ -77,13 +77,11 @@ public class AlternativeOptionsFragment extends Fragment {
         BoardingPass departBP = CurrentRoute.getInstance().getBoardingPass(index);
         String departAirport = departBP.getDeparture();
         String arriveAirport = CurrentRoute.getInstance().getLastBoardingPass().getArrival();
-
-        Date curDate = departBP.getDepartureTime(); // TODO, may use current date to provide better
-                                                    // result
+        Date curDate = departBP.getDepartureTime();
 
         /* create Rescheduler*/
         rescheduler = new ProxyRescheduler();
-        rescheduler.findAvailableRoutes(departAirport, arriveAirport, false/*nearby*/, false/*multiple*/,
+        rescheduler.findAvailableRoutes(departAirport, arriveAirport, false/*nearby*/,
                 0, curDate, getActivity().getApplicationContext());
 
         return rescheduler.getRoutingResultInListView();

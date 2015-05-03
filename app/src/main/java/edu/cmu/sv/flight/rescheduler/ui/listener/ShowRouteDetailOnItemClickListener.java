@@ -13,7 +13,6 @@ import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.Rescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 import edu.cmu.sv.flight.rescheduler.ui.activity.PagerConfirmActivity;
 
@@ -37,14 +36,20 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
         buttonRebook = (Button) dialog.findViewById(R.id.buttonRebook);
         buttonCancel = (Button) dialog.findViewById(R.id.buttonCancelRebook);
         buttonCancel.setOnClickListener(
-                new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
+                new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null, null));
         textViewFlightDetail = (TextView) dialog.findViewById(R.id.textViewFlightDetails);
     }
 
-    private void display(String fightDetails) {
-        currentRoute = CurrentRoute.getInstance();
-        // TODO, get data from ProxyRescheduler
-
+    private void display(int index) {
+        IRescheduler rescheduler = new ProxyRescheduler();
+        List<BoardingPass> option = rescheduler.getRoutingResult().get(index);
+        StringBuilder detail =
+                new StringBuilder("\n\n");
+        for(BoardingPass boardingPass: option) {
+            detail.append(boardingPass.getFlightDetail());
+            detail.append("\n--------------------------------------------------------------\n\n\n");
+        }
+        textViewFlightDetail.setText(detail.toString());
         dialog.show();
     }
 
@@ -54,10 +59,6 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
         buttonRebook.setOnClickListener(
                 new DialogDismissAndIntentToAnotherActivityOnClickListener(
                         act, dialog, PagerConfirmActivity.class, position));
-
-        IRescheduler rescheduler = new ProxyRescheduler();
-        List<List<BoardingPass>> options = rescheduler.getRoutingResult();
-        textViewFlightDetail.setText(options.get(position).toString());
-        display( ((TextView)view).getText().toString());
+        display(position);
     }
 }

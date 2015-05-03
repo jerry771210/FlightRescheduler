@@ -21,32 +21,33 @@ import edu.cmu.sv.flight.rescheduler.util.Utils;
  * 2. Only enable nearby for arrival airport
  */
 public abstract class Rescheduler {
-    static final String LOG_TAG = Rescheduler.class.getSimpleName();
+    private final String LOG_TAG = Rescheduler.class.getSimpleName();
     private static List<List<BoardingPass>> routingResult = new ArrayList<List<BoardingPass>>();
+    private static boolean isMultiple = false;
     protected Context context; // For database usage
 
     public List<List<BoardingPass>> getRoutingResult() {
-        /*TODO: remove mock data */
-        List<List<BoardingPass>> mockOptions = new ArrayList<>();
-        List<BoardingPass> option1 = new ArrayList<>();
-        option1.add(new BoardingPass(null, "AA", "1234", "SJC", "SEA", "OPT1",
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-                BoardingPass.Status.ON_TIME));
-        option1.add(new BoardingPass(null, "AA", "5678", "SEA", "PHI", "OPT1",
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-                BoardingPass.Status.ON_TIME));
-        mockOptions.add(option1);
-        List<BoardingPass> option2 = new ArrayList<>();
-        option2.add(new BoardingPass(null, "AA", "5566", "SJC", "SEA", "OPT1",
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-                BoardingPass.Status.ON_TIME));
-        option2.add(new BoardingPass(null, "AA", "7788", "SEA", "PHI", "OPT1",
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-                BoardingPass.Status.ON_TIME));
-        mockOptions.add(option2);
+//        /*TODO: remove mock data */
+//        List<List<BoardingPass>> mockOptions = new ArrayList<>();
+//        List<BoardingPass> option1 = new ArrayList<>();
+//        option1.add(new BoardingPass(null, "AA", "1234", "SJC", "SEA", "OPT1",
+//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+//                BoardingPass.Status.ON_TIME));
+//        option1.add(new BoardingPass(null, "AA", "5678", "SEA", "PHI", "OPT1",
+//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+//                BoardingPass.Status.ON_TIME));
+//        mockOptions.add(option1);
+//        List<BoardingPass> option2 = new ArrayList<>();
+//        option2.add(new BoardingPass(null, "AA", "5566", "SJC", "SEA", "OPT1",
+//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+//                BoardingPass.Status.ON_TIME));
+//        option2.add(new BoardingPass(null, "AA", "7788", "SEA", "PHI", "OPT1",
+//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+//                BoardingPass.Status.ON_TIME));
+//        mockOptions.add(option2);
 
-        //return routingResult;
-        return mockOptions;
+        return routingResult;
+        //return mockOptions;
     }
 
     public List<String> getRoutingResultInListView() {
@@ -65,7 +66,7 @@ public abstract class Rescheduler {
         * @param  arriveAirport IATA code
         */
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                 boolean enableNearBy, boolean isMultiple, int num_stop, Date curDate, Context context/* TODO */) {
+                 boolean enableNearBy, int num_stop, Date curDate, Context context/* TODO */) {
         /* error handling here*/
         if (departAirport == null || arriveAirport == null || curDate == null || context == null) {
             return null;
@@ -99,7 +100,7 @@ public abstract class Rescheduler {
 
         // 4. Construct real routes and return
         RoutesPlanner routesPlanner = new RoutesPlanner();
-        routingResult = routesPlanner.plan(routingGraph, isMultiple,curDate, context);
+        routingResult = routesPlanner.plan(routingGraph, isMultiple, curDate, context);
 
         Log.i(LOG_TAG, "Size of result" + routingResult.size());
         for (List<BoardingPass> bpList : routingResult) {
@@ -107,5 +108,13 @@ public abstract class Rescheduler {
         }
 
         return routingResult;
+    }
+
+    public static boolean isMultipleAirlines() {
+        return isMultiple;
+    }
+
+    public static void setIsMultipleAirlines(boolean isMultiple) {
+        Rescheduler.isMultiple = isMultiple;
     }
 }
