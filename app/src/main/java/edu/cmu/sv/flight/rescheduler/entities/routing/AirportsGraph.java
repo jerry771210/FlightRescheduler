@@ -15,7 +15,6 @@ import edu.cmu.sv.flight.rescheduler.entities.Airport;
  * Created by moumoutsay on 4/17/15.
  * // Note we consider at most 1 stops
  * // BFS approach
- * // TODO: use async to speedup
  */
 public class AirportsGraph {
     // According to AirportRouteCRUD, construct routing result

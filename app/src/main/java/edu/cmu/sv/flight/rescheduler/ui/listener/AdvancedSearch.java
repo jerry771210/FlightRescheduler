@@ -15,9 +15,6 @@ import edu.cmu.sv.flight.rescheduler.ui.R;
 
 /**
  * Created by hsuantzl on 2015/4/4.
- *
- * TODO, think about how to extract OnSeekBarChangeListener part
- * TODO, think about rename the class
  */
 public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener {
     private CurrentRoute currentRoute;

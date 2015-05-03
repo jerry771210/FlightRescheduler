@@ -25,8 +25,6 @@ import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListView;
  * 2. Update listView
  * 3. Update airline button value
  * Note: The behavior will depends on the current value of buttons
- *
- * TODO: We use mock data for now. Will use real model in the future
  */
 public class OtherAirlinesOnClickListener implements View.OnClickListener {
     private static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();

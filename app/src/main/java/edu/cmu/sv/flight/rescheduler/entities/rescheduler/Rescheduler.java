@@ -45,7 +45,7 @@ public abstract class Rescheduler {
         * @param  arriveAirport IATA code
         */
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                 boolean enableNearBy, int num_stop, Date curDate, Context context/* TODO */) {
+                 boolean enableNearBy, int num_stop, Date curDate, Context context) {
         /* error handling here*/
         if (departAirport == null || arriveAirport == null || curDate == null || context == null) {
             return null;

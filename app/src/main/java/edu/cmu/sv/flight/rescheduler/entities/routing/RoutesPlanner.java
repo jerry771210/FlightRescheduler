@@ -29,7 +29,6 @@ public class RoutesPlanner {
     static final String TARGET_AIRLINE = "AA";
     static final int NUM_TO_LIST = 7;
     // TODO have overnight feature
-    // TODO take care of time zone diff
 
     private FlightCRUD flightCRUD;
     private IDataService dataService;// = new DataManager();
