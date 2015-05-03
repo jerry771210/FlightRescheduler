@@ -25,6 +25,7 @@ import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
  */
 public class RoutesPlanner {
     static final String LOG_TAG = RoutesPlanner.class.getSimpleName();
+    static final String TARGET_AIRLINE = "AA";
     // TODO have overnight feature
     // TODO take care of time zone diff
     // TODO no multiple airline for now
@@ -46,7 +47,7 @@ public class RoutesPlanner {
         return res;
     }
 
-    private List<List<BoardingPass>> getDetailRoute(List<String> inRoute, Boolean isisMultiple,
+    private List<List<BoardingPass>> getDetailRoute(List<String> inRoute, Boolean isMultiple,
                                                     Date date, Context context) {
         if (inRoute == null || inRoute.size() < 2) { return null; }
         List<List<BoardingPass>> result = new ArrayList<List<BoardingPass>>();
@@ -61,7 +62,12 @@ public class RoutesPlanner {
         if (isDummyRecord(bpList)) {
            return null;
         }
+
+        // check if multiple airlines
+        bpList = filterMultipleAirlines(bpList, isMultiple);
+
         // TODO filter out infeasible route
+
         // filter here
         // sort to get first one here
         for (BoardingPass bp : bpList) {
@@ -71,6 +77,18 @@ public class RoutesPlanner {
         }
 
         return result;
+    }
+
+    private List<BoardingPass> filterMultipleAirlines(List<BoardingPass> inList, boolean isMultiple) {
+        if (isMultiple) { return inList; }
+        List<BoardingPass> res = new ArrayList<BoardingPass>();
+        for (BoardingPass bp : inList) {
+            if (bp.getCarrierCode().equals(TARGET_AIRLINE)) {
+                res.add(bp);
+            }
+        }
+
+        return res;
     }
 
     private List<BoardingPass> getFlightsByAirportAndDate(String fromAirport, String toAirport, Date date) {
@@ -109,6 +127,8 @@ public class RoutesPlanner {
             Log.i(LOG_TAG, "The numbers of flights" + jsonArrAllDepFlights.length());
             for (int i = 0; i < jsonArrAllDepFlights.length(); i++) {
                 JSONObject obj = jsonArrAllDepFlights.getJSONObject(i);
+                String arriveTime = obj.getString("arrivalTime");
+                String departTime = obj.getString("departureTime");
                 BoardingPass aBoardingPass =
                     new BoardingPass(null, obj.getString("carrierFsCode"),
                                            obj.getString("flightNumber"),
