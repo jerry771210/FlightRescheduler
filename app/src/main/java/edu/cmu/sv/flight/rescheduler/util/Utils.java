@@ -11,6 +11,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -41,20 +43,18 @@ public class Utils {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\s*,\\s*");
                 // Neglect the record if IATA/FAA code is not assigned
-                if(parts.length >= 5 && parts[4].equals("\"\""))
+                if (parts.length >= 5 && parts[4].equals("\"\""))
                     continue;
 
-                for(int i = 0; i < parts.length; i++) {
+                for (int i = 0; i < parts.length; i++) {
                     // Remove " in the String
-                    parts[i] = parts[i].replaceAll("\"","");
+                    parts[i] = parts[i].replaceAll("\"", "");
                 }
                 result.add(parts);
             }
-        }
-        catch (IOException e) {
-            Log.d("Utils", "IOException when readCSVFile"+Log.getStackTraceString(e));
-        }
-        finally {
+        } catch (IOException e) {
+            Log.d("Utils", "IOException when readCSVFile" + Log.getStackTraceString(e));
+        } finally {
             if (br != null) {
                 try {
                     br.close();
@@ -69,6 +69,7 @@ public class Utils {
 
     /**
      * Calculate Distance by Latitude and Longitude
+     *
      * @param lat1: Latitude of location1
      * @param lng1: Longitude of location1
      * @param lat2: Latitude of location2
@@ -77,13 +78,13 @@ public class Utils {
      */
     public double distanceFrom(double lat1, double lng1, double lat2, double lng2) {
         double earthRadius = 3958.75; // miles (or 6371.0 kilometers)
-        double dLat = Math.toRadians(lat2-lat1);
-        double dLng = Math.toRadians(lng2-lng1);
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLng = Math.toRadians(lng2 - lng1);
         double sinLat = Math.sin(dLat / 2);
         double sinLng = Math.sin(dLng / 2);
         double a = Math.pow(sinLat, 2) + Math.pow(sinLng, 2)
                 * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double dist = earthRadius * c;
 
         return dist;
@@ -97,7 +98,7 @@ public class Utils {
     public Date parseStringToDate(String s) {
         // JSON format is 2015-05-01T08:20:00.000
         DateFormat df;
-        if(s.contains("-"))  // For JSON format (ISO 8601)
+        if (s.contains("-"))  // For JSON format (ISO 8601)
             df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         else  // For boardingPass format
             df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
@@ -115,10 +116,10 @@ public class Utils {
         StringBuilder airlines = new StringBuilder(boardingPassList.get(0).getCarrierCode());
         StringBuilder route = new StringBuilder(boardingPassList.get(0).getDeparture());
         String time = "Arrive at " + parseDateToString(
-                boardingPassList.get(boardingPassList.size()-1).getArrivalTime());
+                boardingPassList.get(boardingPassList.size() - 1).getArrivalTime());
 
-        for(BoardingPass boardingPass: boardingPassList) {
-            if(!airlines.toString().contains(boardingPass.getCarrierCode())) {
+        for (BoardingPass boardingPass : boardingPassList) {
+            if (!airlines.toString().contains(boardingPass.getCarrierCode())) {
                 airlines.append("/" + boardingPass.getCarrierCode());
             }
             route.append("-" + boardingPass.getArrival());
@@ -133,4 +134,24 @@ public class Utils {
         return sb.toString();
     }
 
+    public List<List<BoardingPass>> sortOptionsByArrivalTime(List<List<BoardingPass>> list) {
+        Collections.sort(list, new Comparator<List<BoardingPass>>() {
+            @Override
+            public int compare(List<BoardingPass> lhs, List<BoardingPass> rhs) {
+                return lhs.get(lhs.size() - 1).getArrivalTime()
+                        .compareTo(rhs.get(rhs.size() - 1).getArrivalTime());
+            }
+        });
+        return list;
+    }
+
+    public List<BoardingPass> sortFlightsByArrivalTime(List<BoardingPass> list) {
+        Collections.sort(list, new Comparator<BoardingPass>() {
+            @Override
+            public int compare(BoardingPass lhs, BoardingPass rhs) {
+                return lhs.getArrivalTime().compareTo(rhs.getArrivalTime());
+            }
+        });
+        return list;
+    }
 }
