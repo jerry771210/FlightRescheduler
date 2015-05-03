@@ -39,7 +39,11 @@ public class SQLCmdFlight implements BaseColumns {
             ", " + STATUS +
             ") values (?, ?, ?, ?, ?, ?, ?, ?);";
 
-    public static final String FIND_FLIGHT_BY_DayOfWeek = "SELECT * FROM " + TABLE_NAME +
+    public static final String FIND_FLIGHT_BY_DAY_OF_WEEK = "SELECT * FROM " + TABLE_NAME +
             " WHERE " + DEP_AIRPORT + "=? AND " + ARR_AIRPORT + "=? AND " +
             DEP_DAY + "=?;";
+
+    public static final String FIND_FLIGHT_BY_DATE = "SELECT * FROM " + TABLE_NAME +
+            " WHERE " + DEP_AIRPORT + "=? AND " + ARR_AIRPORT + "=? AND " +
+            DEP_TIME + "=?;";
 }
