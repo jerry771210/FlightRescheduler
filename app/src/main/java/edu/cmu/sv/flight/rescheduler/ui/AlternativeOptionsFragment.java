@@ -81,7 +81,7 @@ public class AlternativeOptionsFragment extends Fragment {
 
         /* create Rescheduler*/
         rescheduler = new ProxyRescheduler();
-        rescheduler.findAvailableRoutes(departAirport, arriveAirport, false/*nearby*/, false/*multiple*/,
+        rescheduler.findAvailableRoutes(departAirport, arriveAirport, false/*nearby*/,
                 0, curDate, getActivity().getApplicationContext());
 
         return rescheduler.getRoutingResultInListView();

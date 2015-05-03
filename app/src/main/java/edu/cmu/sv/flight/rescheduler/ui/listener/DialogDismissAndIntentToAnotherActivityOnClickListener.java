@@ -58,8 +58,8 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
                     Log.d("Exception", "[DialogDismiss] alternativeOptionIndex is not set");
                 }
             case R.id.buttonAdvancedSearchConfirm:
+                /* Get index from activity */
                 int index = 0;
-                /* Get index from previous activity */
                 Bundle extras = act.getIntent().getExtras();
                 if (extras != null) {
                     index = extras.getInt("indexOfBoardingPass");
@@ -83,8 +83,7 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
 
                 /* create Rescheduler*/
                 rescheduler = new ProxyRescheduler();
-                rescheduler.findAvailableRoutes(departAirport, arriveAirport,
-                        isNearbyAirport, false/*multiple*/,
+                rescheduler.findAvailableRoutes(departAirport, arriveAirport, isNearbyAirport,
                         numStops, curDate, act.getApplicationContext());
 
 

@@ -10,8 +10,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
