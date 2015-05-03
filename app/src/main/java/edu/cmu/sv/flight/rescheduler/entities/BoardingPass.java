@@ -134,7 +134,7 @@ public class BoardingPass {
         sb.append(", gate='").append(gate).append('\'');
         sb.append(", departureTime=").append(utils.parseDateToString(departureTime));
         sb.append(", arrivalTime=").append(utils.parseDateToString(arrivalTime));
-        sb.append(", departureDay=").append(departureDay);
+        sb.append(", departureDay=").append(getDepartureDay());
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();

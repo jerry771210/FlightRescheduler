@@ -3,6 +3,7 @@ package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.entities.routing.AirportsGraph;
 import edu.cmu.sv.flight.rescheduler.entities.routing.ExpandNearbyAirports;
 import edu.cmu.sv.flight.rescheduler.entities.routing.RoutesPlanner;
+import edu.cmu.sv.flight.rescheduler.util.Utils;
 
 /**
  * Created by hsuantzl on 2015/4/10.
@@ -22,7 +24,38 @@ public abstract class Rescheduler {
     protected Context context; // For database usage
 
     public List<List<BoardingPass>> getRoutingResult() {
-        return routingResult;
+        /*TODO: remove mock data */
+        List<List<BoardingPass>> mockOptions = new ArrayList<>();
+        List<BoardingPass> option1 = new ArrayList<>();
+        option1.add(new BoardingPass(null, "AA", "1234", "SJC", "SEA", "OPT1",
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+                BoardingPass.Status.ON_TIME));
+        option1.add(new BoardingPass(null, "AA", "5678", "SEA", "PHI", "OPT1",
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+                BoardingPass.Status.ON_TIME));
+        mockOptions.add(option1);
+        List<BoardingPass> option2 = new ArrayList<>();
+        option2.add(new BoardingPass(null, "AA", "5566", "SJC", "SEA", "OPT1",
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+                BoardingPass.Status.ON_TIME));
+        option2.add(new BoardingPass(null, "AA", "7788", "SEA", "PHI", "OPT1",
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
+                BoardingPass.Status.ON_TIME));
+        mockOptions.add(option2);
+
+        //return routingResult;
+        return mockOptions;
+    }
+
+    public List<String> getRoutingResultInListView() {
+        Utils utils = new Utils();
+        List<List<BoardingPass>> routingResult = getRoutingResult();
+        List<String> stringList = new ArrayList<>();
+
+        for(List<BoardingPass> boardingPassList: routingResult) {
+            stringList.add(utils.parseListBoardingPassToDescription(boardingPassList));
+        }
+        return stringList;
     }
 
     /*

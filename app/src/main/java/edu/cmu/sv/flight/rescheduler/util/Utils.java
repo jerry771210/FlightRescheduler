@@ -12,7 +12,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+
+import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 
 /**
  * Created by hsuantzl on 2015/4/18.
@@ -101,5 +104,28 @@ public class Utils {
             e.printStackTrace();
         }
         return date;
+    }
+
+    public String parseListBoardingPassToDescription(List<BoardingPass> boardingPassList) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder airlines = new StringBuilder(boardingPassList.get(0).getCarrierCode());
+        StringBuilder route = new StringBuilder(boardingPassList.get(0).getDeparture());
+        String time = "Arrive at " + parseDateToString(
+                boardingPassList.get(boardingPassList.size()-1).getArrivalTime());
+
+        for(BoardingPass boardingPass: boardingPassList) {
+            if(!airlines.toString().contains(boardingPass.getCarrierCode())) {
+                airlines.append("/" + boardingPass.getCarrierCode());
+            }
+            route.append("-" + boardingPass.getArrival());
+        }
+
+        sb.append(airlines);
+        sb.append(" ");
+        sb.append(route);
+        sb.append(" ");
+        sb.append(time);
+
+        return sb.toString();
     }
 }

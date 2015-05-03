@@ -3,10 +3,13 @@ package edu.cmu.sv.flight.rescheduler.ui.listener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.R;
 
 /**
@@ -15,16 +18,21 @@ import edu.cmu.sv.flight.rescheduler.ui.R;
  * If Class is null, then dismiss dialog only
  */
 public class DialogDismissAndIntentToAnotherActivityOnClickListener implements View.OnClickListener {
-
     private Activity act;
-    Dialog dia;
-    Class actClass;
+    private Dialog dia;
+    private Class actClass;
+    private Integer alternativeOptionIndex = null;
 
 
     public DialogDismissAndIntentToAnotherActivityOnClickListener(Activity act, Dialog dia, Class actClass) {
         this.act = act;
         this.dia = dia;
         this.actClass = actClass;
+    }
+
+    public DialogDismissAndIntentToAnotherActivityOnClickListener(Activity act, Dialog dia, Class actClass, Integer index) {
+        this(act, dia, actClass);
+        alternativeOptionIndex = index;
     }
 
     @Override
@@ -38,8 +46,14 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
             BoardingPass boardingPass = new BoardingPass();
             boardingPass.setStatus(BoardingPass.Status.ON_TIME);
             CurrentRoute currentRoute = CurrentRoute.getInstance();
-            currentRoute.updateBoardingPass(2, boardingPass);
-            currentRoute.updateBoardingPass(3, boardingPass);
+            IRescheduler rescheduler = new ProxyRescheduler();
+            if(alternativeOptionIndex != null)
+                currentRoute.updateBoardingPass(
+                        rescheduler.getRoutingResult().get(alternativeOptionIndex));
+            else {
+                Log.d("Exception", "[DialogDismiss] alternativeOptionIndex is not set");
+            }
+
         }
 
         if (actClass != null) {

@@ -83,8 +83,12 @@ public class CurrentRoute {
 
     public int numOfBoardingPasses() { return boardingPassList.size(); }
 
-    public synchronized void updateBoardingPass(int index, BoardingPass newBoardingPass) {
+    public void updateBoardingPass(int index, BoardingPass newBoardingPass) {
         boardingPassList.set(index, newBoardingPass);
+    }
+
+    public void updateBoardingPass(List<BoardingPass> boardingPassList) {
+        this.boardingPassList = boardingPassList;
     }
 
 }

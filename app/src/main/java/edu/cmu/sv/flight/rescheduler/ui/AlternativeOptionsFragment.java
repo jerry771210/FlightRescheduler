@@ -11,8 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -33,24 +31,6 @@ import edu.cmu.sv.flight.rescheduler.ui.listener.ShowRouteDetailOnItemClickListe
 public class AlternativeOptionsFragment extends Fragment {
     static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();
     private Rescheduler rescheduler;
-
-    private final String[] mockOptions = {
-            " 1 LAX - NYC Arrived at 08:00PM 10/23",
-            " 2 LAX - NYC Arrived at 09:00PM 10/23",
-            " 3 LAX - NYC Arrived at 05:00AM 10/24",
-            " 4 LAX - NYC Arrived at 10:00AM 10/24",
-            " 5 LAX - NYC Arrived at 11:00AM 10/24",
-            " 6 LAX - NYC Arrived at 08:00PM 10/23",
-            " 7 LAX - NYC Arrived at 09:00PM 10/23",
-            " 8 LAX - NYC Arrived at 05:00AM 10/24",
-            " 9 LAX - NYC Arrived at 10:00AM 10/24",
-            "10 LAX - NYC Arrived at 11:00AM 10/24",
-            "11 LAX - NYC Arrived at 08:00PM 10/23",
-            "12 LAX - NYC Arrived at 09:00PM 10/23",
-            "13 LAX - NYC Arrived at 05:00AM 10/24",
-            "14 LAX - NYC Arrived at 10:00AM 10/24",
-            "15 LAX - NYC Arrived at 11:00AM 10/24"
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,7 +70,7 @@ public class AlternativeOptionsFragment extends Fragment {
             index = extras.getInt("indexOfBoardingPass");
         } else {
             Log.d (LOG_TAG, "Can not receive index of boarding pass");
-            return new ArrayList<String>();
+            return null;
         }
 
         // Get depart and arrive info
@@ -105,6 +85,6 @@ public class AlternativeOptionsFragment extends Fragment {
         rescheduler = new ProxyRescheduler();
         rescheduler.findAvailableRoutes(departAirport, arriveAirport, false, 0, curDate, getActivity().getApplicationContext());
 
-        return Arrays.asList(mockOptions);
+        return rescheduler.getRoutingResultInListView();
     }
 }
