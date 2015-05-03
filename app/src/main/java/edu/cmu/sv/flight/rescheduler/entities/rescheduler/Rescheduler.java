@@ -1,6 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,6 +21,7 @@ import edu.cmu.sv.flight.rescheduler.util.Utils;
  * 2. Only enable nearby for arrival airport
  */
 public abstract class Rescheduler {
+    static final String LOG_TAG = Rescheduler.class.getSimpleName();
     private static List<List<BoardingPass>> routingResult = new ArrayList<List<BoardingPass>>();
     protected Context context; // For database usage
 
@@ -63,7 +65,7 @@ public abstract class Rescheduler {
         * @param  arriveAirport IATA code
         */
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                 boolean enableNearBy, int num_stop, Date curDate, Context context/* TODO */) {
+                 boolean enableNearBy, boolean isMultiple, int num_stop, Date curDate, Context context/* TODO */) {
         /* error handling here*/
         if (departAirport == null || arriveAirport == null || curDate == null || context == null) {
             return null;
@@ -88,12 +90,14 @@ public abstract class Rescheduler {
         AirportsGraph airportsGraph = new AirportsGraph();
         routingGraph = airportsGraph.getGraph(departAirportList, arriveAirportList, num_stop, context);
 
-        // 4. Construct real routes;
+        // 4. Construct real routes and return
         RoutesPlanner routesPlanner = new RoutesPlanner();
-        routesPlanner.plan(routingGraph, curDate, context);
+        routingResult = routesPlanner.plan(routingGraph, isMultiple,curDate, context);
 
-        // TODO
-        // 5. return results
+        for (List<BoardingPass> bpList : routingResult) {
+            Log.i(LOG_TAG, "To be display on the list" + bpList.toString());
+        }
+
         return routingResult;
     }
 }

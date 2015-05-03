@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.cmu.sv.flight.rescheduler.ws.remote.FlightStatAPIWrapper;
+import edu.cmu.sv.flight.rescheduler.ws.remote.IPublicFlightAPI;
+
 /**
  * Get data from external service
  * implements IDataService to provide app's internal class access
@@ -22,11 +25,10 @@ public class DataManager implements IDataService {
 
         String rawJson = myMap.get(keyString);
         if (rawJson == null) {
-            return "XXXXX";
-//            IPublicFlightAPI iPublicFlightAPI = new FlightStatAPIWrapper();
-//            rawJson = iPublicFlightAPI.getFlight(fromCity, toCity, date);
-//            Log.i(LOG_TAG, "Get json" + rawJson);
-//            myMap.put(keyString, rawJson);
+            IPublicFlightAPI iPublicFlightAPI = new FlightStatAPIWrapper();
+            rawJson = iPublicFlightAPI.getFlight(fromCity, toCity, date);
+            Log.i(LOG_TAG, "Get json" + rawJson);
+            myMap.put(keyString, rawJson);
         } else {
             Log.i(LOG_TAG, "Hash hit" + rawJson);
         }
