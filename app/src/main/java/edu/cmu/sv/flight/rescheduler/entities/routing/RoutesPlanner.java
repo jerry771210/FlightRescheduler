@@ -25,10 +25,8 @@ import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
  */
 public class RoutesPlanner {
     static final String LOG_TAG = RoutesPlanner.class.getSimpleName();
-
     // TODO have overnight feature
     // TODO take care of time zone diff
-    // TODO may need to be async
     // TODO no multiple airline for now
     private FlightCRUD flightCRUD;
     private IDataService dataService;// = new DataManager();

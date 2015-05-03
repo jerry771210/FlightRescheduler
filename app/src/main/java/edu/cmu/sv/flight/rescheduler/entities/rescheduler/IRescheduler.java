@@ -15,6 +15,6 @@ public interface IRescheduler {
     public List<List<BoardingPass>> getRoutingResult();
 
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                                    boolean enableNearBy, int num_stop, Date curDate, Context context/* TODO more args*/);
+                                    boolean enableNearBy, boolean multipleAirlines, int num_stop, Date curDate, Context context/* TODO more args*/);
 
 }

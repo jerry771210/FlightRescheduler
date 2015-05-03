@@ -103,7 +103,7 @@ public class AlternativeOptionsFragment extends Fragment {
 
         /* create Rescheduler*/
         rescheduler = new ProxyRescheduler();
-        rescheduler.findAvailableRoutes(departAirport, arriveAirport, false, 0, curDate, getActivity().getApplicationContext());
+        rescheduler.findAvailableRoutes(departAirport, arriveAirport, false, false, 0, curDate, getActivity().getApplicationContext());
 
         return Arrays.asList(mockOptions);
     }
