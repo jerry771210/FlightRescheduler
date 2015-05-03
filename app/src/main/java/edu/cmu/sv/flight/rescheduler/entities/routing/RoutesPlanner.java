@@ -27,6 +27,7 @@ import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
 public class RoutesPlanner {
     static final String LOG_TAG = RoutesPlanner.class.getSimpleName();
     static final String TARGET_AIRLINE = "AA";
+    static final int NUM_TO_LIST = 10;
     // TODO have overnight feature
     // TODO take care of time zone diff
     // TODO no multiple airline for now
@@ -67,14 +68,14 @@ public class RoutesPlanner {
         // check if multiple airlines
         bpList = filterMultipleAirlines(bpList, isMultiple);
 
-        // TODO filter out infeasible route
-
-        // filter here
+        // TODO multiple stop
         // sort to get first one here
+        int i = 0;
         for (BoardingPass bp : bpList) {
             List<BoardingPass> newList = new ArrayList<BoardingPass>();
             newList.add(bp);
             result.add(newList);
+            if ( i++ > NUM_TO_LIST || (size > 2) ) { break; }
         }
 
         return result;
@@ -96,7 +97,7 @@ public class RoutesPlanner {
         List<BoardingPass> bpList;
         if (fromAirport == null || toAirport == null || date == null) { return null;}
         // Query if in database
-        //bpList = flightCRUD.findFlightByDayOfWeek(fromAirport, toAirport,getDayOfWeek(date));
+        //bpList = flightCRUD.findFlightByDayOfWeek(fromAirport, toAirport,getDayOfWeek(date)); // TODO future version
         bpList = flightCRUD.findFlightByDate(fromAirport, toAirport,date);
 
         if (bpList == null || bpList.size() == 0) { // not in database
