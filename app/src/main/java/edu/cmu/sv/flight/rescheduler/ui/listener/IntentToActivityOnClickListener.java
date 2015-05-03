@@ -47,8 +47,11 @@ public class IntentToActivityOnClickListener implements View.OnClickListener {
             Log.d (LOG_TAG, "The to go activity is null");
         } else {
             Intent intent = new Intent(act, toActivityClass);
-            if(clearTop) {
+            if (clearTop) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+            if (index != null) {
+               CurrentRoute.getInstance().setStartingIndex(index);
             }
             act.startActivity(intent);
         }
