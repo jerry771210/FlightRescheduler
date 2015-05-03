@@ -69,9 +69,16 @@ public abstract class Rescheduler {
         /* error handling here*/
         if (departAirport == null || arriveAirport == null || curDate == null || context == null) {
             return null;
-        } // TODO exception ?
+        }
 
-        //enableNearBy = true;  // FAKE to test functionality
+        // TODO, relax this condition in real product
+        // The reason to use this condition is that if we did not set the configuration,
+        // The solution will be huge so as to query count (Please note free query account
+        // is limited)
+        if (num_stop > 0) {
+            isMultiple = false;
+            enableNearBy = false;
+        }
 
         // 1. get user specified S/D
         /* 2. Expand S/D if "nearby" */
@@ -85,7 +92,6 @@ public abstract class Rescheduler {
             arriveAirportList.add(arriveAirport);
         }
 
-        num_stop = 0; // TODO fix for now
         /* 3. Use BFS to find all routes in terms of "Stops" */
         List<List<String>> routingGraph;
         AirportsGraph airportsGraph = new AirportsGraph();
@@ -95,6 +101,7 @@ public abstract class Rescheduler {
         RoutesPlanner routesPlanner = new RoutesPlanner();
         routingResult = routesPlanner.plan(routingGraph, isMultiple,curDate, context);
 
+        Log.i(LOG_TAG, "Size of result" + routingResult.size());
         for (List<BoardingPass> bpList : routingResult) {
             Log.i(LOG_TAG, "To be display on the list" + bpList.toString());
         }

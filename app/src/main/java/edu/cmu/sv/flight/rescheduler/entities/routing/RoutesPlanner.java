@@ -30,7 +30,7 @@ public class RoutesPlanner {
     static final int NUM_TO_LIST = 7;
     // TODO have overnight feature
     // TODO take care of time zone diff
-    // TODO no multiple airline for now
+
     private FlightCRUD flightCRUD;
     private IDataService dataService;// = new DataManager();
 
@@ -69,8 +69,6 @@ public class RoutesPlanner {
         // check if multiple airlines
         bpList = filterMultipleAirlines(bpList, isMultiple);
 
-        // TODO multiple stop
-
         // sort
         bpList = utils.sortFlightsByArrivalTime(bpList);
         // append result
@@ -80,16 +78,42 @@ public class RoutesPlanner {
             if (bp.getDepartureTime().compareTo(date) < 0) {
                 continue;
             }
-
+            // filter overnight if more than 0 stop
+            if (size > 2 && isOvernight(bp)) {
+                continue;
+            }
             List<BoardingPass> newList = new ArrayList<BoardingPass>();
-            newList.add(bp);
-            result.add(newList);
+            // construct second flight if any, please note we only care at most 1 stop
+            // because if more than one stop will result in too much query (query is not free)
+            if (size > 2) {
+                List<BoardingPass> secondList = getFlightsByAirportAndDate(inRoute.get(1), inRoute.get(2), date);
+                // check result
+                if (isDummyRecord(secondList)) {
+                    break;
+                }
+                // check if multiple airlines
+                secondList = filterMultipleAirlines(secondList, isMultiple);
+                // sort
+                secondList = utils.sortFlightsByArrivalTime(secondList);
+                if (secondList == null || secondList.size() == 0) {
+                    // do nothing
+                } else if (getMostFeasibleBp(secondList, bp.getArrivalTime()) == null) {
+                    // do nothing
+                } else {
+                    newList.add(bp);
+                    newList.add(getMostFeasibleBp(secondList, bp.getArrivalTime()));
+                    result.add(newList);
+                }
+            } else {
+                newList.add(bp);
+                result.add(newList);
+            }
             if ( i++ > NUM_TO_LIST || (size > 2) ) { break; }
             //Log.i(LOG_TAG, "Index: " + i);
         }
-
         return result;
     }
+
 
     private List<BoardingPass> filterMultipleAirlines(List<BoardingPass> inList, boolean isMultiple) {
         if (isMultiple) { return inList; }
@@ -102,6 +126,22 @@ public class RoutesPlanner {
 
         return res;
     }
+
+    private boolean isOvernight(BoardingPass bp) {
+        Date departDate = bp.getDepartureTime();
+        Date arriveDate = bp.getArrivalTime();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(departDate);
+        int depDay = cal.get(Calendar.DAY_OF_MONTH);
+        cal.setTime(arriveDate);
+        int arrDay = cal.get(Calendar.DAY_OF_MONTH);
+        if (depDay == arrDay) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     private List<BoardingPass> getFlightsByAirportAndDate(String fromAirport, String toAirport, Date date) {
         List<BoardingPass> bpList;
@@ -187,5 +227,15 @@ public class RoutesPlanner {
             }
         }
         return false;
+    }
+
+    private BoardingPass getMostFeasibleBp(List<BoardingPass> inList, Date date) {
+        for (BoardingPass bp : inList) {
+            // check if feasible
+            if (bp.getDepartureTime().compareTo(date) > 0) {
+                return bp;
+            }
+        }
+        return null;
     }
 }
