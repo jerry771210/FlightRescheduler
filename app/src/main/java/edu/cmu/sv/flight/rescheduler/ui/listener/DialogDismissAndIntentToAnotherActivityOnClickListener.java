@@ -3,7 +3,6 @@ package edu.cmu.sv.flight.rescheduler.ui.listener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -42,32 +41,16 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
         dia.dismiss();
         switch (v.getId()) {
             case R.id.buttonRebook:
-            // TODO: Update the boarding pass after confirmation
-            // TODO: Need algorithms for retrieving new boarding passes
-            // Mock the updated boarding passes
-            // Not sure whether it's good to do it here
                 Integer alternativeOptionIndex = (Integer) object;
-                BoardingPass boardingPass = new BoardingPass();
-                boardingPass.setStatus(BoardingPass.Status.ON_TIME);
+                CurrentRoute.getInstance().backup();
                 CurrentRoute currentRoute = CurrentRoute.getInstance();
                 Rescheduler rescheduler = new ProxyRescheduler();
-                if(alternativeOptionIndex != null)
-                    currentRoute.updateBoardingPass(
+                currentRoute.updateBoardingPass(
                             rescheduler.getRoutingResult().get(alternativeOptionIndex));
-                else {
-                    Log.d("Exception", "[DialogDismiss] alternativeOptionIndex is not set");
-                }
+                break;
             case R.id.buttonAdvancedSearchConfirm:
-                /* Get index from activity */
-                int index = 0;
-                Bundle extras = act.getIntent().getExtras();
-                if (extras != null) {
-                    index = extras.getInt("indexOfBoardingPass");
-                } else {
-                    Log.d ("DialogDismiss", "Can not receive index of boarding pass");
-                    return;
-                }
                 // Get depart and arrive info
+                int index = CurrentRoute.getInstance().getStartingIndex();
                 BoardingPass departBP = CurrentRoute.getInstance().getBoardingPass(index);
                 String departAirport = departBP.getDeparture();
                 String arriveAirport = CurrentRoute.getInstance().getLastBoardingPass().getArrival();
@@ -91,6 +74,7 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
                         R.id.textViewListItemAvailableRoute,
                         R.id.listViewAlternativeRoute,
                         rescheduler.getRoutingResultInListView());
+                break;
 
         }
 

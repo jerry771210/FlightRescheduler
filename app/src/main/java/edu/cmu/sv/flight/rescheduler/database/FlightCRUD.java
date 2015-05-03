@@ -134,7 +134,7 @@ public class FlightCRUD {
                     Integer status = cursor.getInt(8);
                     // Adding contact to list
                     BoardingPass flight = new BoardingPass(id, carrierCode, flightNum,
-                            departAirport, arriveAirport, "gate",
+                            departAirport, arriveAirport, "TBD",
                             utils.parseStringToDate(departTime),
                             utils.parseStringToDate(arriveTime),
                             BoardingPass.Status.values()[status]);

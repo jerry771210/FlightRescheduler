@@ -1,7 +1,6 @@
 package edu.cmu.sv.flight.rescheduler.ui.listener;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,16 +40,8 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
         Rescheduler rescheduler = new ProxyRescheduler();
         rescheduler.setIsMultipleAirlines(!rescheduler.isMultipleAirlines());
 
-        /* Get index from activity */
-        int index = 0;
-        Bundle extras = act.getIntent().getExtras();
-        if (extras != null) {
-            index = extras.getInt("indexOfBoardingPass");
-        } else {
-            Log.d ("DialogDismiss", "Can not receive index of boarding pass");
-            return;
-        }
         // Get depart and arrive info
+        int index = CurrentRoute.getInstance().getStartingIndex();
         BoardingPass departBP = CurrentRoute.getInstance().getBoardingPass(index);
         String departAirport = departBP.getDeparture();
         String arriveAirport = CurrentRoute.getInstance().getLastBoardingPass().getArrival();

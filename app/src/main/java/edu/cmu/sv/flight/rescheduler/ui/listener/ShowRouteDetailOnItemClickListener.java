@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.R;
@@ -25,7 +24,6 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
     private Button buttonRebook;
     private Button buttonCancel;
     private TextView textViewFlightDetail;
-    private CurrentRoute currentRoute;
 
     public ShowRouteDetailOnItemClickListener(Activity act) {
         this.act = act;

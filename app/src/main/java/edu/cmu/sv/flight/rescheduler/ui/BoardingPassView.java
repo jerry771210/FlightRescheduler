@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.ui.activity.AlternativeOptionsActivity;
 import edu.cmu.sv.flight.rescheduler.ui.listener.IntentToActivityOnClickListener;
 
@@ -91,12 +92,13 @@ public class BoardingPassView {
             case DELAYED:
                 textViewStatus.setText("Delayed");
                 layoutTop.setBackgroundColor(0xC8EBB027);
-                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class, index));
+                CurrentRoute.getInstance().setStartingIndex(index);
+                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class));
                 break;
             case CANCELED:
                 textViewStatus.setText("Canceled");
                 layoutTop.setBackgroundColor(0xC8EB0300);
-                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class, index));
+                view.setOnClickListener(new IntentToActivityOnClickListener(activity, AlternativeOptionsActivity.class));
                 break;
         }
     }

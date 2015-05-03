@@ -61,17 +61,8 @@ public class AlternativeOptionsFragment extends Fragment {
     }
 
     private List<String> getAlternativeList() {
-        int index;
-        /* Get index from previous activity */
-        Bundle extras = getActivity().getIntent().getExtras();
-        if (extras != null) {
-            index = extras.getInt("indexOfBoardingPass");
-        } else {
-            Log.d (LOG_TAG, "Can not receive index of boarding pass");
-            return null;
-        }
-
         // Get depart and arrive info
+        int index = CurrentRoute.getInstance().getStartingIndex();
         BoardingPass departBP = CurrentRoute.getInstance().getBoardingPass(index);
         String departAirport = departBP.getDeparture();
         String arriveAirport = CurrentRoute.getInstance().getLastBoardingPass().getArrival();

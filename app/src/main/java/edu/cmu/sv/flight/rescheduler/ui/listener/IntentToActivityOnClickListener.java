@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
+import edu.cmu.sv.flight.rescheduler.ui.R;
+
 /**
  * Created by moumoutsay on 4/9/15.
  */
@@ -35,15 +38,17 @@ public class IntentToActivityOnClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        // If confirmation is canceled, boardingPasses need to be restored back to the original state
+        if(v.getId() == R.id.buttonCancelConfirm) {
+            CurrentRoute.getInstance().restore();
+        }
+
         if (toActivityClass == null) {
             Log.d (LOG_TAG, "The to go activity is null");
         } else {
             Intent intent = new Intent(act, toActivityClass);
             if(clearTop) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            }
-            if (index != null) {
-                intent.putExtra("indexOfBoardingPass", index.intValue());
             }
             act.startActivity(intent);
         }

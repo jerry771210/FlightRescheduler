@@ -13,6 +13,9 @@ import edu.cmu.sv.flight.rescheduler.util.Utils;
 public class CurrentRoute {
     private static final CurrentRoute instance = new CurrentRoute();
     private List<BoardingPass> boardingPassList;
+    private List<BoardingPass> backUp;
+    private int startingIndex;
+
 
     private CurrentRoute() {
         boardingPassList = new ArrayList<>();
@@ -81,14 +84,32 @@ public class CurrentRoute {
         return boardingPassList.get(index);
     }
 
+    public int getStartingIndex() {
+        return startingIndex;
+    }
+
+    public void setStartingIndex(int startingIndex) {
+        this.startingIndex = startingIndex;
+    }
+
     public int numOfBoardingPasses() { return boardingPassList.size(); }
 
-    public void updateBoardingPass(int index, BoardingPass newBoardingPass) {
-        boardingPassList.set(index, newBoardingPass);
-    }
-
     public void updateBoardingPass(List<BoardingPass> boardingPassList) {
-        this.boardingPassList = boardingPassList;
+        List<BoardingPass> list = new ArrayList<>();
+        for(int i = 0; i < startingIndex; i++) {
+            list.add(this.boardingPassList.get(i));
+        }
+        for(BoardingPass boardingPass: boardingPassList) {
+            list.add(boardingPass);
+        }
+        this.boardingPassList = list;
     }
 
+    public void backup() {
+        backUp = new ArrayList<>(boardingPassList);
+    }
+    public void restore() {
+        boardingPassList = backUp;
+        backUp = null;
+    }
 }

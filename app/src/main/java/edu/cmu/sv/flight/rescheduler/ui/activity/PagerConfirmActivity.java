@@ -24,7 +24,6 @@ public class PagerConfirmActivity extends Activity {
         setContentView(R.layout.activity_pager_confirm);
 
         buttonCancel = (Button) findViewById(R.id.buttonCancelConfirm);
-        // TODO: if canceled, boardingPasses in Rescheduler need to be restored back to the original state
         buttonCancel.setOnClickListener(new IntentToActivityOnClickListener(this, AlternativeOptionsActivity.class));
         buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
         buttonConfirm.setOnClickListener(new IntentToActivityOnClickListener(this, BoardingPassActivity.class, true));
