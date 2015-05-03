@@ -13,6 +13,7 @@ import java.util.List;
 
 import edu.cmu.sv.flight.rescheduler.database.FlightCRUD;
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
+import edu.cmu.sv.flight.rescheduler.util.Utils;
 import edu.cmu.sv.flight.rescheduler.ws.local.DataManager;
 import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
 
@@ -120,6 +121,7 @@ public class RoutesPlanner {
     private List<BoardingPass> convertJsonToBoardingPassList(String inJson, Date date) {
         List<BoardingPass> res = new ArrayList<BoardingPass>();
         JSONArray jsonArrAllDepFlights = null; // json array of all departure flights
+        Utils utils = new Utils();
         // get flights
         try {
             JSONObject j_obj_all = new JSONObject(inJson);
@@ -135,15 +137,15 @@ public class RoutesPlanner {
                                            obj.getString("departureAirportFsCode"),
                                            obj.getString("arrivalAirportFsCode"),
                                            obj.getString("departureTerminal"),
-                                           date,
-                                           new Date(),
+                                           utils.parseStringToDate(departTime),
+                                           utils.parseStringToDate(arriveTime),
                                            BoardingPass.Status.ON_TIME
                 );
                 /*
                 public BoardingPass(Integer id, String carrierCode, String flightNumber,
-                    String departure, String arrival, String gate, String seat,
-                    Date departureTime, Date arrivalTime, Integer departureDay,
-                    Status status) {
+                        String departure, String arrival, String gate,
+                        Date departureTime, Date arrivalTime,
+                        Status status) {
                 */
                 //Log.i(LOG_TAG, "Get one bp\n" + aBoardingPass);
                 res.add(aBoardingPass);
