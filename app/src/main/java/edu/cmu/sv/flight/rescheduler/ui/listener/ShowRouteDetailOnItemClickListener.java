@@ -37,7 +37,7 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
         buttonRebook = (Button) dialog.findViewById(R.id.buttonRebook);
         buttonCancel = (Button) dialog.findViewById(R.id.buttonCancelRebook);
         buttonCancel.setOnClickListener(
-                new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
+                new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null, null));
         textViewFlightDetail = (TextView) dialog.findViewById(R.id.textViewFlightDetails);
     }
 

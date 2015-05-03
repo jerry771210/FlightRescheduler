@@ -3,14 +3,18 @@ package edu.cmu.sv.flight.rescheduler.ui.listener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.Date;
+
 import edu.cmu.sv.flight.rescheduler.entities.BoardingPass;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
-import edu.cmu.sv.flight.rescheduler.entities.rescheduler.IRescheduler;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.ProxyRescheduler;
+import edu.cmu.sv.flight.rescheduler.entities.rescheduler.Rescheduler;
 import edu.cmu.sv.flight.rescheduler.ui.R;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListView;
 
 /**
  * Created by moumoutsay on 4/9/15.
@@ -21,38 +25,65 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
     private Activity act;
     private Dialog dia;
     private Class actClass;
-    private Integer alternativeOptionIndex = null;
+    private Object object = null;
 
-
-    public DialogDismissAndIntentToAnotherActivityOnClickListener(Activity act, Dialog dia, Class actClass) {
+    public DialogDismissAndIntentToAnotherActivityOnClickListener(Activity act, Dialog dia,
+                                                                  Class actClass, Object object) {
         this.act = act;
         this.dia = dia;
         this.actClass = actClass;
-    }
-
-    public DialogDismissAndIntentToAnotherActivityOnClickListener(Activity act, Dialog dia, Class actClass, Integer index) {
-        this(act, dia, actClass);
-        alternativeOptionIndex = index;
+        this.object = object;
     }
 
     @Override
     public void onClick(View v) {
         dia.dismiss();
-        if(v.getId() == R.id.buttonRebook) {
+        switch (v.getId()) {
+            case R.id.buttonRebook:
             // TODO: Update the boarding pass after confirmation
             // TODO: Need algorithms for retrieving new boarding passes
             // Mock the updated boarding passes
             // Not sure whether it's good to do it here
-            BoardingPass boardingPass = new BoardingPass();
-            boardingPass.setStatus(BoardingPass.Status.ON_TIME);
-            CurrentRoute currentRoute = CurrentRoute.getInstance();
-            IRescheduler rescheduler = new ProxyRescheduler();
-            if(alternativeOptionIndex != null)
-                currentRoute.updateBoardingPass(
-                        rescheduler.getRoutingResult().get(alternativeOptionIndex));
-            else {
-                Log.d("Exception", "[DialogDismiss] alternativeOptionIndex is not set");
-            }
+                Integer alternativeOptionIndex = (Integer) object;
+                BoardingPass boardingPass = new BoardingPass();
+                boardingPass.setStatus(BoardingPass.Status.ON_TIME);
+                CurrentRoute currentRoute = CurrentRoute.getInstance();
+                Rescheduler rescheduler = new ProxyRescheduler();
+                if(alternativeOptionIndex != null)
+                    currentRoute.updateBoardingPass(
+                            rescheduler.getRoutingResult().get(alternativeOptionIndex));
+                else {
+                    Log.d("Exception", "[DialogDismiss] alternativeOptionIndex is not set");
+                }
+            case R.id.buttonAdvancedSearchConfirm:
+                AdvancedSearch advancedSearch = (AdvancedSearch) object;
+
+                int index = 0;
+                /* Get index from previous activity */
+                Bundle extras = act.getIntent().getExtras();
+                if (extras != null) {
+                    index = extras.getInt("indexOfBoardingPass");
+                } else {
+                    Log.d ("DialogDismiss", "Can not receive index of boarding pass");
+                    return;
+                }
+                // Get depart and arrive info
+                BoardingPass departBP = CurrentRoute.getInstance().getBoardingPass(index);
+                String departAirport = departBP.getDeparture();
+                String arriveAirport = CurrentRoute.getInstance().getLastBoardingPass().getArrival();
+                Date curDate = departBP.getDepartureTime();
+
+                /* create Rescheduler*/
+                rescheduler = new ProxyRescheduler();
+                rescheduler.findAvailableRoutes(departAirport, arriveAirport,
+                        advancedSearch.isNearbyAirport(), false/*multiple*/,
+                        0, curDate, act.getApplicationContext());
+
+
+                UpdateListView.update(act, R.layout.list_item_available_route,
+                        R.id.textViewListItemAvailableRoute,
+                        R.id.listViewAlternativeRoute,
+                        rescheduler.getRoutingResultInListView());
 
         }
 

@@ -10,7 +10,7 @@ import java.util.List;
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.ui.AlternativeOptionsFragment;
 import edu.cmu.sv.flight.rescheduler.ui.R;
-import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
+import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListView;
 
 /**
  * Created by moumoutsay on 4/9/15.
@@ -27,7 +27,7 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
     private static final String LOG_TAG = AlternativeOptionsFragment.class.getSimpleName();
     private CurrentRoute currentRoute; // TODO, replace with real rescheduler
 
-    private final String[] mockOptions = {
+    private String[] mockOptions = {
             " 1 LAX - NYC Arrived at 08:00PM 10/23",
             " 2 LAX - NYC Arrived at 09:00PM 10/23",
             " 3 LAX - NYC Arrived at 05:00AM 10/24",
@@ -86,12 +86,12 @@ public class OtherAirlinesOnClickListener implements View.OnClickListener {
         List<String> availableList;
         // TODO availableList = rescheduler.getXXX + further processing
         if ("Other Airlines".equals(buttonVal)) {
-            UpdateListview.update(act, R.layout.list_item_available_route,
+            UpdateListView.update(act, R.layout.list_item_available_route,
                     R.id.textViewListItemAvailableRoute,
                     R.id.listViewAlternativeRoute,
                     mockOtherAirlines);
         } else {
-            UpdateListview.update(act, R.layout.list_item_available_route,
+            UpdateListView.update(act, R.layout.list_item_available_route,
                     R.id.textViewListItemAvailableRoute,
                     R.id.listViewAlternativeRoute,
                     mockOptions);

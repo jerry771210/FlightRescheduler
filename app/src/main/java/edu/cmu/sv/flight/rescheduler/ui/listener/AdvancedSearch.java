@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import edu.cmu.sv.flight.rescheduler.entities.rescheduler.CurrentRoute;
 import edu.cmu.sv.flight.rescheduler.ui.R;
-import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
 
 /**
  * Created by hsuantzl on 2015/4/4.
@@ -23,29 +22,7 @@ import edu.cmu.sv.flight.rescheduler.ui.update.UpdateListview;
  * TODO, think about rename the class
  */
 public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener {
-
     private CurrentRoute currentRoute;
-
-    // TODO remove these mock data later
-    private final String[] mockAdvancedSearch = {
-            " 1 LAX - ACY Arrived at 08:00PM 10/23",
-            " 2 LAX - EWR Arrived at 09:00PM 10/23",
-            " 3 LAX - ACY Arrived at 05:00AM 10/24",
-            " 4 LAX - TTN Arrived at 10:00AM 10/24",
-            " 5 LAX - NYC Arrived at 11:00AM 10/24",
-            " 6 LAX - TEB Arrived at 08:00PM 10/23",
-            " 7 LAX - TEB Arrived at 09:00PM 10/23",
-            " 8 LAX - ACY Arrived at 05:00AM 10/24",
-            " 9 LAX - TTN Arrived at 10:00AM 10/24",
-            "10 LAX - EWR Arrived at 11:00AM 10/24",
-            "11 LAX - ACY Arrived at 08:00PM 10/23",
-            "12 LAX - TTN Arrived at 09:00PM 10/23",
-            "13 LAX - ACY Arrived at 05:00AM 10/24",
-            "14 LAX - TTN Arrived at 10:00AM 10/24",
-            "15 LAX - TTN Arrived at 11:00AM 10/24"
-    };
-
-
     private Activity act;
     private int numStops = 1;
 
@@ -96,7 +73,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
         seekBar.setOnSeekBarChangeListener(this);
         currentRoute = CurrentRoute.getInstance();
 
-        confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null));
+        confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null, this));
         checkBoxOverNight.setOnClickListener(new CheckBoxOnClickListener(overNight));
         checkBoxNoSeat.setOnClickListener(new CheckBoxOnClickListener(noSeat));
         checkBoxNearbyAirport.setOnClickListener(new CheckBoxOnClickListener(nearbyAirport));
@@ -126,10 +103,5 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     public void onClick(View v) {
         init();
         showDialog();
-        // TODO, get data from ProxyRescheduler
-        UpdateListview.update(act, R.layout.list_item_available_route,
-                R.id.textViewListItemAvailableRoute,
-                R.id.listViewAlternativeRoute,
-                mockAdvancedSearch);
     }
 }
