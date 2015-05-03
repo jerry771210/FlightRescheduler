@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -27,27 +26,7 @@ public abstract class Rescheduler {
     protected Context context; // For database usage
 
     public List<List<BoardingPass>> getRoutingResult() {
-//        /*TODO: remove mock data */
-//        List<List<BoardingPass>> mockOptions = new ArrayList<>();
-//        List<BoardingPass> option1 = new ArrayList<>();
-//        option1.add(new BoardingPass(null, "AA", "1234", "SJC", "SEA", "OPT1",
-//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-//                BoardingPass.Status.ON_TIME));
-//        option1.add(new BoardingPass(null, "AA", "5678", "SEA", "PHI", "OPT1",
-//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-//                BoardingPass.Status.ON_TIME));
-//        mockOptions.add(option1);
-//        List<BoardingPass> option2 = new ArrayList<>();
-//        option2.add(new BoardingPass(null, "AA", "5566", "SJC", "SEA", "OPT1",
-//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-//                BoardingPass.Status.ON_TIME));
-//        option2.add(new BoardingPass(null, "AA", "7788", "SEA", "PHI", "OPT1",
-//                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),
-//                BoardingPass.Status.ON_TIME));
-//        mockOptions.add(option2);
-
         return routingResult;
-        //return mockOptions;
     }
 
     public List<String> getRoutingResultInListView() {
