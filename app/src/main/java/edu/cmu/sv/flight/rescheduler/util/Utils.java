@@ -11,6 +11,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -131,5 +133,26 @@ public class Utils {
         sb.append(time);
 
         return sb.toString();
+    }
+
+    public List<List<BoardingPass>> sortOptionsByArrivalTime(List<List<BoardingPass>> list) {
+        Collections.sort(list, new Comparator<List<BoardingPass>>() {
+            @Override
+            public int compare(List<BoardingPass> lhs, List<BoardingPass> rhs) {
+                return lhs.get(lhs.size()-1).getArrivalTime()
+                        .compareTo(rhs.get(rhs.size() - 1).getArrivalTime());
+            }
+        });
+        return list;
+    }
+
+    public List<BoardingPass> sortFlightsByArrivalTime(List<BoardingPass> list) {
+        Collections.sort(list, new Comparator<BoardingPass>() {
+            @Override
+            public int compare(BoardingPass lhs, BoardingPass rhs) {
+                return lhs.getArrivalTime().compareTo(rhs.getArrivalTime());
+            }
+        });
+        return list;
     }
 }
