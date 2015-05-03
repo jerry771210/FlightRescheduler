@@ -27,7 +27,7 @@ import edu.cmu.sv.flight.rescheduler.ws.local.IDataService;
 public class RoutesPlanner {
     static final String LOG_TAG = RoutesPlanner.class.getSimpleName();
     static final String TARGET_AIRLINE = "AA";
-    static final int NUM_TO_LIST = 10;
+    static final int NUM_TO_LIST = 7;
     // TODO have overnight feature
     // TODO take care of time zone diff
     // TODO no multiple airline for now
@@ -57,6 +57,7 @@ public class RoutesPlanner {
         int size = inRoute.size();
         dataService = new DataManager();
         flightCRUD = new FlightCRUD(context);
+        Utils utils = new Utils();
 
         // Construct first one
         bpList = getFlightsByAirportAndDate (inRoute.get(0), inRoute.get(1), date);
@@ -69,13 +70,22 @@ public class RoutesPlanner {
         bpList = filterMultipleAirlines(bpList, isMultiple);
 
         // TODO multiple stop
-        // sort to get first one here
+
+        // sort
+        bpList = utils.sortFlightsByArrivalTime(bpList);
+        // append result
         int i = 0;
         for (BoardingPass bp : bpList) {
+            // check if feasible
+            if (bp.getDepartureTime().compareTo(date) < 0) {
+                continue;
+            }
+
             List<BoardingPass> newList = new ArrayList<BoardingPass>();
             newList.add(bp);
             result.add(newList);
             if ( i++ > NUM_TO_LIST || (size > 2) ) { break; }
+            //Log.i(LOG_TAG, "Index: " + i);
         }
 
         return result;
