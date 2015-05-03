@@ -55,21 +55,20 @@ public class RoutesPlanner {
         dataService = new DataManager();
         flightCRUD = new FlightCRUD(context);
 
-        for (int i = 0; i < size - 1; i++) {
-            // Query to see if existed in database first
-            bpList = getFlightsByAirportAndDate (inRoute.get(i), inRoute.get(i+1), date);
-
-            // check result
-            if (isDummyRecord(bpList)) {
-                continue;
-            }
-
-            // TODO filter out infeasible route
-            // tmp here
-            result.add(bpList);
+        // Construct first one
+        bpList = getFlightsByAirportAndDate (inRoute.get(0), inRoute.get(1), date);
+        // check result
+        if (isDummyRecord(bpList)) {
+           return null;
         }
-
-        Log.i(LOG_TAG, inRoute.toString());
+        // TODO filter out infeasible route
+        // filter here
+        // sort to get first one here
+        for (BoardingPass bp : bpList) {
+            List<BoardingPass> newList = new ArrayList<BoardingPass>();
+            newList.add(bp);
+            result.add(newList);
+        }
 
         return result;
     }
