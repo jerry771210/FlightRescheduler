@@ -96,7 +96,8 @@ public class RoutesPlanner {
         List<BoardingPass> bpList;
         if (fromAirport == null || toAirport == null || date == null) { return null;}
         // Query if in database
-        bpList = flightCRUD.findFlightByDayOfWeek(fromAirport, toAirport,getDayOfWeek(date));
+        //bpList = flightCRUD.findFlightByDayOfWeek(fromAirport, toAirport,getDayOfWeek(date));
+        bpList = flightCRUD.findFlightByDate(fromAirport, toAirport,date);
 
         if (bpList == null || bpList.size() == 0) { // not in database
             String rawJson = dataService.getFlight(fromAirport, toAirport, date);
