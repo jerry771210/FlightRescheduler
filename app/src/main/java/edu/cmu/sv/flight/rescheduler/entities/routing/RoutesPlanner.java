@@ -85,7 +85,7 @@ public class RoutesPlanner {
             newList.add(bp);
             result.add(newList);
             if ( i++ > NUM_TO_LIST || (size > 2) ) { break; }
-            Log.i(LOG_TAG, "Index: " + i);
+            //Log.i(LOG_TAG, "Index: " + i);
         }
 
         return result;
