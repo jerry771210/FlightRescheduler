@@ -41,10 +41,16 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
         textViewFlightDetail = (TextView) dialog.findViewById(R.id.textViewFlightDetails);
     }
 
-    private void display(String fightDetails) {
-        currentRoute = CurrentRoute.getInstance();
-        // TODO, get data from ProxyRescheduler
-
+    private void display(int index) {
+        IRescheduler rescheduler = new ProxyRescheduler();
+        List<BoardingPass> option = rescheduler.getRoutingResult().get(index);
+        StringBuilder detail =
+                new StringBuilder("\n\n");
+        for(BoardingPass boardingPass: option) {
+            detail.append(boardingPass.getFlightDetail());
+            detail.append("\n--------------------------------------------------------------\n\n\n");
+        }
+        textViewFlightDetail.setText(detail.toString());
         dialog.show();
     }
 
@@ -54,10 +60,6 @@ public class ShowRouteDetailOnItemClickListener implements AdapterView.OnItemCli
         buttonRebook.setOnClickListener(
                 new DialogDismissAndIntentToAnotherActivityOnClickListener(
                         act, dialog, PagerConfirmActivity.class, position));
-
-        IRescheduler rescheduler = new ProxyRescheduler();
-        List<List<BoardingPass>> options = rescheduler.getRoutingResult();
-        textViewFlightDetail.setText(options.get(position).toString());
-        display( ((TextView)view).getText().toString());
+        display(position);
     }
 }

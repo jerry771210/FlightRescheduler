@@ -122,6 +122,25 @@ public class BoardingPass {
         this.status = status;
     }
 
+    public String getFlightDetail() {
+        Utils utils = new Utils();
+        StringBuilder sb = new StringBuilder();
+        sb.append("FLIGHT\t");
+        sb.append(flightNumber);
+        sb.append(" - ");
+        sb.append(carrierCode);
+        sb.append("\n--------------------------------------------------------------\n");
+        sb.append("DEPARTURE: ");
+        sb.append(departure);
+        sb.append(", ");
+        sb.append(utils.parseDateToString(departureTime));
+        sb.append("\nARRIVAL: ");
+        sb.append(arrival);
+        sb.append(", ");
+        sb.append(utils.parseDateToString(arrivalTime));
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         Utils utils = new Utils();
