@@ -31,13 +31,14 @@ public class RoutesPlanner {
     private FlightCRUD flightCRUD;
     private IDataService dataService;// = new DataManager();
 
-    public List<List<BoardingPass>> plan (List<List<String>> routingGraph, Date date, Context context){
+    public List<List<BoardingPass>> plan (List<List<String>> routingGraph, boolean isMultiple,
+                                    Date date, Context context){
         if (routingGraph == null || date == null || context == null) {
             return null;
         }
         List<List<BoardingPass>> res = new ArrayList<List<BoardingPass>>();
         for (List<String> aRoute : routingGraph) {
-            List<List<BoardingPass>> aDetailRoute = getDetailRoute(aRoute, date, context);
+            List<List<BoardingPass>> aDetailRoute = getDetailRoute(aRoute, isMultiple, date, context);
             if (aDetailRoute != null) {
                 res.addAll(aDetailRoute);
             }
@@ -45,7 +46,8 @@ public class RoutesPlanner {
         return res;
     }
 
-    private List<List<BoardingPass>> getDetailRoute(List<String> inRoute, Date date, Context context) {
+    private List<List<BoardingPass>> getDetailRoute(List<String> inRoute, Boolean isisMultiple,
+                                                    Date date, Context context) {
         if (inRoute == null || inRoute.size() < 2) { return null; }
         List<List<BoardingPass>> result = new ArrayList<List<BoardingPass>>();
         List<BoardingPass> bpList;

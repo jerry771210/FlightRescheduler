@@ -31,7 +31,7 @@ public abstract class Rescheduler {
         * @param  arriveAirport IATA code
         */
     public List<List<BoardingPass>> findAvailableRoutes(String departAirport, String arriveAirport,
-                 boolean enableNearBy, boolean multipleAirlines, int num_stop, Date curDate, Context context/* TODO */) {
+                 boolean enableNearBy, boolean isMultiple, int num_stop, Date curDate, Context context/* TODO */) {
         /* error handling here*/
         if (departAirport == null || arriveAirport == null || curDate == null || context == null) {
             return null;
@@ -58,7 +58,7 @@ public abstract class Rescheduler {
 
         // 4. Construct real routes and return
         RoutesPlanner routesPlanner = new RoutesPlanner();
-        routingResult = routesPlanner.plan(routingGraph, curDate, context);
+        routingResult = routesPlanner.plan(routingGraph, isMultiple,curDate, context);
 
 //        for (List<BoardingPass> bpList : routingResult) {
 //            Log.i(LOG_TAG, "To be display on the list" + bpList.toString());
