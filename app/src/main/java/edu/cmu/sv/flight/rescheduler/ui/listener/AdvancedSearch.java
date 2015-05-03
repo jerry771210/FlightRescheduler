@@ -26,10 +26,6 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
     private Activity act;
     private int numStops = 1;
 
-    private AtomicBoolean overNight;
-    private AtomicBoolean noSeat;
-    private AtomicBoolean nearbyAirport;
-
     private Dialog dialog;
     private TextView textViewNumStop;
     private SeekBar seekBar;
@@ -48,35 +44,14 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
         checkBoxNoSeat = (CheckBox) dialog.findViewById(R.id.checkBoxNoSeat);
         checkBoxNearbyAirport = (CheckBox) dialog.findViewById(R.id.checkBoxNearbyAirport);
         confirm = (Button) dialog.findViewById(R.id.buttonAdvancedSearchConfirm);
-        overNight = new AtomicBoolean(false);
-        noSeat = new AtomicBoolean(false);
-        nearbyAirport = new AtomicBoolean(false);
-    }
-
-    public boolean isNearbyAirport() {
-        return nearbyAirport.get();
-    }
-
-    public boolean isNoSeat() {
-        return noSeat.get();
-    }
-
-    public boolean isOverNight() {
-        return overNight.get();
-    }
-
-    public int getNumStops() {
-        return numStops;
     }
 
     public void init() {
         seekBar.setOnSeekBarChangeListener(this);
         currentRoute = CurrentRoute.getInstance();
 
-        confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null, null));
-        checkBoxOverNight.setOnClickListener(new CheckBoxOnClickListener(overNight));
-        checkBoxNoSeat.setOnClickListener(new CheckBoxOnClickListener(noSeat));
-        checkBoxNearbyAirport.setOnClickListener(new CheckBoxOnClickListener(nearbyAirport));
+        confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(
+                act, dialog, null, null));
         dialog.setTitle("Advanced search");
     }
     public void showDialog() {

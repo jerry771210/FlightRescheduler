@@ -74,11 +74,12 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
                 Date curDate = departBP.getDepartureTime();
 
                 // Get parameters of advanced search
-                boolean isNearbyAirport = ((CheckBox)dia.findViewById(R.id.checkBoxOverNight)).isChecked();
+                boolean isNearbyAirport = ((CheckBox)dia.findViewById(R.id.checkBoxNearbyAirport)).isChecked();
                 boolean isNoSeat =((CheckBox)dia.findViewById(R.id.checkBoxNoSeat)).isChecked();
                 boolean isOverNight = ((CheckBox)dia.findViewById(R.id.checkBoxOverNight)).isChecked();
                 int numStops = ((SeekBar)dia.findViewById(R.id.seekBarNumberOfStops)).getProgress();
-
+                Log.d("AdvancedSearch", "nearby:" + isNearbyAirport);
+                Log.d("AdvancedSearch", "numStops:" + numStops);
 
                 /* create Rescheduler*/
                 rescheduler = new ProxyRescheduler();
