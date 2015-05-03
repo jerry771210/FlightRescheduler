@@ -57,24 +57,7 @@ public class RoutesPlanner {
 
         for (int i = 0; i < size - 1; i++) {
             // Query to see if existed in database first
-            bpList = flightCRUD.findFlightByDayOfWeek(inRoute.get(i), inRoute.get(i+1),getDayOfWeek(date));
-            if (bpList == null || bpList.size() == 0) {
-                String rawJson = dataService.getFlight(inRoute.get(i), inRoute.get(i + 1), date);
-                bpList = convertJsonToBoardingPassList(rawJson, date);
-                Log.i(LOG_TAG, "Get bpList" + bpList.toString());
-                if (bpList == null || bpList.size() == 0) {
-                    bpList = new ArrayList<BoardingPass>();
-                    // add an mock element to indicate we have query record
-                    BoardingPass aBoardingPass = new BoardingPass(null, "mock",
-                                    "mock", inRoute.get(i), inRoute.get(i),"mock",
-                                    date, date,BoardingPass.Status.ON_TIME
-                    );
-                    bpList.add(aBoardingPass);
-                }
-                flightCRUD.insertFlight(bpList);
-            } else {
-                Log.i(LOG_TAG, "FlightInfo is in the DB, Skip one query");
-            }
+            bpList = getFlightsByAirportAndDate (inRoute.get(i), inRoute.get(i+1), date);
 
             // check result
             if (isDummyRecord(bpList)) {
@@ -89,6 +72,32 @@ public class RoutesPlanner {
         Log.i(LOG_TAG, inRoute.toString());
 
         return result;
+    }
+
+    private List<BoardingPass> getFlightsByAirportAndDate(String fromAirport, String toAirport, Date date) {
+        List<BoardingPass> bpList;
+        if (fromAirport == null || toAirport == null || date == null) { return null;}
+        // Query if in database
+        bpList = flightCRUD.findFlightByDayOfWeek(fromAirport, toAirport,getDayOfWeek(date));
+
+        if (bpList == null || bpList.size() == 0) { // not in database
+            String rawJson = dataService.getFlight(fromAirport, toAirport, date);
+            bpList = convertJsonToBoardingPassList(rawJson, date);
+            Log.i(LOG_TAG, "Get bpList from WS" + bpList.toString());
+            if (bpList == null || bpList.size() == 0) {
+                bpList = new ArrayList<BoardingPass>();
+                // add an mock element to indicate we have query record
+                BoardingPass aBoardingPass = new BoardingPass(null, "mock",
+                        "mock", fromAirport, fromAirport,"mock",
+                        date, date,BoardingPass.Status.ON_TIME
+                );
+                bpList.add(aBoardingPass);
+            }
+            flightCRUD.insertFlight(bpList);
+        } else {
+            Log.i(LOG_TAG, "FlightInfo is in the DB, Skip one query");
+        }
+        return bpList;
     }
 
     private List<BoardingPass> convertJsonToBoardingPassList(String inJson, Date date) {

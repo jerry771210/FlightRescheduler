@@ -1,6 +1,7 @@
 package edu.cmu.sv.flight.rescheduler.entities.rescheduler;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,9 +61,9 @@ public abstract class Rescheduler {
         RoutesPlanner routesPlanner = new RoutesPlanner();
         routingResult = routesPlanner.plan(routingGraph, isMultiple,curDate, context);
 
-//        for (List<BoardingPass> bpList : routingResult) {
-//            Log.i(LOG_TAG, "To be display on the list" + bpList.toString());
-//        }
+        for (List<BoardingPass> bpList : routingResult) {
+            Log.i(LOG_TAG, "To be display on the list" + bpList.toString());
+        }
 
         return routingResult;
     }
