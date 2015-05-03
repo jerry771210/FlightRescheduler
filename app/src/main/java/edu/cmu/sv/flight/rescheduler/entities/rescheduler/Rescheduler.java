@@ -85,6 +85,7 @@ public abstract class Rescheduler {
             arriveAirportList.add(arriveAirport);
         }
 
+        num_stop = 0; // TODO fix for now
         /* 3. Use BFS to find all routes in terms of "Stops" */
         List<List<String>> routingGraph;
         AirportsGraph airportsGraph = new AirportsGraph();
