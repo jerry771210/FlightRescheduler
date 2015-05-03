@@ -96,7 +96,12 @@ public class Utils {
     }
 
     public Date parseStringToDate(String s) {
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        // JSON format is 2015-05-01T08:20:00.000
+        DateFormat df;
+        if(s.contains("-"))  // For JSON format (ISO 8601)
+            df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        else  // For boardingPass format
+            df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date date = null;
         try {
             date = df.parse(s);
