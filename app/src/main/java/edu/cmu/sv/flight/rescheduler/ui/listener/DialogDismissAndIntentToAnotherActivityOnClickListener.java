@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.SeekBar;
 
 import java.util.Date;
 
@@ -56,8 +58,6 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
                     Log.d("Exception", "[DialogDismiss] alternativeOptionIndex is not set");
                 }
             case R.id.buttonAdvancedSearchConfirm:
-                AdvancedSearch advancedSearch = (AdvancedSearch) object;
-
                 int index = 0;
                 /* Get index from previous activity */
                 Bundle extras = act.getIntent().getExtras();
@@ -73,11 +73,18 @@ public class DialogDismissAndIntentToAnotherActivityOnClickListener implements V
                 String arriveAirport = CurrentRoute.getInstance().getLastBoardingPass().getArrival();
                 Date curDate = departBP.getDepartureTime();
 
+                // Get parameters of advanced search
+                boolean isNearbyAirport = ((CheckBox)dia.findViewById(R.id.checkBoxOverNight)).isChecked();
+                boolean isNoSeat =((CheckBox)dia.findViewById(R.id.checkBoxNoSeat)).isChecked();
+                boolean isOverNight = ((CheckBox)dia.findViewById(R.id.checkBoxOverNight)).isChecked();
+                int numStops = ((SeekBar)dia.findViewById(R.id.seekBarNumberOfStops)).getProgress();
+
+
                 /* create Rescheduler*/
                 rescheduler = new ProxyRescheduler();
                 rescheduler.findAvailableRoutes(departAirport, arriveAirport,
-                        advancedSearch.isNearbyAirport(), false/*multiple*/,
-                        0, curDate, act.getApplicationContext());
+                        isNearbyAirport, false/*multiple*/,
+                        numStops, curDate, act.getApplicationContext());
 
 
                 UpdateListView.update(act, R.layout.list_item_available_route,

@@ -73,7 +73,7 @@ public class AdvancedSearch implements OnSeekBarChangeListener, OnClickListener 
         seekBar.setOnSeekBarChangeListener(this);
         currentRoute = CurrentRoute.getInstance();
 
-        confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null, this));
+        confirm.setOnClickListener(new DialogDismissAndIntentToAnotherActivityOnClickListener(act, dialog, null, null));
         checkBoxOverNight.setOnClickListener(new CheckBoxOnClickListener(overNight));
         checkBoxNoSeat.setOnClickListener(new CheckBoxOnClickListener(noSeat));
         checkBoxNearbyAirport.setOnClickListener(new CheckBoxOnClickListener(nearbyAirport));
